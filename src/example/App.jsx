@@ -1,4 +1,4 @@
-import Datatable from '../lib';
+import Datatable from '../lib/index.jsx';
 import { labelSample } from './labelSample';
 import { userSample } from './userSample';
 
