@@ -2,9 +2,9 @@ import { render, screen } from '@testing-library/react';
 import { Table } from './Table.jsx';
 
 const headings = [
-  { key: 'firstName', label: 'First Name' },
-  { key: 'lastName', label: 'Last Name' },
-  { key: 'dateOfBirth', label: 'Date of Birth' },
+  { key: 'firstName', label: 'First Name', type: 'string' },
+  { key: 'lastName', label: 'Last Name', type: 'string' },
+  { key: 'dateOfBirth', label: 'Date of Birth', type: 'datestring' },
 ];
 
 const data = [
@@ -42,17 +42,15 @@ describe('GIVEN the Table component', () => {
     test('THEN it renders the table and the data position corresponds to the column header', () => {
       const headerCells = screen.getAllByRole('columnheader');
       const dataCells = screen.getAllByRole('cell');
-      for (let index in dataCells) {
-        const keyHead = headings.find(
-          (item) =>
-            item.label === headerCells[index % headings.length].textContent
-        ).key;
-        const user = data[Math.floor(index / headings.length)];
-        const keyData = Object.keys(user).find(
-          (key) => user[key] === dataCells[index].textContent
-        );
-        expect(keyData).toEqual(keyHead);
-      }
+      const findCellIndex = (value) =>
+        dataCells.findIndex((cell) => cell.textContent === value) %
+        headings.length;
+      expect(headerCells[findCellIndex('Doe')].textContent).toEqual(
+        'Last Name'
+      );
+      expect(headerCells[findCellIndex('Jane')].textContent).toEqual(
+        'First Name'
+      );
     });
   });
   describe('WHEN it is called with data props containing more keys than headings', () => {
@@ -76,6 +74,17 @@ describe('GIVEN the Table component', () => {
         headings.length * data.length
       );
       expect(screen.queryByText('Doe' && 'Smith')).toBeFalsy();
+    });
+  });
+  describe('WHEN it is called with data props containing a date', () => {
+    test('THEN it renders a table with a US formated date', () => {
+      render(<Table headings={headings} data={data} />);
+      expect(screen.getByRole('cell', { name: /2000/ }).textContent).toEqual(
+        '01/01/2000'
+      );
+      expect(screen.getByRole('cell', { name: /2010/ }).textContent).toEqual(
+        '12/31/2010'
+      );
     });
   });
 });
