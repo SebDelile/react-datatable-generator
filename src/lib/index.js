@@ -1,3 +1,8 @@
-import Datatable from "./components/Datatable.jsx";
+import { Table } from './components/Table/Table.jsx';
 
-export { Datatable };
+const Datatable = ({ headings, data }) => (
+  <article>
+    <Table headings={headings} data={data} />
+  </article>
+);
+export default Datatable;
