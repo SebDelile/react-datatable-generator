@@ -14,7 +14,10 @@ const Datatable = ({ headings, data }) => {
 
   return (
     <article>
-      <Filter setFilterKeyword={setFilterKeyword} />
+      <Filter
+        filterKeyword={filterKeyword}
+        setFilterKeyword={setFilterKeyword}
+      />
       <Table headings={headings} data={dataToDisplay} />
     </article>
   );
