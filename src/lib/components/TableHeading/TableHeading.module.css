@@ -1,0 +1,25 @@
+.thead {
+  background-color: grey;
+  color: black;
+  font-weight: 700;
+}
+
+.th {
+  border: 1px solid black;
+  padding: 8px 16px;
+}
+
+.button {
+  border: none;
+  background: none;
+  color:inherit;
+  font:inherit;
+  cursor:pointer;
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.image {
+  height: 1em;
+}

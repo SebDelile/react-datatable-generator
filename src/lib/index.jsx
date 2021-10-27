@@ -6,6 +6,7 @@ import { filterHandler } from './handlers/filterHandler/filterHandler.js';
 
 const Datatable = ({ headings, data }) => {
   const [filterKeyword, setFilterKeyword] = useState('');
+  const [currentSort, setCurrentSort] = useState({ key: null, direction: 1 });
   const [dataToDisplay, setDataToDisplay] = useState(data);
 
   useEffect(() => {
@@ -20,7 +21,11 @@ const Datatable = ({ headings, data }) => {
         setFilterKeyword={setFilterKeyword}
       />
       <table>
-        <TableHeading headings={headings} />
+        <TableHeading
+          headings={headings}
+          currentSort={currentSort}
+          setCurrentSort={setCurrentSort}
+        />
         <TableBody headings={headings} data={dataToDisplay} />
       </table>
     </article>
