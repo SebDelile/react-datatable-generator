@@ -1,21 +1,10 @@
-table {
-  border: 2px solid black;
-}
-
 thead {
   background-color: black;
   color: white;
   font-weight: 700;
 }
 
-tbody {
-  background-color: none;
-  color: black;
-  font-weight: 400;
-}
-
-th,
-td {
+th {
   border: 1px solid black;
   padding: 8px 16px;
 }

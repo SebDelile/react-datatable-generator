@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Filter } from './components/Filter/Filter.jsx';
-import { Table } from './components/Table/Table.jsx';
+import { TableHeading } from './components/TableHeading/TableHeading.jsx';
+import { TableBody } from './components/TableBody/TableBody.jsx';
 import { filterHandler } from './handlers/filterHandler/filterHandler.js';
 
 const Datatable = ({ headings, data }) => {
@@ -18,7 +19,10 @@ const Datatable = ({ headings, data }) => {
         filterKeyword={filterKeyword}
         setFilterKeyword={setFilterKeyword}
       />
-      <Table headings={headings} data={dataToDisplay} />
+      <table>
+        <TableHeading headings={headings} />
+        <TableBody headings={headings} data={dataToDisplay} />
+      </table>
     </article>
   );
 };

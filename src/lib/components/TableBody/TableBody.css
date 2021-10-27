@@ -1,0 +1,10 @@
+tbody {
+  background-color: none;
+  color: black;
+  font-weight: 400;
+}
+
+td {
+  border: 1px solid black;
+  padding: 8px 16px;
+}

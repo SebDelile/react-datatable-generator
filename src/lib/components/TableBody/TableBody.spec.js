@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import { Table } from './Table.jsx';
+import { TableBody } from './TableBody.jsx';
 
 const headings = [
   { key: 'firstName', label: 'First Name', type: 'string' },
@@ -12,45 +12,42 @@ const data = [
   { firstName: 'Jane', lastName: 'Smith', dateOfBirth: '2010-12-31' },
 ];
 
-describe('GIVEN the Table component', () => {
+describe('GIVEN the TableBody component', () => {
   describe('WHEN it is called without headings props', () => {
-    test('THEN it renders an empty table', () => {
-      render(<Table />);
-      expect(screen.queryByRole('table')).toBeFalsy();
+    test('THEN it does not render any table cell', () => {
+      render(
+        <table>
+          <TableBody />
+        </table>
+      );
+      expect(screen.queryByRole('cell')).toBeFalsy();
     });
   });
   describe('WHEN it is called with headings but without data props', () => {
-    test('THEN it renders a table with a header row but not any tbody cell', () => {
-      render(<Table headings={headings} />);
-      expect(screen.getByRole('table')).toBeTruthy();
-      expect(screen.getAllByRole('columnheader')).toBeTruthy();
+    test('THEN it does not render any table cell', () => {
+      render(
+        <table>
+          <TableBody headings={headings} />
+        </table>
+      );
       expect(screen.queryByRole('cell')).toBeFalsy();
     });
   });
   describe('WHEN it is called with correct props', () => {
-    beforeEach(() => render(<Table headings={headings} data={data} />));
-    test('THEN it renders a table with a header row and as many row as data items', () => {
-      expect(screen.getAllByRole('columnheader')).toBeTruthy();
-      expect(screen.getAllByRole('row').length).toEqual(1 + data.length);
-    });
-    test('THEN it renders the table and the header row contains the labels in the same sequence as in the headings props', () => {
-      const headerCells = screen.getAllByRole('columnheader');
-      for (let index in headerCells) {
-        expect(headerCells[index].textContent).toEqual(headings[index].label);
-      }
+    beforeEach(() =>
+      render(
+        <table>
+          <TableBody headings={headings} data={data} />
+        </table>
+      )
+    );
+    test('THEN it renders as many row as data items', () => {
+      expect(screen.getAllByRole('row').length).toEqual(data.length);
     });
     test('THEN it renders the table and the data position corresponds to the column header', () => {
-      const headerCells = screen.getAllByRole('columnheader');
       const dataCells = screen.getAllByRole('cell');
-      const findCellIndex = (value) =>
-        dataCells.findIndex((cell) => cell.textContent === value) %
-        headings.length;
-      expect(headerCells[findCellIndex('Doe')].textContent).toEqual(
-        'Last Name'
-      );
-      expect(headerCells[findCellIndex('Jane')].textContent).toEqual(
-        'First Name'
-      );
+      expect(dataCells[0].textContent).toEqual('John');
+      expect(dataCells[1].textContent).toEqual('Doe');
     });
   });
   describe('WHEN it is called with data props containing more keys than headings', () => {
@@ -59,7 +56,11 @@ describe('GIVEN the Table component', () => {
         ...user,
         nationnality: 'American',
       }));
-      render(<Table headings={headings} data={dataWithMoreKeys} />);
+      render(
+        <table>
+          <TableBody headings={headings} data={dataWithMoreKeys} />
+        </table>
+      );
       expect(screen.queryByText('American')).toBeFalsy();
     });
   });
@@ -69,16 +70,24 @@ describe('GIVEN the Table component', () => {
         const { lastName, ...userWithoutLastName } = user;
         return userWithoutLastName;
       });
-      render(<Table headings={headings} data={dataWithLessKeys} />);
-      expect(screen.getAllByRole('cell').length).toEqual(
-        headings.length * data.length
+      render(
+        <table>
+          <TableBody headings={headings} data={dataWithLessKeys} />
+        </table>
       );
-      expect(screen.queryByText('Doe' && 'Smith')).toBeFalsy();
+      const dataCells = screen.getAllByRole('cell');
+      expect(dataCells.length).toEqual(headings.length * data.length);
+      expect(dataCells[1].textContent).toEqual('');
+      expect(screen.queryByText('Doe')).toBeFalsy();
     });
   });
   describe('WHEN it is called with data props containing a date', () => {
     test('THEN it renders a table with a US formated date', () => {
-      render(<Table headings={headings} data={data} />);
+      render(
+        <table>
+          <TableBody headings={headings} data={data} />
+        </table>
+      );
       expect(screen.getByRole('cell', { name: /2000/ }).textContent).toEqual(
         '01/01/2000'
       );
