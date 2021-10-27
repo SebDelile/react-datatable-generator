@@ -1,11 +1,11 @@
 import { filterHandler } from './filterHandler.js';
-
-const user1 = { id: 12, name: 'John Doe', job: 'Engineer' };
-const user2 = { id: 34, name: 'Jane Smith', job: 'Doctor' };
-const user3 = { id: 56, name: 'Arsène Lupin', job: 'Gentleman Thief' };
-const user4 = { id: 78, name: 'Snow White', job: 'Princess' };
-
-const dataSample = [user1, user2, user3, user4];
+import {
+  user1,
+  user2,
+  user3,
+  user4,
+  dataSample,
+} from '../../mocks/dataSample.js';
 
 describe('GIVEN the filterHandler feature', () => {
   describe('WHEN it is called with anything but a non-empty array', () => {
