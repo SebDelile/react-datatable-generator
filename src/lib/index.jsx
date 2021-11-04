@@ -3,6 +3,7 @@ import { SelectItemsPerPage } from './components/SelectItemsPerPage/SelectItemsP
 import { Filter } from './components/Filter/Filter.jsx';
 import { TableHeading } from './components/TableHeading/TableHeading.jsx';
 import { TableBody } from './components/TableBody/TableBody.jsx';
+import { ShowDisplayedItems } from './components/ShowDisplayedItems/ShowDisplayedItems.jsx';
 import { filterHandler } from './handlers/filterHandler/filterHandler.js';
 import { sortHandler } from './handlers/sortHandler/sortHandler.js';
 
@@ -13,7 +14,8 @@ const Datatable = ({ headings, data }) => {
     direction: 1,
     type: 'string',
   });
-  const [itemsPerPage, setItemsPerPage] = useState(undefined);
+  const [itemsPerPage, setItemsPerPage] = useState(10);
+  const [page, setPage] = useState(1);
 
   const [filteredData, setFilteredData] = useState(data);
   const [sortedData, setSortedData] = useState(filteredData);
@@ -49,6 +51,12 @@ const Datatable = ({ headings, data }) => {
         />
         <TableBody headings={headings} data={displayedData} />
       </table>
+      <ShowDisplayedItems
+        page={page}
+        itemsPerPage={itemsPerPage}
+        displayedDataLength={displayedData.length}
+        unfiltredDataLength={data.length}
+      />
     </article>
   );
 };
