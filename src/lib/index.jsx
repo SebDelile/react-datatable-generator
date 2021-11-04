@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { SelectItemsPerPage } from './components/SelectItemsPerPage/SelectItemsPerPage.jsx';
 import { Filter } from './components/Filter/Filter.jsx';
 import { TableHeading } from './components/TableHeading/TableHeading.jsx';
 import { TableBody } from './components/TableBody/TableBody.jsx';
@@ -12,6 +13,7 @@ const Datatable = ({ headings, data }) => {
     direction: 1,
     type: 'string',
   });
+  const [itemsPerPage, setItemsPerPage] = useState(undefined);
 
   const [filteredData, setFilteredData] = useState(data);
   const [sortedData, setSortedData] = useState(filteredData);
@@ -31,6 +33,10 @@ const Datatable = ({ headings, data }) => {
 
   return (
     <article>
+      <SelectItemsPerPage
+        itemsPerPage={itemsPerPage}
+        setItemsPerPage={setItemsPerPage}
+      />
       <Filter
         filterKeyword={filterKeyword}
         setFilterKeyword={setFilterKeyword}
