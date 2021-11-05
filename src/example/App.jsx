@@ -5,7 +5,11 @@ import { userSample } from './userSample';
 const App = () => (
   <>
     <h1>Datatable in action !</h1>
-    <Datatable headings={labelSample} data={userSample} />
+    <Datatable
+      headings={labelSample}
+      data={userSample}
+      itemsPerPageOption={[1, 2, 5, 10]}
+    />
   </>
 );
 

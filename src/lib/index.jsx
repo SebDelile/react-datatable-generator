@@ -7,15 +7,19 @@ import { ShowDisplayedItems } from './components/ShowDisplayedItems/ShowDisplaye
 import { filterHandler } from './handlers/filterHandler/filterHandler.js';
 import { sortHandler } from './handlers/sortHandler/sortHandler.js';
 
-const Datatable = ({ headings, data }) => {
+const Datatable = ({
+  headings,
+  data,
+  itemsPerPageOption = [10, 25, 50, 100],
+}) => {
   const [filterKeyword, setFilterKeyword] = useState('');
   const [currentSort, setCurrentSort] = useState({
     key: null,
     direction: 1,
     type: 'string',
   });
-  const [itemsPerPage, setItemsPerPage] = useState(10);
-  const [currentPage, setcurrentPage] = useState(1);
+  const [itemsPerPage, setItemsPerPage] = useState(itemsPerPageOption[0]);
+  const [currentPage, setCurrentPage] = useState(1);
 
   const [filteredData, setFilteredData] = useState(data);
   const [sortedData, setSortedData] = useState(filteredData);
@@ -38,6 +42,7 @@ const Datatable = ({ headings, data }) => {
       <SelectItemsPerPage
         itemsPerPage={itemsPerPage}
         setItemsPerPage={setItemsPerPage}
+        options={itemsPerPageOption}
       />
       <Filter
         filterKeyword={filterKeyword}
