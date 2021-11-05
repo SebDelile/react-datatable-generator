@@ -15,7 +15,7 @@ const Datatable = ({ headings, data }) => {
     type: 'string',
   });
   const [itemsPerPage, setItemsPerPage] = useState(10);
-  const [page, setPage] = useState(1);
+  const [currentPage, setcurrentPage] = useState(1);
 
   const [filteredData, setFilteredData] = useState(data);
   const [sortedData, setSortedData] = useState(filteredData);
@@ -52,7 +52,7 @@ const Datatable = ({ headings, data }) => {
         <TableBody headings={headings} data={displayedData} />
       </table>
       <ShowDisplayedItems
-        page={page}
+        currentPage={currentPage}
         itemsPerPage={itemsPerPage}
         displayedDataLength={displayedData.length}
         unfiltredDataLength={data.length}

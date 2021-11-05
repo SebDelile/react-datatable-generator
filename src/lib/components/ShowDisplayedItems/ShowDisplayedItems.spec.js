@@ -2,17 +2,17 @@ import { render, screen } from '@testing-library/react';
 import { ShowDisplayedItems } from './ShowDisplayedItems';
 
 describe('GIVEN the ShowDisplayedItems component', () => {
-  describe('WHEN it is called with missing props between page, entries or displayedDataLength', () => {
+  describe('WHEN it is called with missing props between currentPage, entries or displayedDataLength', () => {
     test('THEN it renders nothing', () => {
       render(<ShowDisplayedItems />);
       expect(screen.queryByText(/./i)).toBeFalsy();
     });
     test('THEN it renders nothing', () => {
-      render(<ShowDisplayedItems page={3} itemsPerPage={10} />);
+      render(<ShowDisplayedItems currentPage={3} itemsPerPage={10} />);
       expect(screen.queryByText(/./i)).toBeFalsy();
     });
     test('THEN it renders nothing', () => {
-      render(<ShowDisplayedItems page={3} displayedDataLength={48} />);
+      render(<ShowDisplayedItems currentPage={3} displayedDataLength={48} />);
       expect(screen.queryByText(/./i)).toBeFalsy();
     });
     test('THEN it renders nothing', () => {
@@ -24,7 +24,7 @@ describe('GIVEN the ShowDisplayedItems component', () => {
     test('THEN it renders a sentence with a range between 1s item of the page and last item of the page', () => {
       render(
         <ShowDisplayedItems
-          page={3}
+          currentPage={3}
           itemsPerPage={10}
           displayedDataLength={48}
         />
@@ -36,7 +36,7 @@ describe('GIVEN the ShowDisplayedItems component', () => {
     test('THEN it renders a sentence with a range between 1s item of the page and last item of the page', () => {
       render(
         <ShowDisplayedItems
-          page={5}
+          currentPage={5}
           itemsPerPage={10}
           displayedDataLength={48}
         />
@@ -48,7 +48,7 @@ describe('GIVEN the ShowDisplayedItems component', () => {
     test('THEN it renders a sentence with a range between 1s item of the page and last item of the page', () => {
       render(
         <ShowDisplayedItems
-          page={5}
+          currentPage={5}
           itemsPerPage={10}
           displayedDataLength={48}
           unfiltredDataLength={48}
@@ -62,7 +62,7 @@ describe('GIVEN the ShowDisplayedItems component', () => {
     test('THEN it additionnaly displays the number of unflitred data', () => {
       render(
         <ShowDisplayedItems
-          page={5}
+          currentPage={5}
           itemsPerPage={10}
           displayedDataLength={48}
           unfiltredDataLength={64}

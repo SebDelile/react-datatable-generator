@@ -1,12 +1,12 @@
 export const ShowDisplayedItems = ({
-  page,
+  currentPage,
   itemsPerPage,
   displayedDataLength,
   unfiltredDataLength = displayedDataLength,
 }) => {
-  if (!page || !itemsPerPage || !displayedDataLength) return null;
-  const firstItem = (page - 1) * itemsPerPage + 1;
-  const lastItem = Math.min(page * itemsPerPage, displayedDataLength);
+  if (!currentPage || !itemsPerPage || !displayedDataLength) return null;
+  const firstItem = (currentPage - 1) * itemsPerPage + 1;
+  const lastItem = Math.min(currentPage * itemsPerPage, displayedDataLength);
   return (
     <p>{`Showing ${firstItem} to ${lastItem} of ${displayedDataLength} entries${
       unfiltredDataLength > displayedDataLength
