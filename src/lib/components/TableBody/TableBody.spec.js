@@ -14,15 +14,23 @@ describe('GIVEN the TableBody component', () => {
       expect(screen.queryByRole('cell')).toBeFalsy();
     });
   });
-  describe('WHEN it is called with headings but without data props', () => {
-    test('THEN it does not render any table cell', () => {
+  describe('WHEN it is called with headings but without data or empty data props', () => {
+    test('THEN it renders an unique cell with message on no match found', () => {
       render(
         <table>
           <TableBody headings={headingsSample} />
         </table>
       );
-      expect(screen.queryByRole('cell')).toBeFalsy();
+      expect(screen.getByRole('cell', { name: /no match/i })).toBeTruthy();
     });
+  });
+  test('THEN it renders an unique cell with message on no match found', () => {
+    render(
+      <table>
+        <TableBody headings={headingsSample} data={[]} />
+      </table>
+    );
+    expect(screen.getByRole('cell', { name: /no match/i })).toBeTruthy();
   });
   describe('WHEN it is called with correct props', () => {
     beforeEach(() =>
