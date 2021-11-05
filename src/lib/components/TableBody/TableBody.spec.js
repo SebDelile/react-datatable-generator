@@ -1,44 +1,29 @@
-import { render, screen } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 import { TableBody } from './TableBody.jsx';
+import { renderWithTable } from '../../utils/test/renderWithTable.js';
 import { dataSample } from '../../mocks/dataSample.js';
 import { headingsSample } from '../../mocks/headingsSample.js';
 
 describe('GIVEN the TableBody component', () => {
   describe('WHEN it is called without headings props', () => {
     test('THEN it does not render any table cell', () => {
-      render(
-        <table>
-          <TableBody />
-        </table>
-      );
+      renderWithTable(<TableBody />);
       expect(screen.queryByRole('cell')).toBeFalsy();
     });
   });
   describe('WHEN it is called with headings but without data or empty data props', () => {
     test('THEN it renders an unique cell with message on no match found', () => {
-      render(
-        <table>
-          <TableBody headings={headingsSample} />
-        </table>
-      );
+      renderWithTable(<TableBody headings={headingsSample} />);
       expect(screen.getByRole('cell', { name: /no match/i })).toBeTruthy();
     });
   });
   test('THEN it renders an unique cell with message on no match found', () => {
-    render(
-      <table>
-        <TableBody headings={headingsSample} data={[]} />
-      </table>
-    );
+    renderWithTable(<TableBody headings={headingsSample} data={[]} />);
     expect(screen.getByRole('cell', { name: /no match/i })).toBeTruthy();
   });
   describe('WHEN it is called with correct props', () => {
     beforeEach(() =>
-      render(
-        <table>
-          <TableBody headings={headingsSample} data={dataSample} />
-        </table>
-      )
+      renderWithTable(<TableBody headings={headingsSample} data={dataSample} />)
     );
     test('THEN it renders as many row as data items', () => {
       expect(screen.getAllByRole('row').length).toEqual(dataSample.length);
@@ -56,10 +41,8 @@ describe('GIVEN the TableBody component', () => {
         ...user,
         nationnality: 'American',
       }));
-      render(
-        <table>
-          <TableBody headings={headingsSample} data={dataSampleWithMoreKeys} />
-        </table>
+      renderWithTable(
+        <TableBody headings={headingsSample} data={dataSampleWithMoreKeys} />
       );
       expect(screen.queryByText('American')).toBeFalsy();
     });
@@ -70,10 +53,8 @@ describe('GIVEN the TableBody component', () => {
         const { job, ...userWithoutJob } = user;
         return userWithoutJob;
       });
-      render(
-        <table>
-          <TableBody headings={headingsSample} data={dataSampleWithLessKeys} />
-        </table>
+      renderWithTable(
+        <TableBody headings={headingsSample} data={dataSampleWithLessKeys} />
       );
       const dataCells = screen.getAllByRole('cell');
       expect(dataCells.length).toEqual(
@@ -85,10 +66,8 @@ describe('GIVEN the TableBody component', () => {
   });
   describe('WHEN it is called with data props containing a date', () => {
     test('THEN it renders a table with a US formated date', () => {
-      render(
-        <table>
-          <TableBody headings={headingsSample} data={dataSample} />
-        </table>
+      renderWithTable(
+        <TableBody headings={headingsSample} data={dataSample} />
       );
       expect(screen.getByText('04/16/1987')).toBeTruthy();
       expect(screen.queryByText('1987-04-16')).toBeFalsy();

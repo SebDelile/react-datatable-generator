@@ -1,5 +1,6 @@
-import { render, screen, fireEvent } from '@testing-library/react';
+import { screen, fireEvent } from '@testing-library/react';
 import { TableHeading } from './TableHeading.jsx';
+import { renderWithTable } from '../../utils/test/renderWithTable.js';
 import { headingsSample } from '../../mocks/headingsSample.js';
 import {
   currentSortNameAscending,
@@ -12,24 +13,18 @@ const setCurrentSort = jest.fn();
 describe('GIVEN the TableHeading component', () => {
   describe('WHEN it is called without headings props', () => {
     test('THEN it does not render any table headings', () => {
-      render(
-        <table>
-          <TableHeading />
-        </table>
-      );
+      renderWithTable(<TableHeading />);
       expect(screen.queryByRole('columnheader')).toBeFalsy();
     });
   });
   describe('WHEN it is called with heading props, and a null current sort', () => {
     beforeEach(() => {
-      render(
-        <table>
-          <TableHeading
-            headings={headingsSample}
-            currentSort={currentSortNull}
-            setCurrentSort={setCurrentSort}
-          />
-        </table>
+      renderWithTable(
+        <TableHeading
+          headings={headingsSample}
+          currentSort={currentSortNull}
+          setCurrentSort={setCurrentSort}
+        />
       );
     });
     test('THEN it renders a table header row with buttons inside', () => {
@@ -68,14 +63,12 @@ describe('GIVEN the TableHeading component', () => {
   });
   describe('WHEN it is called with heading props, and an existing key as current sort and an ascending sort', () => {
     beforeEach(() => {
-      render(
-        <table>
-          <TableHeading
-            headings={headingsSample}
-            currentSort={currentSortNameAscending}
-            setCurrentSort={setCurrentSort}
-          />
-        </table>
+      renderWithTable(
+        <TableHeading
+          headings={headingsSample}
+          currentSort={currentSortNameAscending}
+          setCurrentSort={setCurrentSort}
+        />
       );
     });
     test('THEN it renders a table header row with buttons and one is selected as currently selected sort with ascending sort', () => {
@@ -109,14 +102,12 @@ describe('GIVEN the TableHeading component', () => {
   });
   describe('WHEN it is called with heading props, and an existing key as current sort and an ascending sort', () => {
     beforeEach(() => {
-      render(
-        <table>
-          <TableHeading
-            headings={headingsSample}
-            currentSort={currentSortNameDescending}
-            setCurrentSort={setCurrentSort}
-          />
-        </table>
+      renderWithTable(
+        <TableHeading
+          headings={headingsSample}
+          currentSort={currentSortNameDescending}
+          setCurrentSort={setCurrentSort}
+        />
       );
     });
     test('THEN it renders a table header row with buttons and one is selected as currently selected sort with descending sort', () => {
