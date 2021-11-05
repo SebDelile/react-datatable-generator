@@ -4,6 +4,7 @@ import { Filter } from './components/Filter/Filter.jsx';
 import { TableHeading } from './components/TableHeading/TableHeading.jsx';
 import { TableBody } from './components/TableBody/TableBody.jsx';
 import { ShowDisplayedItems } from './components/ShowDisplayedItems/ShowDisplayedItems.jsx';
+import { SelectPage } from './components/SelectPage/SelectPage.jsx';
 import { filterHandler } from './handlers/filterHandler/filterHandler.js';
 import { sortHandler } from './handlers/sortHandler/sortHandler.js';
 
@@ -61,6 +62,11 @@ const Datatable = ({
         itemsPerPage={itemsPerPage}
         displayedDataLength={displayedData.length}
         unfiltredDataLength={data.length}
+      />
+      <SelectPage
+        currentPage={currentPage}
+        numberOfPages={Math.ceil(displayedData.length / itemsPerPage)}
+        setCurrentPage={setCurrentPage}
       />
     </article>
   );
