@@ -7,6 +7,7 @@ import { ShowDisplayedItems } from './components/ShowDisplayedItems/ShowDisplaye
 import { SelectPage } from './components/SelectPage/SelectPage.jsx';
 import { filterHandler } from './handlers/filterHandler/filterHandler.js';
 import { sortHandler } from './handlers/sortHandler/sortHandler.js';
+import { pagingHandler } from './handlers/pagingHandler/pagingHandler.js';
 
 const Datatable = ({
   headings,
@@ -35,8 +36,9 @@ const Datatable = ({
   }, [filteredData, currentSort]);
 
   useEffect(() => {
-    setDisplayedData(sortedData);
-  }, [sortedData, currentSort]);
+    setDisplayedData(pagingHandler(sortedData, currentPage, itemsPerPage));
+  }, [sortedData, currentPage, itemsPerPage]);
+
 
   return (
     <article>
@@ -60,12 +62,12 @@ const Datatable = ({
       <ShowDisplayedItems
         currentPage={currentPage}
         itemsPerPage={itemsPerPage}
-        displayedDataLength={displayedData.length}
+        displayedDataLength={filteredData.length}
         unfiltredDataLength={data.length}
       />
       <SelectPage
         currentPage={currentPage}
-        numberOfPages={Math.ceil(displayedData.length / itemsPerPage)}
+        numberOfPages={Math.ceil(filteredData.length / itemsPerPage)}
         setCurrentPage={setCurrentPage}
       />
     </article>
