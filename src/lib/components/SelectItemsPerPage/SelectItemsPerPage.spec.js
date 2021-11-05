@@ -4,8 +4,10 @@ import { SelectItemsPerPage } from './SelectItemsPerPage.jsx';
 const mockedSetItemsPerPage = jest.fn();
 
 describe('GIVEN the SelectItemsPerPage component', () => {
-  describe('WHEN it is called with no props', () => {
-    beforeEach(() => render(<SelectItemsPerPage />));
+  describe('WHEN it is called with options props', () => {
+    beforeEach(() =>
+      render(<SelectItemsPerPage options={[10, 25, 50, 100]} />)
+    );
     test('THEN it renders an input select field with a label', () => {
       expect(screen.getByText(/Show/i && /Entries/i)).toBeTruthy();
     });
@@ -28,6 +30,7 @@ describe('GIVEN the SelectItemsPerPage component', () => {
         <SelectItemsPerPage
           itemsPerPage={50}
           setItemsPerPage={mockedSetItemsPerPage}
+          options={[10, 25, 50, 100]}
         />
       )
     );
