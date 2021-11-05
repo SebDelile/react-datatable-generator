@@ -15,6 +15,10 @@
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",
+    "babel-cli": "^6.26.0",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-script": "^2.0.5",
     "react-scripts": "4.0.3",
     "web-vitals": "^1.1.2"
   },
@@ -43,10 +47,5 @@
       "last 1 safari version"
     ]
   },
-  "devDependencies": {
-    "babel-cli": "^6.26.0",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "react-script": "^2.0.5"
-  }
+  "devDependencies": {}
 }
