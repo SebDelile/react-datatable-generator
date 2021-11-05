@@ -1,11 +1,11 @@
 export const SelectItemsPerPage = ({
   itemsPerPage,
-  setItemsPerPage,
+  updateItemsPerPage,
   options,
 }) => {
   const handleChange = (event) => {
     event.preventDefault();
-    setItemsPerPage(parseInt(event.target.value));
+    updateItemsPerPage(parseInt(event.target.value));
   };
 
   return (

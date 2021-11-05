@@ -33,18 +33,26 @@ const Datatable = ({
 
   useEffect(() => {
     setSortedData(sortHandler(filteredData, currentSort));
+    setCurrentPage(1);
   }, [filteredData, currentSort]);
 
   useEffect(() => {
     setDisplayedData(pagingHandler(sortedData, currentPage, itemsPerPage));
   }, [sortedData, currentPage, itemsPerPage]);
 
+  const updateItemsPerPage = (newItemsPerPage) => {
+    const currentFirstItemIndex = (currentPage - 1) * itemsPerPage;
+    const newCurrentPage =
+      Math.floor(currentFirstItemIndex / newItemsPerPage) + 1;
+    setItemsPerPage(newItemsPerPage);
+    setCurrentPage(newCurrentPage);
+  };
 
   return (
     <article>
       <SelectItemsPerPage
         itemsPerPage={itemsPerPage}
-        setItemsPerPage={setItemsPerPage}
+        updateItemsPerPage={updateItemsPerPage}
         options={itemsPerPageOption}
       />
       <Filter

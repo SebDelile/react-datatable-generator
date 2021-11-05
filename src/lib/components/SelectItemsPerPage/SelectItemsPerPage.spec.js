@@ -1,7 +1,7 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import { SelectItemsPerPage } from './SelectItemsPerPage.jsx';
 
-const mockedSetItemsPerPage = jest.fn();
+const mockedUpdateItemsPerPage = jest.fn();
 
 describe('GIVEN the SelectItemsPerPage component', () => {
   describe('WHEN it is called with options props', () => {
@@ -24,12 +24,12 @@ describe('GIVEN the SelectItemsPerPage component', () => {
       expect(screen.getByText('10')).toBeTruthy();
     });
   });
-  describe('WHEN it is called with a itemsPerPage and setItemsPerPage props', () => {
+  describe('WHEN it is called with a itemsPerPage and updateItemsPerPage props', () => {
     beforeEach(() =>
       render(
         <SelectItemsPerPage
           itemsPerPage={50}
-          setItemsPerPage={mockedSetItemsPerPage}
+          updateItemsPerPage={mockedUpdateItemsPerPage}
           options={[10, 25, 50, 100]}
         />
       )
@@ -45,16 +45,16 @@ describe('GIVEN the SelectItemsPerPage component', () => {
         fireEvent.change(screen.getByRole('combobox'), {
           target: { value: '25' },
         });
-        expect(mockedSetItemsPerPage).toHaveBeenLastCalledWith(25);
+        expect(mockedUpdateItemsPerPage).toHaveBeenLastCalledWith(25);
       });
     });
   });
-  describe('WHEN it is called with a itemsPerPage and setItemsPerPage props', () => {
+  describe('WHEN it is called with a itemsPerPage and updateItemsPerPage props', () => {
     test('THEN this option is selected', () => {
       render(
         <SelectItemsPerPage
           itemsPerPage={50}
-          setItemsPerPage={mockedSetItemsPerPage}
+          updateItemsPerPage={mockedUpdateItemsPerPage}
           options={[12, 24, 36]}
         />
       );
