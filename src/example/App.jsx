@@ -8,7 +8,7 @@ const App = () => (
     <Datatable
       headings={labelSample}
       data={userSample}
-      itemsPerPageOption={[1, 2, 5, 10]}
+      itemsPerPageOption={[1, 5, 10, 25, 100]}
     />
   </>
 );
