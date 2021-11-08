@@ -1,12 +1,17 @@
 .wrapper {
   grid-area: filter;
-  justify-self: end;
   height: 1.5rem;
   display:flex;
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
   position: relative;
+}
+
+@media only screen and (min-width: 30rem) {
+  .wrapper {
+    justify-self: end;
+  }
 }
 
 .label {

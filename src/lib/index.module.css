@@ -1,14 +1,34 @@
 .datatable {
   display: grid;
   grid-template-areas: 
-    "selectItemsPerPage filter"
-    "table table"
-    "showDisplayedItems selectPage";
+    "selectItemsPerPage"
+    "filter"
+    "table"
+    "showDisplayedItems"
+    "selectPage";
   justify-items: center;
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
+}
 
+@media only screen and (min-width: 30rem) {
+  .datatable {
+    grid-template-areas: 
+    "selectItemsPerPage filter"
+    "table table"
+    "showDisplayedItems showDisplayedItems"
+    "selectPage selectPage";
+  }
+}
+
+@media only screen and (min-width: 50rem) {
+  .datatable {
+    grid-template-areas: 
+      "selectItemsPerPage filter"
+      "table table"
+      "showDisplayedItems selectPage";
+  }
 }
 
 .table {

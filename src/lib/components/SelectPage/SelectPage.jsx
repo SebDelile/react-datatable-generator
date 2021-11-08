@@ -38,8 +38,15 @@ export const SelectPage = ({ currentPage, numberOfPages, setCurrentPage }) => {
     (page === 'Previous' && currentPage === 1) ||
     (page === 'Next' && currentPage === numberOfPages);
 
+  const selected = (page) => (page === currentPage ? styles.selected : '');
+
+  const hiddenIfNeeded = (page) =>
+    numberOfPages > 5 && (page === 'Previous' || page === 'Next')
+      ? styles.HiddenIfNeeded
+      : '';
+
   return (
-    <div className={styles.selectPage}>
+    <div className={styles.wrapper}>
       {buttonList.map((page, i) => (
         <button
           key={i}
@@ -47,9 +54,9 @@ export const SelectPage = ({ currentPage, numberOfPages, setCurrentPage }) => {
           disabled={isDisabled(page)}
           onClick={handleClick}
           value={page}
-          className={`${styles.button} ${
-            page === currentPage ? styles.selected : ''
-          }`}
+          className={`${styles.button} ${hiddenIfNeeded(page)} ${selected(
+            page
+          )}`}
         >
           {page}
         </button>

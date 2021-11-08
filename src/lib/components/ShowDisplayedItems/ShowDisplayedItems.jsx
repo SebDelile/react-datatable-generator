@@ -11,7 +11,7 @@ export const ShowDisplayedItems = ({
   const lastItem = Math.min(currentPage * itemsPerPage, displayedDataLength);
   return (
     <p
-      className={styles.showDisplayedItems}
+      className={styles.wrapper}
     >{`Showing ${firstItem} to ${lastItem} of ${displayedDataLength} entries${
       unfiltredDataLength > displayedDataLength
         ? ` (filtered from ${unfiltredDataLength} total entries)`

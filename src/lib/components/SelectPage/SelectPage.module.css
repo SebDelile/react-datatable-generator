@@ -1,11 +1,22 @@
-.selectPage {
+.wrapper {
   grid-area: selectPage;
-  justify-self: end;
   display:flex;
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
   gap: 0.25rem;
+}
+
+@media only screen and (min-width: 50rem) {
+  .wrapper {
+    justify-self: end;
+  }
+}
+
+@media only screen and (max-width: 30rem) {
+  .HiddenIfNeeded {
+    display: none;
+  }
 }
 
 .button {
@@ -15,8 +26,9 @@
   border: solid 1px transparent;
   border-radius: 0.25rem;
 }
-.button[disabled] {
+.button[disabled]:not(.selected) {
   color: #666;
+  padding: 0.5rem;
 }
 
 .button:not([disabled]):hover {
