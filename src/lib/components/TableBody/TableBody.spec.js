@@ -64,13 +64,4 @@ describe('GIVEN the TableBody component', () => {
       expect(screen.queryByText('Engineer')).toBeFalsy();
     });
   });
-  describe('WHEN it is called with data props containing a date', () => {
-    test('THEN it renders a table with a US formated date', () => {
-      renderWithTable(
-        <TableBody headings={headingsSample} data={dataSample} />
-      );
-      expect(screen.getByText('04/16/1987')).toBeTruthy();
-      expect(screen.queryByText('1987-04-16')).toBeFalsy();
-    });
-  });
 });
