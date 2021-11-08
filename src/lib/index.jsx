@@ -16,7 +16,7 @@ const Datatable = ({
 }) => {
   const [filterKeyword, setFilterKeyword] = useState('');
   const [currentSort, setCurrentSort] = useState({
-    key: null,
+    key: headings[0].key ?? null,
     direction: 1,
     type: 'string',
   });
