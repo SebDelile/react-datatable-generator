@@ -1,0 +1,32 @@
+.selectPage {
+  grid-area: selectPage;
+  justify-self: end;
+  display:flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.button {
+  padding: 0.5rem 1rem;
+  font: inherit;
+  background: none;
+  border: solid 1px transparent;
+  border-radius: 0.25rem;
+}
+.button[disabled] {
+  color: #666;
+}
+
+.button:not([disabled]):hover {
+  color: white;
+  border: solid 1px black;
+  background: linear-gradient(to bottom, #333 0%, black 100%);
+}
+
+.selected[disabled] {
+  color: black;
+  border: solid 1px #333;
+  background: linear-gradient(to bottom, #FFF 0%, #CCC 100%);
+}

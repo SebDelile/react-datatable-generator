@@ -1,0 +1,4 @@
+.showDisplayedItems {
+  grid-area: showDisplayedItems;
+  justify-self: start;
+}

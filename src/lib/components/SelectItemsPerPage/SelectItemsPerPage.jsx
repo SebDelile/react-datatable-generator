@@ -1,3 +1,5 @@
+import styles from './SelectItemsPerPage.module.css';
+
 export const SelectItemsPerPage = ({
   itemsPerPage,
   updateItemsPerPage,
@@ -9,16 +11,20 @@ export const SelectItemsPerPage = ({
   };
 
   return (
-    <label>
-      {'Show '}
-      <select onChange={handleChange} value={itemsPerPage}>
+    <label className={styles.wrapper}>
+      {'Show'}
+      <select
+        onChange={handleChange}
+        value={itemsPerPage}
+        className={styles.select}
+      >
         {options.map((option) => (
           <option key={option} value={option}>
             {option}
           </option>
         ))}
       </select>
-      {' Entries'}
+      {'entries'}
     </label>
   );
 };

@@ -8,6 +8,7 @@ import { SelectPage } from './components/SelectPage/SelectPage.jsx';
 import { filterHandler } from './handlers/filterHandler/filterHandler.js';
 import { sortHandler } from './handlers/sortHandler/sortHandler.js';
 import { pagingHandler } from './handlers/pagingHandler/pagingHandler.js';
+import styles from './index.module.css';
 
 const Datatable = ({
   headings,
@@ -49,23 +50,29 @@ const Datatable = ({
   };
 
   return (
-    <article>
+    <article className={styles.datatable}>
       <SelectItemsPerPage
         itemsPerPage={itemsPerPage}
         updateItemsPerPage={updateItemsPerPage}
         options={itemsPerPageOption}
+        className={styles.selectItemsPerPage}
       />
       <Filter
         filterKeyword={filterKeyword}
         setFilterKeyword={setFilterKeyword}
+        className={styles.filter}
       />
-      <table>
+      <table className={styles.table}>
         <TableHeading
           headings={headings}
           currentSort={currentSort}
           setCurrentSort={setCurrentSort}
         />
-        <TableBody headings={headings} data={displayedData} />
+        <TableBody
+          headings={headings}
+          data={displayedData}
+          currentSortKey={currentSort.key}
+        />
       </table>
       <ShowDisplayedItems
         currentPage={currentPage}

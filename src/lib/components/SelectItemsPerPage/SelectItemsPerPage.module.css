@@ -1,0 +1,14 @@
+.wrapper {
+  grid-area: selectItemsPerPage;
+  justify-self: start;
+  display:flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.select {
+  margin: 0 0.5rem;
+  font: inherit;
+  padding: 0.125rem;
+}

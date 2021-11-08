@@ -1,3 +1,5 @@
+import styles from './ShowDisplayedItems.module.css';
+
 export const ShowDisplayedItems = ({
   currentPage,
   itemsPerPage,
@@ -8,7 +10,9 @@ export const ShowDisplayedItems = ({
   const firstItem = (currentPage - 1) * itemsPerPage + 1;
   const lastItem = Math.min(currentPage * itemsPerPage, displayedDataLength);
   return (
-    <p>{`Showing ${firstItem} to ${lastItem} of ${displayedDataLength} entries${
+    <p
+      className={styles.showDisplayedItems}
+    >{`Showing ${firstItem} to ${lastItem} of ${displayedDataLength} entries${
       unfiltredDataLength > displayedDataLength
         ? ` (filtered from ${unfiltredDataLength} total entries)`
         : ''

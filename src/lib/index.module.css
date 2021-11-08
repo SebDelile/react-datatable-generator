@@ -1,0 +1,15 @@
+.datatable {
+  display: grid;
+  grid-template-areas: 
+    "selectItemsPerPage filter"
+    "table table"
+    "showDisplayedItems selectPage";
+    justify-items: stretch;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.table {
+  grid-area: table;
+  border-collapse: collapse;
+}

@@ -1,3 +1,5 @@
+import styles from './SelectPage.module.css';
+
 export const SelectPage = ({ currentPage, numberOfPages, setCurrentPage }) => {
   if (!currentPage || !numberOfPages) return null;
 
@@ -37,7 +39,7 @@ export const SelectPage = ({ currentPage, numberOfPages, setCurrentPage }) => {
     (page === 'Next' && currentPage === numberOfPages);
 
   return (
-    <div>
+    <div className={styles.selectPage}>
       {buttonList.map((page, i) => (
         <button
           key={i}
@@ -45,6 +47,9 @@ export const SelectPage = ({ currentPage, numberOfPages, setCurrentPage }) => {
           disabled={isDisabled(page)}
           onClick={handleClick}
           value={page}
+          className={`${styles.button} ${
+            page === currentPage ? styles.selected : ''
+          }`}
         >
           {page}
         </button>

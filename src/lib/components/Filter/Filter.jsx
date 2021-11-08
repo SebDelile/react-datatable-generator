@@ -13,7 +13,7 @@ export const Filter = ({ filterKeyword, setFilterKeyword }) => {
 
   return (
     <div className={styles.wrapper}>
-      <label className={styles.label}>Search :</label>
+      <label className={styles.label}>Search:</label>
       <input
         className={styles.input}
         type="text"
