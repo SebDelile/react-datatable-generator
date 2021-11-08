@@ -14,9 +14,9 @@ export const TableHeading = ({ headings, currentSort, setCurrentSort }) => {
 
   return (
     <thead className={styles.thead}>
-      <tr>
+      <tr className={styles.tr}>
         {headings.map((item) => (
-          <th key={item.key} className={styles.th}>
+          <th key={item.key}>
             <button
               className={styles.button}
               type="button"

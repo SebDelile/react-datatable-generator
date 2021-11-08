@@ -7,19 +7,21 @@
   border-top: 1px solid #DDD;
 }
 
-.tr:nth-child(odd) {
+.tr > td {
+  background-color: #FFF;
+  padding: 0.5rem 1rem;
+
+}
+
+.tr:nth-child(odd) > td {
   background-color: #F9F9F9;
 }
 
-.tr:hover {
+.tr:hover > td {
   background-color: #F1F1F1;
 }
 
-.td {
-  padding: 0.5rem 1rem;
-}
-
-.tdSorted {
+.tr > .tdSorted {
   background-color: #FAFAFA;
 }
 

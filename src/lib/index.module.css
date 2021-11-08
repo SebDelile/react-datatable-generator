@@ -4,12 +4,23 @@
     "selectItemsPerPage filter"
     "table table"
     "showDisplayedItems selectPage";
-    justify-items: stretch;
-    align-items: center;
-    gap: 0.5rem;
+  justify-items: center;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+
 }
 
 .table {
   grid-area: table;
   border-collapse: collapse;
+  display: block;
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+.table th:first-of-type, 
+.table td:first-of-type {
+  position: sticky;
+  left: 0;
 }

@@ -3,8 +3,9 @@
   border-bottom: 1px solid black;
 }
 
-.th {
+.tr > th {
   padding: 0.5rem 1rem;
+  background-color: white;
 }
 
 .button {
