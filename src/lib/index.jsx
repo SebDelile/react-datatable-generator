@@ -19,7 +19,7 @@ const Datatable = ({
   const [currentSort, setCurrentSort] = useState({
     key: headings[0].key ?? null,
     direction: 1,
-    type: 'string',
+    type: headings[0].type ?? undefined,
   });
   const [itemsPerPage, setItemsPerPage] = useState(itemsPerPageOption[0]);
   const [currentPage, setCurrentPage] = useState(1);
