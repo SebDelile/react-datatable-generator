@@ -1,4 +1,4 @@
-export const labelSample = [
+export const extendedHeadingsSample = [
   { key: 'firstName', label: 'First Name', type: 'string' },
   { key: 'lastName', label: 'Last Name', type: 'string' },
   {
