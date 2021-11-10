@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { SelectItemsPerPage } from './components/SelectItemsPerPage/SelectItemsPerPage.jsx';
 import { Filter } from './components/Filter/Filter.jsx';
+import { Table } from './components/Table/Table.jsx';
 import { TableHeading } from './components/TableHeading/TableHeading.jsx';
 import { TableBody } from './components/TableBody/TableBody.jsx';
 import { ShowDisplayedItems } from './components/ShowDisplayedItems/ShowDisplayedItems.jsx';
@@ -62,7 +63,7 @@ const Datatable = ({
         setFilterKeyword={setFilterKeyword}
         className={styles.filter}
       />
-      <table className={styles.table}>
+      <Table headings={headings} data={data}>
         <TableHeading
           headings={headings}
           currentSort={currentSort}
@@ -73,7 +74,7 @@ const Datatable = ({
           data={displayedData}
           currentSortKey={currentSort.key}
         />
-      </table>
+      </Table>
       <ShowDisplayedItems
         currentPage={currentPage}
         itemsPerPage={itemsPerPage}

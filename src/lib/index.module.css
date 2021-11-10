@@ -8,7 +8,7 @@
     "selectPage";
   justify-items: center;
   align-items: center;
-  justify-content: center;
+  justify-content: stretch;
   gap: 0.5rem;
 }
 
@@ -29,18 +29,4 @@
       "table table"
       "showDisplayedItems selectPage";
   }
-}
-
-.table {
-  grid-area: table;
-  border-collapse: collapse;
-  display: block;
-  max-width: 100%;
-  overflow-x: auto;
-}
-
-.table th:first-of-type, 
-.table td:first-of-type {
-  position: sticky;
-  left: 0;
 }
