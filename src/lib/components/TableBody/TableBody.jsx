@@ -1,29 +1,25 @@
-import { formatDisplayedData } from '../../utils/processing/formatDisplayedData/formatDisplayedData.js';
+import { TableRow } from '../TableRow/TableRow.jsx';
 import styles from './TableBody.module.css';
 
-export const TableBody = ({ headings, data, currentSortKey }) => {
+export const TableBody = ({
+  headings,
+  data,
+  currentSortKey,
+  displayedColumns,
+}) => {
   if (!headings) return null;
   return (
     <tbody className={styles.tbody}>
       {data && data.length ? (
-        data.map((user) => (
-          <tr
-            key={user.firstName + user.lastName + user.dateOfBirth}
-            className={styles.tr}
-          >
-            {headings.map((item) => (
-              <td
-                key={item.key}
-                className={`${styles.td} ${
-                  item.key === currentSortKey ? styles.tdSorted : ''
-                }`}
-              >
-                {user[item.key]
-                  ? formatDisplayedData(user[item.key], item.format)
-                  : ''}
-              </td>
-            ))}
-          </tr>
+        data.map((item, index) => (
+          <TableRow
+            key={JSON.stringify(item)}
+            item={item}
+            headings={headings}
+            displayedColumns={displayedColumns}
+            currentSortKey={currentSortKey}
+            parity={index % 2 === 0 ? 'even' : 'odd'}
+          />
         ))
       ) : (
         <tr className={styles.tr}>

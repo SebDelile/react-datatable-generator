@@ -3,9 +3,15 @@
   border-bottom: 1px solid black;
 }
 
-.tr > th {
+.th {
   padding: 0.5rem 1rem;
   background-color: white;
+  white-space: nowrap;
+}
+
+.th:first-of-type {
+  position: sticky;
+  left: 0;
 }
 
 .button {

@@ -1,0 +1,65 @@
+.trNormal:not(:first-of-type) {
+  border-top: 1px solid #DDD;
+}
+.trNormal:not(:last-of-type) {
+  border-bottom: 1px solid #DDD;
+}
+
+.tdNormal {
+  padding: 0.5rem 1rem;
+  white-space: nowrap;
+}
+
+.tdNormal:first-of-type {
+  position: sticky;
+  left: 0;
+}
+
+.trNormal.even > td {
+  background-color: #FFF
+}
+
+.trNormal.odd > td {
+  background-color: #F9F9F9;
+}
+
+.trNormal:hover > td {
+  background-color: #F1F1F1;
+}
+
+.trNormal.even > .tdSorted {
+  background-color: #FAFAFA;
+}
+
+.trNormal.odd > .tdSorted {
+  background-color: #F1F1F1;
+}
+
+.trNormal.odd:hover > .tdSorted,
+.trNormal.even:hover > .tdSorted {
+  background-color: #EAEAEA;
+}
+
+
+.trHidden {
+  /*display:none*/
+}
+
+.tableHidden {
+  margin-left: 0.5rem;
+  border-collapse: collapse;
+}
+
+.tdHiddenInner,
+.thHiddenInner {
+  text-align: left;
+  padding: 0.5rem;
+}
+
+.thHiddenInner {
+  font-weight: 700;
+}
+
+.trHiddenInner:not(:last-of-type) {
+  border-bottom: 1px solid #EFEFEF;
+}
