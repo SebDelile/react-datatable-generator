@@ -1,4 +1,5 @@
-.srOnly {
+/*double to increase specifity, need more reliable fix*/
+.srOnly.srOnly {
   border: 0;
   clip: rect(0 0 0 0);
   height: 1px;
