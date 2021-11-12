@@ -6,6 +6,8 @@ export const TableBody = ({
   data,
   currentSortKey,
   displayedColumns,
+  moreInfoOpenList,
+  updateMoreInfoOpenList,
 }) => {
   if (!headings) return null;
   return (
@@ -19,6 +21,8 @@ export const TableBody = ({
             displayedColumns={displayedColumns}
             currentSortKey={currentSortKey}
             parity={index % 2 === 0 ? 'even' : 'odd'}
+            isMoreInfoOpen={moreInfoOpenList.includes(JSON.stringify(item))}
+            updateMoreInfoOpenList={updateMoreInfoOpenList}
           />
         ))
       ) : (

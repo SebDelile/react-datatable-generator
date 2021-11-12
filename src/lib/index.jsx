@@ -24,7 +24,7 @@ const Datatable = ({
   });
   const [itemsPerPage, setItemsPerPage] = useState(itemsPerPageOption[0]);
   const [currentPage, setCurrentPage] = useState(1);
-
+  const [moreInfoOpenList, setMoreInfoOpenList] = useState([]);
   const [filteredData, setFilteredData] = useState(data);
   const [sortedData, setSortedData] = useState(filteredData);
   const [displayedData, setDisplayedData] = useState(sortedData);
@@ -50,6 +50,14 @@ const Datatable = ({
     setCurrentPage(newCurrentPage);
   };
 
+  const updateMoreInfoOpenList = (stringifiedItem) => {
+    const index = moreInfoOpenList.indexOf(stringifiedItem);
+    const newList = [...moreInfoOpenList];
+    if (index === -1) newList.push(stringifiedItem);
+    else newList.splice(index, 1);
+    setMoreInfoOpenList(newList);
+  };
+
   return (
     <article className={styles.datatable}>
       <SelectItemsPerPage
@@ -73,6 +81,8 @@ const Datatable = ({
           headings={headings}
           data={displayedData}
           currentSortKey={currentSort.key}
+          moreInfoOpenList={moreInfoOpenList}
+          updateMoreInfoOpenList={updateMoreInfoOpenList}
         />
       </Table>
       <ShowDisplayedItems

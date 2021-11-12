@@ -40,26 +40,29 @@
   background-color: #EAEAEA;
 }
 
-
-.trHidden {
-  /*display:none*/
+.trNormal.clickable {
+  cursor: pointer;
 }
 
-.tableHidden {
+.trMoreInfoHidden {
+  display:none;
+}
+
+.tableMoreInfo {
   margin-left: 0.5rem;
   border-collapse: collapse;
 }
 
-.tdHiddenInner,
-.thHiddenInner {
+.tdMoreInfoInner,
+.thMoreInfoInner {
   text-align: left;
   padding: 0.5rem;
 }
 
-.thHiddenInner {
+.thMoreInfoInner {
   font-weight: 700;
 }
 
-.trHiddenInner:not(:last-of-type) {
+.trMoreInfoInner:not(:last-of-type) {
   border-bottom: 1px solid #EFEFEF;
 }
