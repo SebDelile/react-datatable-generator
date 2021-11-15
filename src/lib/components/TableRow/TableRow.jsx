@@ -39,13 +39,11 @@ export const TableRow = ({
       </tr>
       {hasMoreInfo ? (
         <tr
-          className={`${styles.trMoreInfo} ${
-            !isMoreInfoOpen ? styles.trMoreInfoHidden : ''
-          }`}
+          className={`${!isMoreInfoOpen ? styles.trMoreInfoHidden : ''}`}
           aria-hidden
         >
           <td colSpan={displayedColumns}>
-            <table className={styles.tableHidden}>
+            <table className={styles.tableMoreInfo}>
               <tbody>
                 {headings.map((heading, index) =>
                   index < displayedColumns ? null : (
