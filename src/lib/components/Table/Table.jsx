@@ -54,6 +54,7 @@ export const Table = ({ headings, data, children }) => {
         ? Children.map(children, (child) =>
             cloneElement(child, {
               displayedColumns: displayedColumns,
+              columnsMinWidth: columnsMinWidth,
             })
           )
         : null}

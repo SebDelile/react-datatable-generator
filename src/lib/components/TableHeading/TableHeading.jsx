@@ -9,6 +9,7 @@ export const TableHeading = ({
   currentSort,
   setCurrentSort,
   displayedColumns,
+  columnsMinWidth,
 }) => {
   if (!headings) return null;
 
@@ -27,6 +28,11 @@ export const TableHeading = ({
             className={`${styles.th} ${
               index >= displayedColumns ? globalStyles.srOnly : ''
             }`}
+            style={
+              index >= displayedColumns
+                ? undefined
+                : { minWidth: columnsMinWidth[index] + 'px' }
+            }
           >
             <button
               className={styles.button}
