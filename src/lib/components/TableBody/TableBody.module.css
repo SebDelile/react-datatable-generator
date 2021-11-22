@@ -3,36 +3,6 @@
   border-bottom: 1px solid black;
 }
 
-.tr:not(:first-of-type) {
-  border-top: 1px solid #DDD;
-}
-
-.tr > td {
-  background-color: #FFF;
-  padding: 0.5rem 1rem;
-
-}
-
-.tr:nth-child(odd) > td {
-  background-color: #F9F9F9;
-}
-
-.tr:hover > td {
-  background-color: #F1F1F1;
-}
-
-.tr > .tdSorted {
-  background-color: #FAFAFA;
-}
-
-.tr:nth-child(odd) .tdSorted {
-  background-color: #F1F1F1;
-}
-
-.tr:hover .tdSorted {
-  background-color: #EAEAEA;
-}
-
 .noMatch {
   text-align: center;
 }

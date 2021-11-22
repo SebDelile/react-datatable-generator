@@ -1,9 +1,16 @@
 import styles from './TableHeading.module.css';
+import globalStyles from '../../utils/style/globalStyles.module.css';
 import noSortIcon from '../../assets/icon-no-sort.svg';
 import ascendingSortIcon from '../../assets/icon-ascending-sort.svg';
 import descendingSortIcon from '../../assets/icon-descending-sort.svg';
 
-export const TableHeading = ({ headings, currentSort, setCurrentSort }) => {
+export const TableHeading = ({
+  headings,
+  currentSort,
+  setCurrentSort,
+  displayedColumns,
+  columnsMinWidth,
+}) => {
   if (!headings) return null;
 
   const handleClick = (item) => {
@@ -14,9 +21,19 @@ export const TableHeading = ({ headings, currentSort, setCurrentSort }) => {
 
   return (
     <thead className={styles.thead}>
-      <tr className={styles.tr}>
-        {headings.map((item) => (
-          <th key={item.key}>
+      <tr>
+        {headings.map((item, index) => (
+          <th
+            key={item.key}
+            className={`${styles.th} ${
+              index >= displayedColumns ? globalStyles.srOnly : ''
+            }`}
+            style={
+              index >= displayedColumns
+                ? undefined
+                : { minWidth: columnsMinWidth[index] + 'px' }
+            }
+          >
             <button
               className={styles.button}
               type="button"

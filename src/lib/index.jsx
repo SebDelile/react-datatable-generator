@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { SelectItemsPerPage } from './components/SelectItemsPerPage/SelectItemsPerPage.jsx';
 import { Filter } from './components/Filter/Filter.jsx';
+import { Table } from './components/Table/Table.jsx';
 import { TableHeading } from './components/TableHeading/TableHeading.jsx';
 import { TableBody } from './components/TableBody/TableBody.jsx';
 import { ShowDisplayedItems } from './components/ShowDisplayedItems/ShowDisplayedItems.jsx';
@@ -14,6 +15,7 @@ const Datatable = ({
   headings,
   data,
   itemsPerPageOption = [10, 25, 50, 100],
+  isScrollable = false,
 }) => {
   const [filterKeyword, setFilterKeyword] = useState('');
   const [currentSort, setCurrentSort] = useState({
@@ -23,7 +25,7 @@ const Datatable = ({
   });
   const [itemsPerPage, setItemsPerPage] = useState(itemsPerPageOption[0]);
   const [currentPage, setCurrentPage] = useState(1);
-
+  const [moreInfoOpenList, setMoreInfoOpenList] = useState([]);
   const [filteredData, setFilteredData] = useState(data);
   const [sortedData, setSortedData] = useState(filteredData);
   const [displayedData, setDisplayedData] = useState(sortedData);
@@ -49,6 +51,14 @@ const Datatable = ({
     setCurrentPage(newCurrentPage);
   };
 
+  const updateMoreInfoOpenList = (stringifiedItem) => {
+    const index = moreInfoOpenList.indexOf(stringifiedItem);
+    const newList = [...moreInfoOpenList];
+    if (index === -1) newList.push(stringifiedItem);
+    else newList.splice(index, 1);
+    setMoreInfoOpenList(newList);
+  };
+
   return (
     <article className={styles.datatable}>
       <SelectItemsPerPage
@@ -62,7 +72,7 @@ const Datatable = ({
         setFilterKeyword={setFilterKeyword}
         className={styles.filter}
       />
-      <table className={styles.table}>
+      <Table headings={headings} data={data} isScrollable={isScrollable}>
         <TableHeading
           headings={headings}
           currentSort={currentSort}
@@ -72,8 +82,10 @@ const Datatable = ({
           headings={headings}
           data={displayedData}
           currentSortKey={currentSort.key}
+          moreInfoOpenList={moreInfoOpenList}
+          updateMoreInfoOpenList={updateMoreInfoOpenList}
         />
-      </table>
+      </Table>
       <ShowDisplayedItems
         currentPage={currentPage}
         itemsPerPage={itemsPerPage}

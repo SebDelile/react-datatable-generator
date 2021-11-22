@@ -9,6 +9,7 @@ const App = () => (
       headings={extendedHeadingsSample}
       data={extendedDataSample}
       itemsPerPageOption={[5, 10, 25, 100]}
+      isScrollable={false}
     />
   </>
 );
