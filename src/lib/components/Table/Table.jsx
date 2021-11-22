@@ -1,8 +1,17 @@
-import { useState, useEffect, useRef, Children, cloneElement } from 'react';
+import {
+  useState,
+  useEffect,
+  useRef,
+  Children,
+  cloneElement,
+  useContext,
+} from 'react';
+import { GlobalState } from '../../features/GlobalState.jsx';
 import { columnsMinWidthCalc } from '../../utils/columnsMinWidthCalc/columnsMinWidthCalc.js';
 import styles from './Table.module.css';
 
-export const Table = ({ headings, data, children, isScrollable }) => {
+export const Table = ({ children }) => {
+  const { headings, data, isScrollable } = useContext(GlobalState);
   const arrayItems = headings.length;
   const cellInterTextLength = 32; // to get from options
   const [width, setWidth] = useState(0);

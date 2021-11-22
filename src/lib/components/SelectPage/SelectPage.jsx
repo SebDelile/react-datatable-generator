@@ -1,6 +1,12 @@
+import { useContext } from 'react';
+import { GlobalState } from '../../features/GlobalState';
 import styles from './SelectPage.module.css';
 
-export const SelectPage = ({ currentPage, numberOfPages, setCurrentPage }) => {
+export const SelectPage = () => {
+  const { currentPage, setCurrentPage, filteredData, itemsPerPage } =
+    useContext(GlobalState);
+  const numberOfPages = Math.ceil(filteredData.length / itemsPerPage);
+
   if (!currentPage || !numberOfPages) return null;
 
   const buttonList = ['Previous'];

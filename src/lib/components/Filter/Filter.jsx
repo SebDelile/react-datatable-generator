@@ -1,7 +1,11 @@
 import styles from './Filter.module.css';
 import iconClose from '../../assets/icon-close.svg';
+import { useContext } from 'react';
+import { GlobalState } from '../../features/GlobalState';
 
-export const Filter = ({ filterKeyword, setFilterKeyword }) => {
+export const Filter = () => {
+  const { filterKeyword, setFilterKeyword } = useContext(GlobalState);
+
   const handleInputChange = (event) => {
     event.preventDefault();
     setFilterKeyword(event.target.value);

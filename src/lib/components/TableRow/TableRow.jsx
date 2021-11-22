@@ -1,17 +1,14 @@
 import { formatDisplayedData } from '../../utils/processing/formatDisplayedData/formatDisplayedData.js';
 import styles from './TableRow.module.css';
 import globalStyles from '../../utils/style/globalStyles.module.css';
+import { useContext } from 'react';
+import { GlobalState } from '../../features/GlobalState.jsx';
 
-export const TableRow = ({
-  item,
-  headings,
-  displayedColumns,
-  currentSortKey,
-  parity,
-  isMoreInfoOpen,
-  updateMoreInfoOpenList,
-}) => {
+export const TableRow = ({ item, displayedColumns, parity }) => {
+  const { headings, currentSortKey, moreInfoOpenList, updateMoreInfoOpenList } =
+    useContext(GlobalState);
   const hasMoreInfo = displayedColumns !== headings.length;
+  const isMoreInfoOpen = moreInfoOpenList.includes(JSON.stringify(item));
   const toggleMoreInfoDisplay = () => {
     updateMoreInfoOpenList(JSON.stringify(item));
   };

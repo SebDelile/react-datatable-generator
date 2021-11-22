@@ -1,10 +1,11 @@
+import { useContext } from 'react';
+import { GlobalState } from '../../features/GlobalState';
 import styles from './SelectItemsPerPage.module.css';
 
-export const SelectItemsPerPage = ({
-  itemsPerPage,
-  updateItemsPerPage,
-  options,
-}) => {
+export const SelectItemsPerPage = () => {
+  const { itemsPerPage, updateItemsPerPage, itemsPerPageOption } =
+    useContext(GlobalState);
+
   const handleChange = (event) => {
     event.preventDefault();
     updateItemsPerPage(parseInt(event.target.value));
@@ -18,7 +19,7 @@ export const SelectItemsPerPage = ({
         value={itemsPerPage}
         className={styles.select}
       >
-        {options.map((option) => (
+        {itemsPerPageOption.map((option) => (
           <option key={option} value={option}>
             {option}
           </option>

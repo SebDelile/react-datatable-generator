@@ -3,14 +3,12 @@ import globalStyles from '../../utils/style/globalStyles.module.css';
 import noSortIcon from '../../assets/icon-no-sort.svg';
 import ascendingSortIcon from '../../assets/icon-ascending-sort.svg';
 import descendingSortIcon from '../../assets/icon-descending-sort.svg';
+import { useContext } from 'react';
+import { GlobalState } from '../../features/GlobalState';
 
-export const TableHeading = ({
-  headings,
-  currentSort,
-  setCurrentSort,
-  displayedColumns,
-  columnsMinWidth,
-}) => {
+export const TableHeading = ({ displayedColumns, columnsMinWidth }) => {
+  const { headings, currentSort, setCurrentSort } = useContext(GlobalState);
+
   if (!headings) return null;
 
   const handleClick = (item) => {
