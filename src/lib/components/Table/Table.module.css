@@ -2,5 +2,11 @@
   grid-area: table;
   border-collapse: collapse;
   width: 100%;
+  display: table;
   overflow: hidden;
+}
+
+.tableBlock {
+  overflow-x: auto;
+  display: block;
 }

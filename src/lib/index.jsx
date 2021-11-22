@@ -15,6 +15,7 @@ const Datatable = ({
   headings,
   data,
   itemsPerPageOption = [10, 25, 50, 100],
+  isScrollable = false,
 }) => {
   const [filterKeyword, setFilterKeyword] = useState('');
   const [currentSort, setCurrentSort] = useState({
@@ -71,7 +72,7 @@ const Datatable = ({
         setFilterKeyword={setFilterKeyword}
         className={styles.filter}
       />
-      <Table headings={headings} data={data}>
+      <Table headings={headings} data={data} isScrollable={isScrollable}>
         <TableHeading
           headings={headings}
           currentSort={currentSort}

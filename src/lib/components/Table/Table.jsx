@@ -2,7 +2,7 @@ import { useState, useEffect, useRef, Children, cloneElement } from 'react';
 import { columnsMinWidthCalc } from '../../utils/columnsMinWidthCalc/columnsMinWidthCalc.js';
 import styles from './Table.module.css';
 
-export const Table = ({ headings, data, children }) => {
+export const Table = ({ headings, data, children, isScrollable }) => {
   const arrayItems = headings.length;
   const cellInterTextLength = 32; // to get from options
   const [width, setWidth] = useState(0);
@@ -41,15 +41,19 @@ export const Table = ({ headings, data, children }) => {
       if (widthSum >= width) break;
       else i++;
     }
-    setDisplayedColumns(i);
-    if (width !== 0) setReadyToDisplay(true);
-    // console.log(width);
-    // console.log(columnsMinWidth);
-    // console.log('table', i);
-  }, [width, columnsMinWidth, arrayItems]);
+    if (!isScrollable) setDisplayedColumns(i);
+    if (isScrollable || width !== 0) setReadyToDisplay(true);
+  }, [width, columnsMinWidth, arrayItems, isScrollable]);
 
   return (
-    <table ref={ref} className={styles.table}>
+    <table
+      ref={ref}
+      className={`${styles.table} ${
+        isScrollable && width <= columnsMinWidth.reduce((a, b) => a + b)
+          ? styles.tableBlock
+          : ''
+      }`}
+    >
       {readyToDisplay
         ? Children.map(children, (child) =>
             cloneElement(child, {
