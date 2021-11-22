@@ -2,6 +2,7 @@ import { createContext, useState, useEffect } from 'react';
 import { filterHandler } from '../handlers/filterHandler/filterHandler.js';
 import { sortHandler } from '../handlers/sortHandler/sortHandler.js';
 import { pagingHandler } from '../handlers/pagingHandler/pagingHandler.js';
+import { columnsMinWidthCalc } from '../utils/columnsMinWidthCalc/columnsMinWidthCalc.js';
 
 export const GlobalState = createContext();
 
@@ -11,6 +12,7 @@ export const GlobalStateProvider = ({
   data,
   itemsPerPageOption,
   isScrollable,
+  cellInterTextLength,
 }) => {
   const [filterKeyword, setFilterKeyword] = useState('');
   const [currentSort, setCurrentSort] = useState({
@@ -24,6 +26,11 @@ export const GlobalStateProvider = ({
   const [filteredData, setFilteredData] = useState(data);
   const [sortedData, setSortedData] = useState(filteredData);
   const [displayedData, setDisplayedData] = useState(sortedData);
+  const [width, setWidth] = useState(0);
+  const [columnsMinWidth, setColumnsMinWith] = useState(
+    Array(headings.length).fill(0)
+  );
+  const [displayedColumns, setDisplayedColumns] = useState(headings.length);
 
   useEffect(() => {
     setFilteredData(filterHandler(data, filterKeyword));
@@ -37,6 +44,25 @@ export const GlobalStateProvider = ({
   useEffect(() => {
     setDisplayedData(pagingHandler(sortedData, currentPage, itemsPerPage));
   }, [sortedData, currentPage, itemsPerPage]);
+
+  useEffect(() => {
+    setColumnsMinWith(
+      columnsMinWidthCalc(headings, data).map(
+        (minWidth) => minWidth + cellInterTextLength
+      )
+    );
+  }, [data, headings, cellInterTextLength]);
+
+  useEffect(() => {
+    let i = 1;
+    let widthSum = columnsMinWidth[0];
+    while (i < headings.length) {
+      widthSum += columnsMinWidth[i];
+      if (widthSum >= width) break;
+      else i++;
+    }
+    if (!isScrollable) setDisplayedColumns(i);
+  }, [headings, width, columnsMinWidth, isScrollable]);
 
   const updateItemsPerPage = (newItemsPerPage) => {
     const currentFirstItemIndex = (currentPage - 1) * itemsPerPage;
@@ -61,6 +87,7 @@ export const GlobalStateProvider = ({
         data,
         itemsPerPageOption,
         isScrollable,
+        cellInterTextLength,
         filterKeyword,
         setFilterKeyword,
         currentSort,
@@ -77,6 +104,10 @@ export const GlobalStateProvider = ({
         setSortedData,
         displayedData,
         setDisplayedData,
+        width,
+        setWidth,
+        columnsMinWidth,
+        displayedColumns,
       }}
     >
       {children}

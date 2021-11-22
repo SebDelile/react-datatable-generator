@@ -13,6 +13,7 @@ const Datatable = ({
   data,
   itemsPerPageOption = [10, 25, 50, 100],
   isScrollable = false,
+  cellInterTextLength = 32,
 }) => {
   return (
     <article className={styles.datatable}>
@@ -21,6 +22,7 @@ const Datatable = ({
         data={data}
         itemsPerPageOption={itemsPerPageOption}
         isScrollable={isScrollable}
+        cellInterTextLength={cellInterTextLength}
       >
         <SelectItemsPerPage />
         <Filter />

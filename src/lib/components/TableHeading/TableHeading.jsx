@@ -6,8 +6,14 @@ import descendingSortIcon from '../../assets/icon-descending-sort.svg';
 import { useContext } from 'react';
 import { GlobalState } from '../../features/GlobalState';
 
-export const TableHeading = ({ displayedColumns, columnsMinWidth }) => {
-  const { headings, currentSort, setCurrentSort } = useContext(GlobalState);
+export const TableHeading = () => {
+  const {
+    headings,
+    currentSort,
+    setCurrentSort,
+    displayedColumns,
+    columnsMinWidth,
+  } = useContext(GlobalState);
 
   if (!headings) return null;
 

@@ -4,9 +4,14 @@ import globalStyles from '../../utils/style/globalStyles.module.css';
 import { useContext } from 'react';
 import { GlobalState } from '../../features/GlobalState.jsx';
 
-export const TableRow = ({ item, displayedColumns, parity }) => {
-  const { headings, currentSortKey, moreInfoOpenList, updateMoreInfoOpenList } =
-    useContext(GlobalState);
+export const TableRow = ({ item, parity }) => {
+  const {
+    headings,
+    currentSort,
+    moreInfoOpenList,
+    updateMoreInfoOpenList,
+    displayedColumns,
+  } = useContext(GlobalState);
   const hasMoreInfo = displayedColumns !== headings.length;
   const isMoreInfoOpen = moreInfoOpenList.includes(JSON.stringify(item));
   const toggleMoreInfoDisplay = () => {
@@ -25,7 +30,7 @@ export const TableRow = ({ item, displayedColumns, parity }) => {
           <td
             key={heading.key}
             className={`${styles.tdNormal} ${
-              heading.key === currentSortKey ? styles.tdSorted : ''
+              heading.key === currentSort.key ? styles.tdSorted : ''
             } ${index >= displayedColumns ? globalStyles.srOnly : ''}`}
           >
             {item[heading.key]

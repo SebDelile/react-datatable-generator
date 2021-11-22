@@ -3,8 +3,8 @@ import { GlobalState } from '../../features/GlobalState.jsx';
 import { TableRow } from '../TableRow/TableRow.jsx';
 import styles from './TableBody.module.css';
 
-export const TableBody = ({ displayedColumns }) => {
-  const { headings, displayedData } = useContext(GlobalState);
+export const TableBody = () => {
+  const { headings, displayedData, displayedColumns } = useContext(GlobalState);
 
   if (!headings) return null;
   return (
