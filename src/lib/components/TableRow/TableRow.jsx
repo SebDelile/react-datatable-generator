@@ -2,20 +2,20 @@ import { formatDisplayedData } from '../../utils/processing/formatDisplayedData/
 import styles from './TableRow.module.css';
 import globalStyles from '../../utils/style/globalStyles.module.css';
 import { useContext } from 'react';
-import { GlobalState } from '../../features/GlobalState.jsx';
+import { store } from '../../store/store.js';
 
 export const TableRow = ({ item, parity }) => {
   const {
     headings,
     currentSort,
     moreInfoOpenList,
-    updateMoreInfoOpenList,
     displayedColumns,
-  } = useContext(GlobalState);
+    dispatch,
+  } = useContext(store);
   const hasMoreInfo = displayedColumns !== headings.length;
   const isMoreInfoOpen = moreInfoOpenList.includes(JSON.stringify(item));
   const toggleMoreInfoDisplay = () => {
-    updateMoreInfoOpenList(JSON.stringify(item));
+    dispatch({ type: 'setMoreInfoOpenList', payload: JSON.stringify(item) });
   };
 
   return (

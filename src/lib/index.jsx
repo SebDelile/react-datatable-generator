@@ -1,4 +1,4 @@
-import { GlobalStateProvider } from './features/GlobalState.jsx';
+import { StoreProvider } from './store/store.js';
 import { SelectItemsPerPage } from './components/SelectItemsPerPage/SelectItemsPerPage.jsx';
 import { Filter } from './components/Filter/Filter.jsx';
 import { Table } from './components/Table/Table.jsx';
@@ -17,7 +17,7 @@ const Datatable = ({
 }) => {
   return (
     <article className={styles.datatable}>
-      <GlobalStateProvider
+      <StoreProvider
         headings={headings}
         data={data}
         itemsPerPageOption={itemsPerPageOption}
@@ -32,7 +32,7 @@ const Datatable = ({
         </Table>
         <ShowDisplayedItems />
         <SelectPage />
-      </GlobalStateProvider>
+      </StoreProvider>
     </article>
   );
 };

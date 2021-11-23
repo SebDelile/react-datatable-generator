@@ -1,18 +1,18 @@
 import styles from './Filter.module.css';
 import iconClose from '../../assets/icon-close.svg';
 import { useContext } from 'react';
-import { GlobalState } from '../../features/GlobalState';
+import { store } from '../../store/store.js';
 
 export const Filter = () => {
-  const { filterKeyword, setFilterKeyword } = useContext(GlobalState);
+  const { filterKeyword, dispatch } = useContext(store);
 
   const handleInputChange = (event) => {
     event.preventDefault();
-    setFilterKeyword(event.target.value);
+    dispatch({ type: 'setFilterKeyword', payload: event.target.value });
   };
 
   const handleReset = () => {
-    setFilterKeyword('');
+    dispatch({ type: 'setFilterKeyword', payload: '' });
   };
 
   return (

@@ -1,10 +1,10 @@
 import { useContext } from 'react';
-import { GlobalState } from '../../features/GlobalState.jsx';
+import { store } from '../../store/store.js';
 import { TableRow } from '../TableRow/TableRow.jsx';
 import styles from './TableBody.module.css';
 
 export const TableBody = () => {
-  const { headings, displayedData, displayedColumns } = useContext(GlobalState);
+  const { headings, displayedData, displayedColumns } = useContext(store);
 
   if (!headings) return null;
   return (

@@ -1,14 +1,13 @@
 import { useContext } from 'react';
-import { GlobalState } from '../../features/GlobalState';
+import { store } from '../../store/store.js';
 import styles from './SelectPage.module.css';
 
 export const SelectPage = () => {
-  const { currentPage, setCurrentPage, filteredData, itemsPerPage } =
-    useContext(GlobalState);
+  const { currentPage, filteredData, itemsPerPage, dispatch } =
+    useContext(store);
   const numberOfPages = Math.ceil(filteredData.length / itemsPerPage);
 
   if (!currentPage || !numberOfPages) return null;
-
   const buttonList = ['Previous'];
   if (numberOfPages <= 7)
     buttonList.push(...[...Array(numberOfPages)].map((_, i) => i + 1));
@@ -33,9 +32,11 @@ export const SelectPage = () => {
   buttonList.push('Next');
 
   const handleClick = (event) => {
-    if (event.target.value === 'Previous') setCurrentPage(currentPage - 1);
-    else if (event.target.value === 'Next') setCurrentPage(currentPage + 1);
-    else setCurrentPage(parseInt(event.target.value));
+    let newPage = null;
+    if (event.target.value === 'Previous') newPage = currentPage - 1;
+    else if (event.target.value === 'Next') newPage = currentPage + 1;
+    else newPage = parseInt(event.target.value);
+    dispatch({ type: 'setCurrentPage', payload: newPage });
   };
 
   const isDisabled = (page) =>

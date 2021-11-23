@@ -1,23 +1,23 @@
 import { useEffect, useRef, useContext } from 'react';
-import { GlobalState } from '../../features/GlobalState.jsx';
+import { store } from '../../store/store.js';
 import styles from './Table.module.css';
 
 export const Table = ({ children }) => {
-  const { isScrollable, width, columnsMinWidth, setWidth } =
-    useContext(GlobalState);
+  const { isScrollable, width, columnsMinWidth, dispatch } = useContext(store);
   const ref = useRef(null);
 
-  const updateWidth = () => {
-    setWidth(ref.current.offsetWidth);
-  };
-
   useEffect(() => {
+    const updateWidth = () => {
+      const currentWidth = ref.current.offsetWidth;
+      dispatch({ type: 'setWidth', payload: currentWidth });
+      dispatch({ type: 'setDisplayedColumns', payload: currentWidth });
+    };
     updateWidth();
     window.addEventListener('resize', updateWidth);
     return () => {
       window.removeEventListener('resize', updateWidth);
     };
-  });
+  }, [dispatch]);
 
   return (
     <table
