@@ -4,7 +4,7 @@ import { TableRow } from '../TableRow/TableRow.jsx';
 import styles from './TableBody.module.css';
 
 export const TableBody = () => {
-  const { headings, displayedData, displayedColumns } = useContext(store);
+  const { headings, displayedData } = useContext(store);
 
   if (!headings) return null;
   return (
@@ -14,7 +14,6 @@ export const TableBody = () => {
           <TableRow
             key={JSON.stringify(item)}
             item={item}
-            displayedColumns={displayedColumns}
             parity={index % 2 === 0 ? 'even' : 'odd'}
           />
         ))
