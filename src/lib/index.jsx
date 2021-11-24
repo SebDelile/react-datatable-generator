@@ -15,25 +15,45 @@ const Datatable = ({
   isScrollable = false,
   cellInterTextLength = 32,
 }) => {
-  return (
-    <article className={styles.datatable}>
-      <StoreProvider
-        headings={headings}
-        data={data}
-        itemsPerPageOption={itemsPerPageOption}
-        isScrollable={isScrollable}
-        cellInterTextLength={cellInterTextLength}
-      >
-        <SelectItemsPerPage />
-        <Filter />
-        <Table>
-          <TableHeading />
-          <TableBody />
-        </Table>
-        <ShowDisplayedItems />
-        <SelectPage />
-      </StoreProvider>
-    </article>
-  );
+  const isHeadingsKeysInvalid = () =>
+    headings.length === 0 ||
+    headings.some(
+      (heading) =>
+        !heading.key ||
+        typeof heading.key !== 'string' ||
+        typeof heading.label !== 'string'
+    ) ||
+    new Set(headings.map((heading) => heading.key)).size !== headings.length;
+
+  if (
+    !headings ||
+    !Array.isArray(headings) ||
+    isHeadingsKeysInvalid() ||
+    !data ||
+    !Array.isArray(data) ||
+    data.some((item) => typeof item !== 'object')
+  )
+    return null;
+  else
+    return (
+      <article className={styles.datatable}>
+        <StoreProvider
+          headings={headings}
+          data={data}
+          itemsPerPageOption={itemsPerPageOption}
+          isScrollable={isScrollable}
+          cellInterTextLength={cellInterTextLength}
+        >
+          <SelectItemsPerPage />
+          <Filter />
+          <Table>
+            <TableHeading />
+            <TableBody />
+          </Table>
+          <ShowDisplayedItems />
+          <SelectPage />
+        </StoreProvider>
+      </article>
+    );
 };
 export default Datatable;
