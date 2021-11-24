@@ -1,84 +1,59 @@
-import { useEffect, useState } from 'react';
+import { StoreProvider } from './store/store.js';
 import { SelectItemsPerPage } from './components/SelectItemsPerPage/SelectItemsPerPage.jsx';
 import { Filter } from './components/Filter/Filter.jsx';
+import { Table } from './components/Table/Table.jsx';
 import { TableHeading } from './components/TableHeading/TableHeading.jsx';
 import { TableBody } from './components/TableBody/TableBody.jsx';
 import { ShowDisplayedItems } from './components/ShowDisplayedItems/ShowDisplayedItems.jsx';
 import { SelectPage } from './components/SelectPage/SelectPage.jsx';
-import { filterHandler } from './handlers/filterHandler/filterHandler.js';
-import { sortHandler } from './handlers/sortHandler/sortHandler.js';
-import { pagingHandler } from './handlers/pagingHandler/pagingHandler.js';
+import styles from './index.module.css';
 
 const Datatable = ({
   headings,
   data,
   itemsPerPageOption = [10, 25, 50, 100],
+  isScrollable = false,
+  cellInterTextLength = 32,
 }) => {
-  const [filterKeyword, setFilterKeyword] = useState('');
-  const [currentSort, setCurrentSort] = useState({
-    key: null,
-    direction: 1,
-    type: 'string',
-  });
-  const [itemsPerPage, setItemsPerPage] = useState(itemsPerPageOption[0]);
-  const [currentPage, setCurrentPage] = useState(1);
+  const isHeadingsKeysInvalid = () =>
+    headings.length === 0 ||
+    headings.some(
+      (heading) =>
+        !heading.key ||
+        typeof heading.key !== 'string' ||
+        typeof heading.label !== 'string'
+    ) ||
+    new Set(headings.map((heading) => heading.key)).size !== headings.length;
 
-  const [filteredData, setFilteredData] = useState(data);
-  const [sortedData, setSortedData] = useState(filteredData);
-  const [displayedData, setDisplayedData] = useState(sortedData);
-
-  useEffect(() => {
-    setFilteredData(filterHandler(data, filterKeyword));
-  }, [data, filterKeyword]);
-
-  useEffect(() => {
-    setSortedData(sortHandler(filteredData, currentSort));
-    setCurrentPage(1);
-  }, [filteredData, currentSort]);
-
-  useEffect(() => {
-    setDisplayedData(pagingHandler(sortedData, currentPage, itemsPerPage));
-  }, [sortedData, currentPage, itemsPerPage]);
-
-  const updateItemsPerPage = (newItemsPerPage) => {
-    const currentFirstItemIndex = (currentPage - 1) * itemsPerPage;
-    const newCurrentPage =
-      Math.floor(currentFirstItemIndex / newItemsPerPage) + 1;
-    setItemsPerPage(newItemsPerPage);
-    setCurrentPage(newCurrentPage);
-  };
-
-  return (
-    <article>
-      <SelectItemsPerPage
-        itemsPerPage={itemsPerPage}
-        updateItemsPerPage={updateItemsPerPage}
-        options={itemsPerPageOption}
-      />
-      <Filter
-        filterKeyword={filterKeyword}
-        setFilterKeyword={setFilterKeyword}
-      />
-      <table>
-        <TableHeading
+  if (
+    !headings ||
+    !Array.isArray(headings) ||
+    isHeadingsKeysInvalid() ||
+    !data ||
+    !Array.isArray(data) ||
+    data.some((item) => typeof item !== 'object')
+  )
+    return null;
+  else
+    return (
+      <article className={styles.datatable}>
+        <StoreProvider
           headings={headings}
-          currentSort={currentSort}
-          setCurrentSort={setCurrentSort}
-        />
-        <TableBody headings={headings} data={displayedData} />
-      </table>
-      <ShowDisplayedItems
-        currentPage={currentPage}
-        itemsPerPage={itemsPerPage}
-        displayedDataLength={filteredData.length}
-        unfiltredDataLength={data.length}
-      />
-      <SelectPage
-        currentPage={currentPage}
-        numberOfPages={Math.ceil(filteredData.length / itemsPerPage)}
-        setCurrentPage={setCurrentPage}
-      />
-    </article>
-  );
+          data={data}
+          itemsPerPageOption={itemsPerPageOption}
+          isScrollable={isScrollable}
+          cellInterTextLength={cellInterTextLength}
+        >
+          <SelectItemsPerPage />
+          <Filter />
+          <Table>
+            <TableHeading />
+            <TableBody />
+          </Table>
+          <ShowDisplayedItems />
+          <SelectPage />
+        </StoreProvider>
+      </article>
+    );
 };
 export default Datatable;

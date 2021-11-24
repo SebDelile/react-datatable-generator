@@ -1,36 +1,30 @@
-import './TableBody.css';
+import { useContext } from 'react';
+import { store } from '../../store/store.js';
+import { TableRow } from '../TableRow/TableRow.jsx';
+import styles from './TableBody.module.css';
 
-export const TableBody = ({ headings, data }) => {
+export const TableBody = () => {
+  const { headings, displayedData } = useContext(store);
+
   if (!headings) return null;
-
-  const formatInput = (input, type) => {
-    switch (type) {
-      case 'datestring':
-        return new Date(input).toLocaleDateString('en-US', {
-          year: 'numeric',
-          month: '2-digit',
-          day: '2-digit',
-        });
-      default:
-        return input;
-    }
-  };
-
   return (
-    <tbody>
-      {data && data.length ? (
-        data.map((user) => (
-          <tr key={user.firstName + user.lastName + user.dateOfBirth}>
-            {headings.map((item) => (
-              <td key={item.key}>
-                {user[item.key] ? formatInput(user[item.key], item.type) : ''}
-              </td>
-            ))}
-          </tr>
+    <tbody className={styles.tbody}>
+      {displayedData && displayedData.length ? (
+        displayedData.map((item, index) => (
+          <TableRow
+            key={JSON.stringify(item)}
+            item={item}
+            parity={index % 2 === 0 ? 'even' : 'odd'}
+          />
         ))
       ) : (
-        <tr>
-          <td colSpan={headings.length}>No matching records found</td>
+        <tr className={styles.tr}>
+          <td
+            colSpan={headings.length}
+            className={`${styles.noMatch} ${styles.td}`}
+          >
+            No matching records found
+          </td>
         </tr>
       )}
     </tbody>

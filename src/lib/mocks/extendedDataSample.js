@@ -1,5 +1,6 @@
-export const userSample = [
+export const extendedDataSample = [
   {
+    id: 35683,
     firstName: 'Odile',
     lastName: 'Toche',
     startDate: '2020-05-23',
@@ -11,6 +12,7 @@ export const userSample = [
     zipCode: '05778',
   },
   {
+    id: 48526,
     firstName: 'Gilbert',
     lastName: 'Sioux',
     startDate: '2019-12-03',
@@ -22,6 +24,7 @@ export const userSample = [
     zipCode: '32801',
   },
   {
+    id: 78954,
     firstName: 'Dita',
     lastName: 'Santos',
     startDate: '2020-11-26',
@@ -33,6 +36,7 @@ export const userSample = [
     zipCode: '04240',
   },
   {
+    id: 34785,
     firstName: 'Jean-Eudes',
     lastName: 'Cornichon',
     startDate: '2002-02-14',
@@ -44,6 +48,7 @@ export const userSample = [
     zipCode: '22021',
   },
   {
+    id: 1245,
     firstName: 'Marie-Chantal',
     lastName: 'Lalaitière',
     startDate: '1988-09-03',
@@ -55,6 +60,7 @@ export const userSample = [
     zipCode: '53593',
   },
   {
+    id: 74960,
     firstName: 'René',
     lastName: 'Lataupe',
     startDate: '2021-10-19',
@@ -66,6 +72,7 @@ export const userSample = [
     zipCode: '95134',
   },
   {
+    id: 87965,
     firstName: 'Jorginio',
     lastName: 'De la Puerta',
     startDate: '2020-01-16',
@@ -77,6 +84,7 @@ export const userSample = [
     zipCode: '33010',
   },
   {
+    id: 24563,
     firstName: 'Isabella',
     lastName: 'Von Carstein',
     startDate: '2017-12-24',
@@ -88,6 +96,7 @@ export const userSample = [
     zipCode: '15206',
   },
   {
+    id: 67784,
     firstName: 'Baobao',
     lastName: 'Feng',
     startDate: '1987-04-21',
@@ -99,6 +108,7 @@ export const userSample = [
     zipCode: '24540',
   },
   {
+    id: 90012,
     firstName: 'Patrick',
     lastName: 'Sea Star',
     startDate: '1999-09-01',
@@ -110,6 +120,7 @@ export const userSample = [
     zipCode: '07202',
   },
   {
+    id: 47853,
     firstName: 'Hatake',
     lastName: 'Kakashi',
     startDate: '2010-12-07',
@@ -121,6 +132,7 @@ export const userSample = [
     zipCode: '08021',
   },
   {
+    id: 19456,
     firstName: "N'golo",
     lastName: 'Kante',
     startDate: '2014-07-07',

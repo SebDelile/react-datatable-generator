@@ -1,6 +1,13 @@
-export const SelectPage = ({ currentPage, numberOfPages, setCurrentPage }) => {
-  if (!currentPage || !numberOfPages) return null;
+import { useContext } from 'react';
+import { store } from '../../store/store.js';
+import styles from './SelectPage.module.css';
 
+export const SelectPage = () => {
+  const { currentPage, filteredData, itemsPerPage, dispatch } =
+    useContext(store);
+  const numberOfPages = Math.ceil(filteredData.length / itemsPerPage);
+
+  if (!currentPage || !numberOfPages) return null;
   const buttonList = ['Previous'];
   if (numberOfPages <= 7)
     buttonList.push(...[...Array(numberOfPages)].map((_, i) => i + 1));
@@ -25,9 +32,7 @@ export const SelectPage = ({ currentPage, numberOfPages, setCurrentPage }) => {
   buttonList.push('Next');
 
   const handleClick = (event) => {
-    if (event.target.value === 'Previous') setCurrentPage(currentPage - 1);
-    else if (event.target.value === 'Next') setCurrentPage(currentPage + 1);
-    else setCurrentPage(parseInt(event.target.value));
+    dispatch({ type: 'setCurrentPage', payload: event.target.value });
   };
 
   const isDisabled = (page) =>
@@ -36,8 +41,15 @@ export const SelectPage = ({ currentPage, numberOfPages, setCurrentPage }) => {
     (page === 'Previous' && currentPage === 1) ||
     (page === 'Next' && currentPage === numberOfPages);
 
+  const selected = (page) => (page === currentPage ? styles.selected : '');
+
+  const hiddenIfNeeded = (page) =>
+    numberOfPages > 5 && (page === 'Previous' || page === 'Next')
+      ? styles.HiddenIfNeeded
+      : '';
+
   return (
-    <div>
+    <div className={styles.wrapper}>
       {buttonList.map((page, i) => (
         <button
           key={i}
@@ -45,6 +57,9 @@ export const SelectPage = ({ currentPage, numberOfPages, setCurrentPage }) => {
           disabled={isDisabled(page)}
           onClick={handleClick}
           value={page}
+          className={`${styles.button} ${hiddenIfNeeded(page)} ${selected(
+            page
+          )}`}
         >
           {page}
         </button>

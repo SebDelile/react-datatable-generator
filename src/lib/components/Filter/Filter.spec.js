@@ -1,14 +1,16 @@
-import { render, screen, fireEvent } from '@testing-library/react';
+import { screen, fireEvent } from '@testing-library/react';
+import { renderWithStore } from '../../utils/test/renderWithStore.js';
 import { Filter } from './Filter.jsx';
 
-const mockedSetFilterKeyword = jest.fn();
+const dispatch = jest.fn();
 
 describe('GIVEN the Filter component', () => {
   describe('WHEN it is called with empty filterkeyword props', () => {
     beforeEach(() =>
-      render(
-        <Filter filterKeyword="" setFilterKeyword={mockedSetFilterKeyword} />
-      )
+      renderWithStore(<Filter />, {
+        filterKeyword: '',
+        dispatch: dispatch,
+      })
     );
     test('THEN it renders an input text field with a label', () => {
       expect(screen.getByRole('textbox')).toBeTruthy();
@@ -22,18 +24,19 @@ describe('GIVEN the Filter component', () => {
         fireEvent.change(screen.getByRole('textbox'), {
           target: { value: 'keyword' },
         });
-        expect(mockedSetFilterKeyword).toHaveBeenCalledWith('keyword');
+        expect(dispatch).toHaveBeenCalledWith({
+          type: 'setFilterKeyword',
+          payload: 'keyword',
+        });
       });
     });
   });
   describe('WHEN it is called with a non-empty filterkeyword props', () => {
     beforeEach(() =>
-      render(
-        <Filter
-          filterKeyword="keyword"
-          setFilterKeyword={mockedSetFilterKeyword}
-        />
-      )
+      renderWithStore(<Filter />, {
+        filterKeyword: 'keyword',
+        dispatch: dispatch,
+      })
     );
     test('THEN it renders the input text value is equal to the filterkeyword props', () => {
       expect(screen.getByRole('textbox').value).toEqual('keyword');
@@ -44,7 +47,10 @@ describe('GIVEN the Filter component', () => {
     describe('AND WHEN the reset button is clicked', () => {
       test('THEN it calls the state updating fonction that was passed as a props with inputed value', () => {
         fireEvent.click(screen.getByRole('button'));
-        expect(mockedSetFilterKeyword).toHaveBeenCalledWith('');
+        expect(dispatch).toHaveBeenCalledWith({
+          type: 'setFilterKeyword',
+          payload: '',
+        });
       });
     });
   });

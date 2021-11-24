@@ -1,24 +1,33 @@
-export const SelectItemsPerPage = ({
-  itemsPerPage,
-  updateItemsPerPage,
-  options,
-}) => {
+import { useContext } from 'react';
+import { store } from '../../store/store.js';
+import styles from './SelectItemsPerPage.module.css';
+
+export const SelectItemsPerPage = () => {
+  const { itemsPerPage, itemsPerPageOption, dispatch } = useContext(store);
+
   const handleChange = (event) => {
     event.preventDefault();
-    updateItemsPerPage(parseInt(event.target.value));
+    dispatch({
+      type: 'setItemsPerPage',
+      payload: parseInt(event.target.value),
+    });
   };
 
   return (
-    <label>
-      {'Show '}
-      <select onChange={handleChange} value={itemsPerPage}>
-        {options.map((option) => (
+    <label className={styles.wrapper}>
+      {'Show'}
+      <select
+        onChange={handleChange}
+        value={itemsPerPage}
+        className={styles.select}
+      >
+        {itemsPerPageOption.map((option) => (
           <option key={option} value={option}>
             {option}
           </option>
         ))}
       </select>
-      {' Entries'}
+      {'entries'}
     </label>
   );
 };
