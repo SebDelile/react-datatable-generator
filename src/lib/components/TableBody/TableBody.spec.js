@@ -1,67 +1,49 @@
 import { screen } from '@testing-library/react';
 import { TableBody } from './TableBody.jsx';
-import { renderWithTable } from '../../utils/test/renderWithTable.js';
 import { dataSample } from '../../mocks/dataSample.js';
 import { headingsSample } from '../../mocks/headingsSample.js';
+import { renderWithStore } from '../../utils/test/renderWithStore.js';
+import '@testing-library/jest-dom';
+
+jest.mock('../TableRow/TableRow.jsx', () => ({
+  __esModule: true,
+  TableRow: (props) => <tr {...props} />,
+}));
 
 describe('GIVEN the TableBody component', () => {
-  describe('WHEN it is called without headings props', () => {
-    test('THEN it does not render any table cell', () => {
-      renderWithTable(<TableBody />);
-      expect(screen.queryByRole('cell')).toBeFalsy();
+  describe('WHEN it is called ', () => {
+    beforeEach(() => {
+      renderWithStore(
+        <table>
+          <TableBody />
+        </table>,
+        {
+          headings: headingsSample,
+          displayedData: dataSample,
+        }
+      );
     });
-  });
-  describe('WHEN it is called with headings but without data or empty data props', () => {
-    test('THEN it renders an unique cell with message on no match found', () => {
-      renderWithTable(<TableBody headings={headingsSample} />);
-      expect(screen.getByRole('cell', { name: /no match/i })).toBeTruthy();
-    });
-  });
-  test('THEN it renders an unique cell with message on no match found', () => {
-    renderWithTable(<TableBody headings={headingsSample} data={[]} />);
-    expect(screen.getByRole('cell', { name: /no match/i })).toBeTruthy();
-  });
-  describe('WHEN it is called with correct props', () => {
-    beforeEach(() =>
-      renderWithTable(<TableBody headings={headingsSample} data={dataSample} />)
-    );
     test('THEN it renders as many row as data items', () => {
       expect(screen.getAllByRole('row').length).toEqual(dataSample.length);
     });
-    test('THEN it renders the table and the data position corresponds to the column header', () => {
-      const dataCells = screen.getAllByRole('cell');
-      expect(dataCells[0].textContent).toEqual('120');
-      expect(dataCells[1].textContent).toEqual('John Doe');
-      expect(dataCells[2].textContent).toEqual('Engineer');
-    });
-  });
-  describe('WHEN it is called with data props containing more keys than headings', () => {
-    test('THEN it renders a table without the additionnal data', () => {
-      const dataSampleWithMoreKeys = dataSample.map((user) => ({
-        ...user,
-        nationnality: 'American',
-      }));
-      renderWithTable(
-        <TableBody headings={headingsSample} data={dataSampleWithMoreKeys} />
-      );
-      expect(screen.queryByText('American')).toBeFalsy();
-    });
-  });
-  describe('WHEN it is called with data props containing less keys than headings', () => {
-    test('THEN it renders a table with empty cell for missing keys', () => {
-      const dataSampleWithLessKeys = dataSample.map((user) => {
-        const { job, ...userWithoutJob } = user;
-        return userWithoutJob;
+    test('THEN the rows have parity props being even or odd depending on index in displayedData', () => {
+      screen.getAllByRole('row').forEach((row, index) => {
+        expect(row).toHaveAttribute('parity', index % 2 === 0 ? 'even' : 'odd');
       });
-      renderWithTable(
-        <TableBody headings={headingsSample} data={dataSampleWithLessKeys} />
+    });
+  });
+  describe('WHEN it is called with displayedData being empty', () => {
+    test('THEN it renders an unique cell with message on no match found', () => {
+      renderWithStore(
+        <table>
+          <TableBody />
+        </table>,
+        {
+          headings: headingsSample,
+          displayedData: [],
+        }
       );
-      const dataCells = screen.getAllByRole('cell');
-      expect(dataCells.length).toEqual(
-        headingsSample.length * dataSample.length
-      );
-      expect(dataCells[2].textContent).toEqual('');
-      expect(screen.queryByText('Engineer')).toBeFalsy();
+      expect(screen.getByRole('cell', { name: /no match/i })).toBeTruthy();
     });
   });
 });
