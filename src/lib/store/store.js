@@ -3,7 +3,7 @@ import { reducer } from './reducer.js';
 import { filterHandler } from '../handlers/filterHandler/filterHandler.js';
 import { sortHandler } from '../handlers/sortHandler/sortHandler.js';
 import { pagingHandler } from '../handlers/pagingHandler/pagingHandler.js';
-import { columnsMinWidthCalc } from '../utils/columnsMinWidthCalc/columnsMinWidthCalc.js';
+import { columnsMinWidthCalc } from '../utils/processing/columnsMinWidthCalc/columnsMinWidthCalc.js';
 
 export const store = createContext();
 
