@@ -1,49 +1,23 @@
-import { useState, useEffect, useRef, Children, cloneElement } from 'react';
-import { columnsMinWidthCalc } from '../../utils/columnsMinWidthCalc/columnsMinWidthCalc.js';
+import { useEffect, useRef, useContext } from 'react';
+import { store } from '../../store/store.js';
 import styles from './Table.module.css';
 
-export const Table = ({ headings, data, children, isScrollable }) => {
-  const arrayItems = headings.length;
-  const cellInterTextLength = 32; // to get from options
-  const [width, setWidth] = useState(0);
-  const [columnsMinWidth, setColumnsMinWith] = useState(
-    Array(arrayItems).fill(0)
-  );
-  const [displayedColumns, setDisplayedColumns] = useState(arrayItems);
-  const [readyToDisplay, setReadyToDisplay] = useState(false);
+export const Table = ({ children }) => {
+  const { isScrollable, width, columnsMinWidth, dispatch } = useContext(store);
   const ref = useRef(null);
 
-  const updateWidth = () => {
-    setWidth(ref.current.offsetWidth);
-  };
-
   useEffect(() => {
+    const updateWidth = () => {
+      const currentWidth = ref.current.offsetWidth;
+      dispatch({ type: 'setWidth', payload: currentWidth });
+      dispatch({ type: 'setDisplayedColumns', payload: currentWidth });
+    };
     updateWidth();
     window.addEventListener('resize', updateWidth);
     return () => {
       window.removeEventListener('resize', updateWidth);
     };
-  }, []);
-
-  useEffect(() => {
-    setColumnsMinWith(
-      columnsMinWidthCalc(headings, data).map(
-        (minWidth) => minWidth + cellInterTextLength
-      )
-    );
-  }, [data, headings]);
-
-  useEffect(() => {
-    let i = 1;
-    let widthSum = columnsMinWidth[0];
-    while (i < arrayItems) {
-      widthSum += columnsMinWidth[i];
-      if (widthSum >= width) break;
-      else i++;
-    }
-    if (!isScrollable) setDisplayedColumns(i);
-    if (isScrollable || width !== 0) setReadyToDisplay(true);
-  }, [width, columnsMinWidth, arrayItems, isScrollable]);
+  }, [dispatch]);
 
   return (
     <table
@@ -54,14 +28,7 @@ export const Table = ({ headings, data, children, isScrollable }) => {
           : ''
       }`}
     >
-      {readyToDisplay
-        ? Children.map(children, (child) =>
-            cloneElement(child, {
-              displayedColumns: displayedColumns,
-              columnsMinWidth: columnsMinWidth,
-            })
-          )
-        : null}
+      {width !== 0 ? children : null}
     </table>
   );
 };

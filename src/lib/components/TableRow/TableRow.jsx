@@ -1,19 +1,21 @@
 import { formatDisplayedData } from '../../utils/processing/formatDisplayedData/formatDisplayedData.js';
 import styles from './TableRow.module.css';
 import globalStyles from '../../utils/style/globalStyles.module.css';
+import { useContext } from 'react';
+import { store } from '../../store/store.js';
 
-export const TableRow = ({
-  item,
-  headings,
-  displayedColumns,
-  currentSortKey,
-  parity,
-  isMoreInfoOpen,
-  updateMoreInfoOpenList,
-}) => {
+export const TableRow = ({ item, parity }) => {
+  const {
+    headings,
+    currentSort,
+    moreInfoOpenList,
+    displayedColumns,
+    dispatch,
+  } = useContext(store);
   const hasMoreInfo = displayedColumns !== headings.length;
+  const isMoreInfoOpen = moreInfoOpenList.includes(JSON.stringify(item));
   const toggleMoreInfoDisplay = () => {
-    updateMoreInfoOpenList(JSON.stringify(item));
+    dispatch({ type: 'setMoreInfoOpenList', payload: JSON.stringify(item) });
   };
 
   return (
@@ -28,7 +30,7 @@ export const TableRow = ({
           <td
             key={heading.key}
             className={`${styles.tdNormal} ${
-              heading.key === currentSortKey ? styles.tdSorted : ''
+              heading.key === currentSort.key ? styles.tdSorted : ''
             } ${index >= displayedColumns ? globalStyles.srOnly : ''}`}
           >
             {item[heading.key]

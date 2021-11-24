@@ -3,20 +3,20 @@ import globalStyles from '../../utils/style/globalStyles.module.css';
 import noSortIcon from '../../assets/icon-no-sort.svg';
 import ascendingSortIcon from '../../assets/icon-ascending-sort.svg';
 import descendingSortIcon from '../../assets/icon-descending-sort.svg';
+import { useContext } from 'react';
+import { store } from '../../store/store.js';
 
-export const TableHeading = ({
-  headings,
-  currentSort,
-  setCurrentSort,
-  displayedColumns,
-  columnsMinWidth,
-}) => {
+export const TableHeading = () => {
+  const { headings, currentSort, displayedColumns, columnsMinWidth, dispatch } =
+    useContext(store);
+
   if (!headings) return null;
 
   const handleClick = (item) => {
-    if (currentSort.key === item.key && currentSort.direction > 0)
-      setCurrentSort({ key: item.key, direction: -1, type: item.type });
-    else setCurrentSort({ key: item.key, direction: 1, type: item.type });
+    dispatch({
+      type: 'setCurrentSort',
+      payload: { key: item.key, type: item.type },
+    });
   };
 
   return (

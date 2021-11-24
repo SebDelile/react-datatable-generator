@@ -9,9 +9,3 @@ export const currentSortNameDescending = {
   direction: -1,
   type: 'string',
 };
-
-export const currentSortNull = {
-  key: null,
-  direction: 1,
-  type: 'string',
-};

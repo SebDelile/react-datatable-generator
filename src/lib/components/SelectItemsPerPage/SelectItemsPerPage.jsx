@@ -1,13 +1,16 @@
+import { useContext } from 'react';
+import { store } from '../../store/store.js';
 import styles from './SelectItemsPerPage.module.css';
 
-export const SelectItemsPerPage = ({
-  itemsPerPage,
-  updateItemsPerPage,
-  options,
-}) => {
+export const SelectItemsPerPage = () => {
+  const { itemsPerPage, itemsPerPageOption, dispatch } = useContext(store);
+
   const handleChange = (event) => {
     event.preventDefault();
-    updateItemsPerPage(parseInt(event.target.value));
+    dispatch({
+      type: 'setItemsPerPage',
+      payload: parseInt(event.target.value),
+    });
   };
 
   return (
@@ -18,7 +21,7 @@ export const SelectItemsPerPage = ({
         value={itemsPerPage}
         className={styles.select}
       >
-        {options.map((option) => (
+        {itemsPerPageOption.map((option) => (
           <option key={option} value={option}>
             {option}
           </option>

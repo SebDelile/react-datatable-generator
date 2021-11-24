@@ -1,74 +1,40 @@
-import { render, screen } from '@testing-library/react';
-import { ShowDisplayedItems } from './ShowDisplayedItems';
+import { screen } from '@testing-library/react';
+import { extendedDataSample } from '../../mocks/extendedDataSample.js';
+import { renderWithStore } from '../../utils/test/renderWithStore.js';
+import { ShowDisplayedItems } from './ShowDisplayedItems.jsx';
 
 describe('GIVEN the ShowDisplayedItems component', () => {
-  describe('WHEN it is called with missing props between currentPage, entries or displayedDataLength', () => {
-    test('THEN it renders nothing', () => {
-      render(<ShowDisplayedItems />);
-      expect(screen.queryByText(/./i)).toBeFalsy();
-    });
-    test('THEN it renders nothing', () => {
-      render(<ShowDisplayedItems currentPage={3} itemsPerPage={10} />);
-      expect(screen.queryByText(/./i)).toBeFalsy();
-    });
-    test('THEN it renders nothing', () => {
-      render(<ShowDisplayedItems currentPage={3} displayedDataLength={48} />);
-      expect(screen.queryByText(/./i)).toBeFalsy();
-    });
-    test('THEN it renders nothing', () => {
-      render(<ShowDisplayedItems itemsPerPage={10} displayedDataLength={48} />);
-      expect(screen.queryByText(/./i)).toBeFalsy();
-    });
-  });
-  describe('WHEN it is called with props and the items to display is equal than the items per page', () => {
+  describe('WHEN it is called and the items to display is equal than the items per page', () => {
     test('THEN it renders a sentence with a range between 1s item of the page and last item of the page', () => {
-      render(
-        <ShowDisplayedItems
-          currentPage={3}
-          itemsPerPage={10}
-          displayedDataLength={48}
-        />
-      );
-      expect(screen.getByText(/21 to 30 of 48/i)).toBeTruthy();
+      renderWithStore(<ShowDisplayedItems />, {
+        currentPage: 2,
+        itemsPerPage: 5,
+        filteredData: extendedDataSample,
+        data: extendedDataSample,
+      });
+      expect(screen.getByText(/6 to 10 of 12/i)).toBeTruthy();
     });
   });
-  describe('WHEN it is called with props and the items to display is less than the items per page', () => {
+  describe('WHEN it is called and the items to display is less than the items per page', () => {
     test('THEN it renders a sentence with a range between 1s item of the page and last item of the page', () => {
-      render(
-        <ShowDisplayedItems
-          currentPage={5}
-          itemsPerPage={10}
-          displayedDataLength={48}
-        />
-      );
-      expect(screen.getByText(/41 to 48 of 48/i)).toBeTruthy();
+      renderWithStore(<ShowDisplayedItems />, {
+        currentPage: 3,
+        itemsPerPage: 5,
+        filteredData: extendedDataSample,
+        data: extendedDataSample,
+      });
+      expect(screen.getByText(/11 to 12 of 12/i)).toBeTruthy();
     });
   });
-  describe('WHEN it is called with additionnal props unfiltredDataLength equal to dataLength', () => {
-    test('THEN it renders a sentence with a range between 1s item of the page and last item of the page', () => {
-      render(
-        <ShowDisplayedItems
-          currentPage={5}
-          itemsPerPage={10}
-          displayedDataLength={48}
-          unfiltredDataLength={48}
-        />
-      );
-      expect(screen.getByText(/41 to 48 of 48/i)).toBeTruthy();
-      expect(screen.queryByText(/total/i)).toBeFalsy();
-    });
-  });
-  describe('WHEN it is called with additionnal props unfiltredDataLength', () => {
+  describe('WHEN it is called and data have been filtrated', () => {
     test('THEN it additionnaly displays the number of unflitred data', () => {
-      render(
-        <ShowDisplayedItems
-          currentPage={5}
-          itemsPerPage={10}
-          displayedDataLength={48}
-          unfiltredDataLength={64}
-        />
-      );
-      expect(screen.getByText(/41 to 48 of 48/i && /64 total/i)).toBeTruthy();
+      renderWithStore(<ShowDisplayedItems />, {
+        currentPage: 1,
+        itemsPerPage: 5,
+        filteredData: extendedDataSample.slice(0, 6),
+        data: extendedDataSample,
+      });
+      expect(screen.getByText(/1 to 5 of 6/i && /12 total/i)).toBeTruthy();
     });
   });
 });
