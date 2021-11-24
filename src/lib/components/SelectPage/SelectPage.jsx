@@ -32,11 +32,7 @@ export const SelectPage = () => {
   buttonList.push('Next');
 
   const handleClick = (event) => {
-    let newPage = null;
-    if (event.target.value === 'Previous') newPage = currentPage - 1;
-    else if (event.target.value === 'Next') newPage = currentPage + 1;
-    else newPage = parseInt(event.target.value);
-    dispatch({ type: 'setCurrentPage', payload: newPage });
+    dispatch({ type: 'setCurrentPage', payload: event.target.value });
   };
 
   const isDisabled = (page) =>

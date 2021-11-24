@@ -3,7 +3,23 @@ export const reducer = (state, action) => {
     case 'setFilterKeyword':
       return { ...state, filterKeyword: action.payload };
     case 'setCurrentSort':
-      return { ...state, currentSort: action.payload };
+      let newSort = undefined;
+      if (
+        state.currentSort.key === action.payload.key &&
+        state.currentSort.direction > 0
+      )
+        newSort = {
+          key: action.payload.key,
+          direction: -1,
+          type: action.payload.type,
+        };
+      else
+        newSort = {
+          key: action.payload.key,
+          direction: 1,
+          type: action.payload.type,
+        };
+      return { ...state, currentSort: newSort };
     case 'setItemsPerPage':
       const currentFirstItemOnPageIndex =
         (state.currentPage - 1) * state.itemsPerPage;
@@ -16,7 +32,11 @@ export const reducer = (state, action) => {
         headings: state.headings,
       };
     case 'setCurrentPage':
-      return { ...state, currentPage: action.payload };
+      let newPage = null;
+      if (action.payload === 'Previous') newPage = state.currentPage - 1;
+      else if (action.payload === 'Next') newPage = state.currentPage + 1;
+      else newPage = parseInt(action.payload);
+      return { ...state, currentPage: newPage };
     case 'setMoreInfoOpenList':
       const index = state.moreInfoOpenList.indexOf(action.payload);
       const newList = [...state.moreInfoOpenList];

@@ -13,11 +13,10 @@ export const TableHeading = () => {
   if (!headings) return null;
 
   const handleClick = (item) => {
-    let newSort = undefined;
-    if (currentSort.key === item.key && currentSort.direction > 0)
-      newSort = { key: item.key, direction: -1, type: item.type };
-    else newSort = { key: item.key, direction: 1, type: item.type };
-    dispatch({ type: 'setCurrentSort', payload: newSort });
+    dispatch({
+      type: 'setCurrentSort',
+      payload: { key: item.key, type: item.type },
+    });
   };
 
   return (
