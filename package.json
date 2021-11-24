@@ -1,6 +1,13 @@
 {
   "name": "react-datatable-generator",
-  "version": "0.1.0",
+  "author": "sebastien delile",
+  "keywords": [
+    "react",
+    "table",
+    "component"
+  ],
+  "private": false,
+  "version": "0.1.1",
   "main": "dist/index.js",
   "module": "dist/index.js",
   "files": [
@@ -12,6 +19,7 @@
     "url": "https://github.com/SebDelile/react-datatable-generator"
   },
   "dependencies": {
+    "@babel/polyfill": "^7.12.1",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",
@@ -20,7 +28,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build-publish": "rm -rf dist && NODE_ENV=production babel src/lib --out-dir dist --copy-files --ignore __tests__,spec.js,test.js,__snapshots__",
+    "build-publish": "rm -rf dist && babel --env-name 'production' src/lib --out-dir dist --copy-files --ignore \"src/**/*.spec.js\",\"src/**/*.test.js\" --no-copy-ignored",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
@@ -44,7 +52,10 @@
     ]
   },
   "devDependencies": {
-    "babel-cli": "^6.26.0",
+    "@babel/cli": "^7.16.0",
+    "@babel/core": "^7.16.0",
+    "@babel/preset-env": "^7.16.4",
+    "@babel/preset-react": "^7.16.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-script": "^2.0.5"
