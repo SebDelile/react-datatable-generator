@@ -31,7 +31,8 @@
     "build-publish": "SET NODE_ENV=production && rm -rf dist && babel src/lib --out-dir dist --copy-files --ignore \"src/**/*.spec.js\",\"src/**/*.test.js\" --no-copy-ignored",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "jsdoc": "./node_modules/.bin/jsdoc src/lib -r -d docs --readme readme.md"
   },
   "eslintConfig": {
     "extends": [
@@ -56,6 +57,7 @@
     "@babel/core": "^7.16.0",
     "@babel/preset-env": "^7.16.4",
     "@babel/preset-react": "^7.16.0",
+    "jsdoc": "^3.6.7",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-script": "^2.0.5"
