@@ -31,3 +31,9 @@
       "showDisplayedItems selectPage";
   }
 }
+
+.wrapper *,
+.wrapper *::after,
+.wrapper *::before {
+  box-sizing: border-box;
+}

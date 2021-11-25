@@ -4,6 +4,7 @@
   width: 100%;
   display: table;
   overflow: hidden;
+  border-spacing: 0;
 }
 
 .tableBlock {
