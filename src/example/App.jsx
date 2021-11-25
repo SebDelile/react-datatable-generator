@@ -1,6 +1,6 @@
-import Datatable from '../lib/index.jsx';
-import { extendedHeadingsSample } from '../lib/mocks/extendedHeadingsSample.js';
-import { extendedDataSample } from '../lib/mocks/extendedDataSample.js';
+import Datatable from '../lib/index';
+import { extendedHeadingsSample } from '../lib/mocks/extendedHeadingsSample';
+import { extendedDataSample } from '../lib/mocks/extendedDataSample';
 
 const App = () => (
   <>

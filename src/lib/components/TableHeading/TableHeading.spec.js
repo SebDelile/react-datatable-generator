@@ -1,8 +1,8 @@
 import { screen, fireEvent } from '@testing-library/react';
-import { TableHeading } from './TableHeading.jsx';
-import { headingsSample } from '../../mocks/headingsSample.js';
-import { currentSortNameAscending } from '../../mocks/currentSortSamples.js';
-import { renderWithStore } from '../../utils/test/renderWithStore.js';
+import { TableHeading } from './TableHeading';
+import { headingsSample } from '../../mocks/headingsSample';
+import { currentSortNameAscending } from '../../mocks/currentSortSamples';
+import { renderWithStore } from '../../utils/test/renderWithStore';
 import '@testing-library/jest-dom';
 
 const dispatch = jest.fn();

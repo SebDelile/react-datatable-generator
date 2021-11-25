@@ -1,11 +1,5 @@
 import { sortHandler } from './sortHandler';
-import {
-  user1,
-  user2,
-  user3,
-  user4,
-  dataSample,
-} from '../../mocks/dataSample.js';
+import { user1, user2, user3, user4, dataSample } from '../../mocks/dataSample';
 
 describe('GIVEN the sortHandler feature', () => {
   describe('WHEN it is called with null key in currentSort', () => {

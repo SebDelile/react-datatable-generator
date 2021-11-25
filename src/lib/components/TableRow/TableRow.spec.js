@@ -1,9 +1,9 @@
 import { screen, fireEvent } from '@testing-library/react';
-import { TableRow } from './TableRow.jsx';
-import { headingsSample } from '../../mocks/headingsSample.js';
-import { renderWithStore } from '../../utils/test/renderWithStore.js';
-import { currentSortNameAscending } from '../../mocks/currentSortSamples.js';
-import { user1 } from '../../mocks/dataSample.js';
+import { TableRow } from './TableRow';
+import { headingsSample } from '../../mocks/headingsSample';
+import { renderWithStore } from '../../utils/test/renderWithStore';
+import { currentSortNameAscending } from '../../mocks/currentSortSamples';
+import { user1 } from '../../mocks/dataSample';
 
 const dispatch = jest.fn();
 const columnCount = headingsSample.length;

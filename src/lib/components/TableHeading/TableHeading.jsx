@@ -4,7 +4,7 @@ import noSortIcon from '../../assets/icon-no-sort.svg';
 import ascendingSortIcon from '../../assets/icon-ascending-sort.svg';
 import descendingSortIcon from '../../assets/icon-descending-sort.svg';
 import { useContext } from 'react';
-import { store } from '../../store/store.js';
+import { store } from '../../store/store';
 
 export const TableHeading = () => {
   const { headings, currentSort, displayedColumns, columnsMinWidth, dispatch } =

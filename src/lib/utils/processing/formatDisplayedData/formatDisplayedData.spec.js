@@ -1,4 +1,4 @@
-import { formatDisplayedData } from './formatDisplayedData.js';
+import { formatDisplayedData } from './formatDisplayedData';
 
 describe('GIVEN the formatDisplayedData function', () => {
   describe('WHEN it is called with input to be formated as a US date', () => {

@@ -1,9 +1,9 @@
 import { createContext, useEffect, useReducer } from 'react';
-import { reducer } from './reducer.js';
-import { filterHandler } from '../handlers/filterHandler/filterHandler.js';
-import { sortHandler } from '../handlers/sortHandler/sortHandler.js';
-import { pagingHandler } from '../handlers/pagingHandler/pagingHandler.js';
-import { columnsMinWidthCalc } from '../utils/processing/columnsMinWidthCalc/columnsMinWidthCalc.js';
+import { reducer } from './reducer';
+import { filterHandler } from '../handlers/filterHandler/filterHandler';
+import { sortHandler } from '../handlers/sortHandler/sortHandler';
+import { pagingHandler } from '../handlers/pagingHandler/pagingHandler';
+import { columnsMinWidthCalc } from '../utils/processing/columnsMinWidthCalc/columnsMinWidthCalc';
 
 export const store = createContext();
 

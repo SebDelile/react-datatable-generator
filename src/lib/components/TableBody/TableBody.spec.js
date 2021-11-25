@@ -1,8 +1,8 @@
 import { screen } from '@testing-library/react';
-import { TableBody } from './TableBody.jsx';
-import { dataSample } from '../../mocks/dataSample.js';
-import { headingsSample } from '../../mocks/headingsSample.js';
-import { renderWithStore } from '../../utils/test/renderWithStore.js';
+import { TableBody } from './TableBody';
+import { dataSample } from '../../mocks/dataSample';
+import { headingsSample } from '../../mocks/headingsSample';
+import { renderWithStore } from '../../utils/test/renderWithStore';
 import '@testing-library/jest-dom';
 
 jest.mock('../TableRow/TableRow.jsx', () => ({

@@ -1,6 +1,6 @@
 import { screen, fireEvent } from '@testing-library/react';
-import { renderWithStore } from '../../utils/test/renderWithStore.js';
-import { Filter } from './Filter.jsx';
+import { renderWithStore } from '../../utils/test/renderWithStore';
+import { Filter } from './Filter';
 
 const dispatch = jest.fn();
 

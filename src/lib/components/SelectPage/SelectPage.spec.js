@@ -1,7 +1,7 @@
 import { screen, fireEvent } from '@testing-library/react';
-import { extendedDataSample } from '../../mocks/extendedDataSample.js';
-import { renderWithStore } from '../../utils/test/renderWithStore.js';
-import { SelectPage } from './SelectPage.jsx';
+import { extendedDataSample } from '../../mocks/extendedDataSample';
+import { renderWithStore } from '../../utils/test/renderWithStore';
+import { SelectPage } from './SelectPage';
 
 const dispatch = jest.fn();
 const filteredData = extendedDataSample; //12 items inside

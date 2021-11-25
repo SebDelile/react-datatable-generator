@@ -1,7 +1,7 @@
 import styles from './Filter.module.css';
 import iconClose from '../../assets/icon-close.svg';
 import { useContext } from 'react';
-import { store } from '../../store/store.js';
+import { store } from '../../store/store';
 
 export const Filter = () => {
   const { filterKeyword, dispatch } = useContext(store);

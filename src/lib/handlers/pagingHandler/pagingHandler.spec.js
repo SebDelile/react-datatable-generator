@@ -1,11 +1,5 @@
-import { pagingHandler } from './pagingHandler.js';
-import {
-  user1,
-  user2,
-  user3,
-  user4,
-  dataSample,
-} from '../../mocks/dataSample.js';
+import { pagingHandler } from './pagingHandler';
+import { user1, user2, user3, user4, dataSample } from '../../mocks/dataSample';
 
 describe('GIVEN the pagingHandler feature', () => {
   describe('WHEN it is called with itemsPerPage >= data.length', () => {

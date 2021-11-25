@@ -1,5 +1,5 @@
 import { useEffect, useRef, useContext } from 'react';
-import { store } from '../../store/store.js';
+import { store } from '../../store/store';
 import styles from './Table.module.css';
 
 export const Table = ({ children }) => {

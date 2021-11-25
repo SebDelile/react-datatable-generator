@@ -1,6 +1,6 @@
 import { screen, fireEvent } from '@testing-library/react';
-import { renderWithStore } from '../../utils/test/renderWithStore.js';
-import { SelectItemsPerPage } from './SelectItemsPerPage.jsx';
+import { renderWithStore } from '../../utils/test/renderWithStore';
+import { SelectItemsPerPage } from './SelectItemsPerPage';
 
 const dispatch = jest.fn();
 const itemsPerPageOption = [10, 25, 50, 100];

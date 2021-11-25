@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
-import Datatable from './index.jsx';
-import { extendedHeadingsSample } from './mocks/extendedHeadingsSample.js';
-import { extendedDataSample } from './mocks/extendedDataSample.js';
+import Datatable from './index';
+import { extendedHeadingsSample } from './mocks/extendedHeadingsSample';
+import { extendedDataSample } from './mocks/extendedDataSample';
 
 jest.mock(
   './utils/processing/columnsMinWidthCalc/columnsMinWidthCalc.js',

@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { store } from '../../store/store.js';
+import { store } from '../../store/store';
 import styles from './ShowDisplayedItems.module.css';
 
 export const ShowDisplayedItems = () => {

@@ -1,8 +1,8 @@
-import { formatDisplayedData } from '../../utils/processing/formatDisplayedData/formatDisplayedData.js';
+import { formatDisplayedData } from '../../utils/processing/formatDisplayedData/formatDisplayedData';
 import styles from './TableRow.module.css';
 import globalStyles from '../../utils/style/globalStyles.module.css';
 import { useContext } from 'react';
-import { store } from '../../store/store.js';
+import { store } from '../../store/store';
 
 export const TableRow = ({ item, parity }) => {
   const {

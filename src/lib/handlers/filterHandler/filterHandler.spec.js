@@ -1,11 +1,5 @@
-import { filterHandler } from './filterHandler.js';
-import {
-  user1,
-  user2,
-  user3,
-  user4,
-  dataSample,
-} from '../../mocks/dataSample.js';
+import { filterHandler } from './filterHandler';
+import { user1, user2, user3, user4, dataSample } from '../../mocks/dataSample';
 
 describe('GIVEN the filterHandler feature', () => {
   describe('WHEN it is called with anything but a non-empty array', () => {

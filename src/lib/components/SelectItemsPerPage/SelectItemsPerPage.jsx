@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { store } from '../../store/store.js';
+import { store } from '../../store/store';
 import styles from './SelectItemsPerPage.module.css';
 
 export const SelectItemsPerPage = () => {

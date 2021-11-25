@@ -1,7 +1,7 @@
 import { screen } from '@testing-library/react';
-import { extendedDataSample } from '../../mocks/extendedDataSample.js';
-import { renderWithStore } from '../../utils/test/renderWithStore.js';
-import { ShowDisplayedItems } from './ShowDisplayedItems.jsx';
+import { extendedDataSample } from '../../mocks/extendedDataSample';
+import { renderWithStore } from '../../utils/test/renderWithStore';
+import { ShowDisplayedItems } from './ShowDisplayedItems';
 
 describe('GIVEN the ShowDisplayedItems component', () => {
   describe('WHEN it is called and the items to display is equal than the items per page', () => {

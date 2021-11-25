@@ -1,6 +1,6 @@
 import { useContext } from 'react';
-import { store } from '../../store/store.js';
-import { TableRow } from '../TableRow/TableRow.jsx';
+import { store } from '../../store/store';
+import { TableRow } from '../TableRow/TableRow';
 import styles from './TableBody.module.css';
 
 export const TableBody = () => {
