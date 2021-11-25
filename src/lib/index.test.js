@@ -13,14 +13,22 @@ jest.mock(
 
 describe('GIVEN the Datatable pluggin', () => {
   describe('WHEN it is called with valid headings and data props', () => {
-    beforeEach(() =>
+    beforeEach(() => {
+      Object.defineProperties(window.HTMLElement.prototype, {
+        offsetWidth: {
+          get: () => 500,
+        },
+      });
       render(
         <Datatable
           headings={extendedHeadingsSample}
           data={extendedDataSample}
         />
-      )
-    );
+      );
+    });
+    test('THEN it renders a article wrapper', () => {
+      expect(screen.getByRole('article')).toBeTruthy();
+    });
     test('THEN it renders a combobox', () => {
       expect(screen.getByRole('combobox')).toBeTruthy();
     });
@@ -42,7 +50,7 @@ describe('GIVEN the Datatable pluggin', () => {
   });
   describe('WHEN it is called with invalid headings or data props', () => {
     test('THEN it renders nothing', () => {
-      render(<Datatable data={extendedDataSample} />);
+      render(<Datatable data={extendedDataSample} width={100} />);
       expect(screen.queryByText(/./)).toBeFalsy();
     });
     test('THEN it renders nothing', () => {

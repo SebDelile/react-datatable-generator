@@ -63,6 +63,12 @@ export const reducer = (state, action) => {
         }
         return { ...state, displayedColumns: i };
       }
+    case 'setColumnsMinWidth':
+      if (!action.payload) return state;
+      return {
+        ...state,
+        columnsMinWidth: action.payload,
+      };
     default:
       console.log(action.type + ' is not recognized');
       return state;

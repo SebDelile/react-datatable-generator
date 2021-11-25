@@ -3,7 +3,6 @@ import { reducer } from './reducer';
 import { filterHandler } from '../handlers/filterHandler/filterHandler';
 import { sortHandler } from '../handlers/sortHandler/sortHandler';
 import { pagingHandler } from '../handlers/pagingHandler/pagingHandler';
-import { columnsMinWidthCalc } from '../utils/processing/columnsMinWidthCalc/columnsMinWidthCalc';
 
 export const store = createContext();
 
@@ -34,9 +33,7 @@ export const StoreProvider = ({
     sortedData: data,
     displayedData: data,
     width: 0,
-    columnsMinWidth: columnsMinWidthCalc(headings, data).map(
-      (minWidth) => minWidth + cellInterTextLength
-    ),
+    columnsMinWidth: [],
     displayedColumns: headings.length,
   };
 

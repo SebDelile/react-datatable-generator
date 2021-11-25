@@ -6,9 +6,10 @@ import { TableHeading } from './components/TableHeading/TableHeading';
 import { TableBody } from './components/TableBody/TableBody';
 import { ShowDisplayedItems } from './components/ShowDisplayedItems/ShowDisplayedItems';
 import { SelectPage } from './components/SelectPage/SelectPage';
-import styles from './index.module.css';
+import { Wrapper } from './components/Wrapper/Wrapper';
 
 const Datatable = ({
+  className,
   headings,
   data,
   itemsPerPageOption = [10, 25, 50, 100],
@@ -36,14 +37,14 @@ const Datatable = ({
     return null;
   else
     return (
-      <article className={styles.datatable}>
-        <StoreProvider
-          headings={headings}
-          data={data}
-          itemsPerPageOption={itemsPerPageOption}
-          isScrollable={isScrollable}
-          cellInterTextLength={cellInterTextLength}
-        >
+      <StoreProvider
+        headings={headings}
+        data={data}
+        itemsPerPageOption={itemsPerPageOption}
+        isScrollable={isScrollable}
+        cellInterTextLength={cellInterTextLength}
+      >
+        <Wrapper className={className}>
           <SelectItemsPerPage />
           <Filter />
           <Table>
@@ -52,8 +53,8 @@ const Datatable = ({
           </Table>
           <ShowDisplayedItems />
           <SelectPage />
-        </StoreProvider>
-      </article>
+        </Wrapper>
+      </StoreProvider>
     );
 };
 export default Datatable;
