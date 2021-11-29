@@ -32,7 +32,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "jsdoc": "./node_modules/.bin/jsdoc src/lib -r -d docs --readme readme.md"
+    "jsdoc": "rm -rf docs && jsdoc src/lib -r -d docs --readme readme.md"
   },
   "eslintConfig": {
     "extends": [

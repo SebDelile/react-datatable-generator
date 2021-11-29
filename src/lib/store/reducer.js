@@ -1,3 +1,12 @@
+/**
+ * The reducer fonction of the store.
+ * Returns the spreaded current state and 0 to many properties with new value based on action type.
+ * Contain all pure logic for the calculation of the new state. Logic depending on something else than state or action is managed outside of the reducer (often before dispatching).
+ * @memberof store
+ * @param {object} state - the current state.
+ * @param {object} action - the action object with key type and optionnal key payload.
+ * @returns {object} - the updated state.
+ */
 export const reducer = (state, action) => {
   switch (action.type) {
     case 'setFilterKeyword':
@@ -74,20 +83,3 @@ export const reducer = (state, action) => {
       return state;
   }
 };
-
-// let newDisplayedColumns = undefined;
-//       if (!state.isScrollable) {
-//         let i = 1;
-//         let widthSum = state.columnsMinWidth[0];
-//         while (i < state.headings.length) {
-//           widthSum += state.columnsMinWidth[i];
-//           if (widthSum >= action.payload) break;
-//           else i++;
-//         }
-//         newDisplayedColumns = i;
-//       }
-//       return {
-//         ...state,
-//         width: action.payload,
-//         displayedColumns: newDisplayedColumns ?? state.displayedColumns,
-//       };

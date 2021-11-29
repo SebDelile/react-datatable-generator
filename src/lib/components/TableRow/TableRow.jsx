@@ -4,6 +4,22 @@ import globalStyles from '../../utils/style/globalStyles.module.css';
 import { useContext } from 'react';
 import { store } from '../../store/store';
 
+/**
+ * @namespace TableRow
+ */
+
+/**
+ * The TableRow component, displays the data within the TableBody. One TableRow composent per Data item.
+ * Displays all the cells no matter what value has the displayedColumns state value, but put the sr-only class to the cell which should not be displayed.
+ * this not displayed cells are put within an additional info row with aria-hidden attribute (this row doesn't exist if no data to put into).
+ * Uses the state moreInfoOpenList to know if the additionnal info row should be displayed or collapsed.
+ * Adds classes to manage the background color of cells depending on parity and current sort.
+ * @param {object} item - the data item from the displayed data array.
+ * @param {string} parity - the row parity, even or odd.
+ * @memberof TableRow
+ * @function
+ * @return {ReactElement} jsx to be injected in the html.
+ */
 export const TableRow = ({ item, parity }) => {
   const {
     headings,
@@ -14,6 +30,11 @@ export const TableRow = ({ item, parity }) => {
   } = useContext(store);
   const hasMoreInfo = displayedColumns !== headings.length;
   const isMoreInfoOpen = moreInfoOpenList.includes(JSON.stringify(item));
+
+  /**
+   * Dispatch the action to update the displayed status of the clicked row.
+   * @memberof TableRow
+   */
   const toggleMoreInfoDisplay = () => {
     dispatch({ type: 'setMoreInfoOpenList', payload: JSON.stringify(item) });
   };

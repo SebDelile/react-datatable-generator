@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Namespace: handlers</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Namespace: handlers</h1>
+
+    
+
+
+
+
+<section>
+
+<header>
+    
+        <h2>handlers</h2>
+        
+    
+</header>
+
+<article>
+    <div class="container-overview">
+    
+        
+            <div class="description">all handlers (handling calculation on data).</div>
+        
+
+        
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="index.jsx.html">index.jsx</a>, <a href="index.jsx.html#line82">line 82</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+        
+    
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <h3 class="subsection-title">Members</h3>
+
+        
+            
+<h4 class="name" id=".exports.filterHandler"><span class="type-signature">(static, constant) </span>exports.filterHandler<span class="type-signature"></span></h4>
+
+
+
+
+<div class="description">
+    Filter the data according to the filter keyword.Filtering is not sensitive to case but do not use a normalizer function for accent or hyphens.Return unmodified data if keyword is empty.Has an exact search behavior for parts of the string being between double quotes.Builds the searchingKeywords array by spliting the string : 1) according to double quote to isolate fragment inside and outside of double quotes. 2) splitting the fragment outside of double quote according to spaces.Then make the fitlering research according to all elements of the searchingKeyword array.
+</div>
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="handlers_filterHandler_filterHandler.js.html">handlers/filterHandler/filterHandler.js</a>, <a href="handlers_filterHandler_filterHandler.js.html#line15">line 15</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id=".exports.pagingHandler"><span class="type-signature">(static, constant) </span>exports.pagingHandler<span class="type-signature"></span></h4>
+
+
+
+
+<div class="description">
+    Filter the data to return the items corresponding to the current page.Returns unmodified data if there is less items than itemsPerPage value.
+</div>
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="handlers_pagingHandler_pagingHandler.js.html">handlers/pagingHandler/pagingHandler.js</a>, <a href="handlers_pagingHandler_pagingHandler.js.html#line10">line 10</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id=".exports.sortHandler"><span class="type-signature">(static, constant) </span>exports.sortHandler<span class="type-signature"></span></h4>
+
+
+
+
+<div class="description">
+    Sort the data according to currentSort parameter.Returns unmodified data if there is no key selected (null).Sorts the data according to the key parameter, and use the type parameter to define which sort to apply (number, string or date).
+</div>
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="handlers_sortHandler_sortHandler.js.html">handlers/sortHandler/sortHandler.js</a>, <a href="handlers_sortHandler_sortHandler.js.html#line10">line 10</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+    
+
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Namespaces</h3><ul><li><a href="Datatable.html">Datatable</a></li><li><a href="Filter.html">Filter</a></li><li><a href="handlers.html">handlers</a></li><li><a href="SelectItemsPerPage.html">SelectItemsPerPage</a></li><li><a href="SelectPage.html">SelectPage</a></li><li><a href="ShowDisplayedItems.html">ShowDisplayedItems</a></li><li><a href="store.html">store</a></li><li><a href="Table.html">Table</a></li><li><a href="TableBody.html">TableBody</a></li><li><a href="TableHeading.html">TableHeading</a></li><li><a href="TableRow.html">TableRow</a></li><li><a href="utils.html">utils</a></li><li><a href="Wrapper.html">Wrapper</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Mon Nov 29 2021 19:42:26 GMT+0100 (heure normale d’Europe centrale)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

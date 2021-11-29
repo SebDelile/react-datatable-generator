@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: index.jsx</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: index.jsx</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import { StoreProvider } from './store/store';
+import { SelectItemsPerPage } from './components/SelectItemsPerPage/SelectItemsPerPage';
+import { Filter } from './components/Filter/Filter';
+import { Table } from './components/Table/Table';
+import { TableHeading } from './components/TableHeading/TableHeading';
+import { TableBody } from './components/TableBody/TableBody';
+import { ShowDisplayedItems } from './components/ShowDisplayedItems/ShowDisplayedItems';
+import { SelectPage } from './components/SelectPage/SelectPage';
+import { Wrapper } from './components/Wrapper/Wrapper';
+
+/**
+ * The main component to generate a datatable. Contains a check for the validity of the headings and data props (do not return anything in case of invalidity).
+ * @memberof Datatable
+ * @function
+ * @param {array} props.headings - mandatory, used to build the column headers, have to be in the form of an array of objects with the shape being {key:string, label:string, type: function||string} (type is optionnal, key must be unique in array)
+ * @param {array} props.data - mandatory, used to build the data ro of the table, have to be an array of object with the shape being {key1:value, key2:value, ...} only the keys matching a key in headings will be displayed.
+ * @param {string} props.className - an optionnal list of space separated classes to be applied to the datatable wrapper.
+ * @param {array} props.itemsPerPageOption - an optionnal list of the available values for the number of items to display per page. Default is [10, 25, 50, 100]
+ * @param {boolean} props.isScrollable - an optionnal value to stand if the column not being displayed within the screen should be get by horizontal scroll (true) or by clicking on a row to expand missing value (false). Default value is false.
+ * @param {number} props.cellInterTextLength - optionnal styling rule to set the padding (in px) inside the table, the value correspond to padding.left+ padding.right. Default value is 32
+ * @return {ReactElement} jsx to be injected in the html
+ */
+
+const Datatable = ({
+  className,
+  headings,
+  data,
+  itemsPerPageOption = [10, 25, 50, 100],
+  isScrollable = false,
+  cellInterTextLength = 32,
+}) => {
+  const isHeadingsKeysInvalid = () =>
+    headings.length === 0 ||
+    headings.some(
+      (heading) =>
+        !heading.key ||
+        typeof heading.key !== 'string' ||
+        typeof heading.label !== 'string'
+    ) ||
+    new Set(headings.map((heading) => heading.key)).size !== headings.length;
+
+  if (
+    !headings ||
+    !Array.isArray(headings) ||
+    isHeadingsKeysInvalid() ||
+    !data ||
+    !Array.isArray(data) ||
+    data.some((item) => typeof item !== 'object')
+  )
+    return null;
+  else
+    return (
+      &lt;StoreProvider
+        headings={headings}
+        data={data}
+        itemsPerPageOption={itemsPerPageOption}
+        isScrollable={isScrollable}
+        cellInterTextLength={cellInterTextLength}
+      >
+        &lt;Wrapper className={className}>
+          &lt;SelectItemsPerPage />
+          &lt;Filter />
+          &lt;Table>
+            &lt;TableHeading />
+            &lt;TableBody />
+          &lt;/Table>
+          &lt;ShowDisplayedItems />
+          &lt;SelectPage />
+        &lt;/Wrapper>
+      &lt;/StoreProvider>
+    );
+};
+export default Datatable;
+
+//-----namespace initializers for jsdoc generated documentation
+/**
+ * @namespace Datatable
+ */
+/**
+ * @namespace store
+ */
+/**
+ * all handlers (handling calculation on data).
+ * @namespace handlers
+ */
+/**
+ * all utils functions.
+ * @namespace utils
+ */
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Namespaces</h3><ul><li><a href="Datatable.html">Datatable</a></li><li><a href="Filter.html">Filter</a></li><li><a href="handlers.html">handlers</a></li><li><a href="SelectItemsPerPage.html">SelectItemsPerPage</a></li><li><a href="SelectPage.html">SelectPage</a></li><li><a href="ShowDisplayedItems.html">ShowDisplayedItems</a></li><li><a href="store.html">store</a></li><li><a href="Table.html">Table</a></li><li><a href="TableBody.html">TableBody</a></li><li><a href="TableHeading.html">TableHeading</a></li><li><a href="TableRow.html">TableRow</a></li><li><a href="utils.html">utils</a></li><li><a href="Wrapper.html">Wrapper</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Mon Nov 29 2021 19:42:26 GMT+0100 (heure normale d’Europe centrale)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

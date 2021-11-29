@@ -1,3 +1,13 @@
+/**
+ * Format an input with the given format.
+ * If format is a function, returns the result of the funciton with input as parameter.
+ * If format is a string (keyword), returns a a formated input according to the scheme.
+ * Default case returns the unformated data.
+ * @param {string|number} input - the input to format.
+ * @param {string|function} format - the format to apply.
+ * @memberof utils
+ * @returns {string} - the formated input as a string.
+ */
 export const formatDisplayedData = (input, format) => {
   if (typeof format === 'function') return format(input);
   switch (format) {

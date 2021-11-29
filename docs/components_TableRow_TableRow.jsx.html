@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: components/TableRow/TableRow.jsx</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: components/TableRow/TableRow.jsx</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import { formatDisplayedData } from '../../utils/processing/formatDisplayedData/formatDisplayedData';
+import styles from './TableRow.module.css';
+import globalStyles from '../../utils/style/globalStyles.module.css';
+import { useContext } from 'react';
+import { store } from '../../store/store';
+
+/**
+ * @namespace TableRow
+ */
+
+/**
+ * The TableRow component, displays the data within the TableBody. One TableRow composent per Data item.
+ * Displays all the cells no matter what value has the displayedColumns state value, but put the sr-only class to the cell which should not be displayed.
+ * this not displayed cells are put within an additional info row with aria-hidden attribute (this row doesn't exist if no data to put into).
+ * Uses the state moreInfoOpenList to know if the additionnal info row should be displayed or collapsed.
+ * Adds classes to manage the background color of cells depending on parity and current sort.
+ * @param {object} item - the data item from the displayed data array.
+ * @param {string} parity - the row parity, even or odd.
+ * @memberof TableRow
+ * @function
+ * @return {ReactElement} jsx to be injected in the html.
+ */
+export const TableRow = ({ item, parity }) => {
+  const {
+    headings,
+    currentSort,
+    moreInfoOpenList,
+    displayedColumns,
+    dispatch,
+  } = useContext(store);
+  const hasMoreInfo = displayedColumns !== headings.length;
+  const isMoreInfoOpen = moreInfoOpenList.includes(JSON.stringify(item));
+
+  /**
+   * Dispatch the action to update the displayed status of the clicked row.
+   * @memberof TableRow
+   */
+  const toggleMoreInfoDisplay = () => {
+    dispatch({ type: 'setMoreInfoOpenList', payload: JSON.stringify(item) });
+  };
+
+  return (
+    &lt;>
+      &lt;tr
+        className={`${styles.trNormal} ${styles[parity]} ${
+          hasMoreInfo ? styles.clickable : ''
+        }`}
+        onClick={hasMoreInfo ? toggleMoreInfoDisplay : undefined}
+      >
+        {headings.map((heading, index) => (
+          &lt;td
+            key={heading.key}
+            className={`${styles.tdNormal} ${
+              heading.key === currentSort.key ? styles.tdSorted : ''
+            } ${index >= displayedColumns ? globalStyles.srOnly : ''}`}
+          >
+            {item[heading.key]
+              ? formatDisplayedData(item[heading.key], heading.format)
+              : ''}
+          &lt;/td>
+        ))}
+      &lt;/tr>
+      {hasMoreInfo ? (
+        &lt;tr
+          className={`${!isMoreInfoOpen ? styles.trMoreInfoHidden : ''}`}
+          aria-hidden
+        >
+          &lt;td colSpan={displayedColumns}>
+            &lt;table className={styles.tableMoreInfo}>
+              &lt;tbody>
+                {headings.map((heading, index) =>
+                  index &lt; displayedColumns ? null : (
+                    &lt;tr className={styles.trMoreInfoInner} key={heading.key}>
+                      &lt;th className={styles.thMoreInfoInner}>
+                        {heading.label}
+                      &lt;/th>
+                      &lt;td className={styles.tdMoreInfoInner}>
+                        {item[heading.key]}
+                      &lt;/td>
+                    &lt;/tr>
+                  )
+                )}
+              &lt;/tbody>
+            &lt;/table>
+          &lt;/td>
+        &lt;/tr>
+      ) : null}
+    &lt;/>
+  );
+};
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Namespaces</h3><ul><li><a href="Datatable.html">Datatable</a></li><li><a href="Filter.html">Filter</a></li><li><a href="handlers.html">handlers</a></li><li><a href="SelectItemsPerPage.html">SelectItemsPerPage</a></li><li><a href="SelectPage.html">SelectPage</a></li><li><a href="ShowDisplayedItems.html">ShowDisplayedItems</a></li><li><a href="store.html">store</a></li><li><a href="Table.html">Table</a></li><li><a href="TableBody.html">TableBody</a></li><li><a href="TableHeading.html">TableHeading</a></li><li><a href="TableRow.html">TableRow</a></li><li><a href="utils.html">utils</a></li><li><a href="Wrapper.html">Wrapper</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Mon Nov 29 2021 19:42:26 GMT+0100 (heure normale d’Europe centrale)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

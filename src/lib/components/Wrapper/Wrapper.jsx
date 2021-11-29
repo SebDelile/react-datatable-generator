@@ -3,6 +3,18 @@ import { store } from '../../store/store';
 import styles from './Wrapper.module.css';
 import { columnsMinWidthCalc } from '../../utils/processing/columnsMinWidthCalc/columnsMinWidthCalc';
 
+/**
+ * @namespace Wrapper
+ */
+
+/**
+ * The Wrapper component to wrap any component of the pluggin.
+ * Has a useEffect to calculate the width of the pluggin container on mount + on each window resize event.
+ * Has a useEffect to calculate the minimum width of each column on mount (no reason to have later change).
+ * @memberof Wrapper
+ * @function
+ * @return {ReactElement} jsx to be injected in the html.
+ */
 export const Wrapper = ({ children, className }) => {
   const { headings, data, cellInterTextLength, width, dispatch } =
     useContext(store);
