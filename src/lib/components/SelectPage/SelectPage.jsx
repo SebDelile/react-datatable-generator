@@ -21,22 +21,32 @@ export const SelectPage = () => {
 
   if (!currentPage || !numberOfPages) return null;
   const buttonList = ['Previous'];
-  if (numberOfPages <= 7)
-    buttonList.push(...[...Array(numberOfPages)].map((_, i) => i + 1));
-  else {
+  if (numberOfPages <= 7) {
+    let i = 1;
+    while (i <= numberOfPages) {
+      buttonList.push(i);
+      i++;
+    }
+  } else {
     //no more than 7 total page buttons, cut with '...' at one or two position depending on currentPage.
     if (currentPage <= 4) buttonList.push(1, 2, 3, 4, 5, '...', numberOfPages);
     else if (currentPage >= numberOfPages - 3)
       buttonList.push(
         1,
         '...',
-        ...[...Array(5)].map((_, i) => numberOfPages - 4 + i)
+        numberOfPages - 4,
+        numberOfPages - 3,
+        numberOfPages - 2,
+        numberOfPages - 1,
+        numberOfPages
       );
     else
       buttonList.push(
         1,
         '...',
-        ...[...Array(3)].map((_, i) => currentPage - 1 + i),
+        currentPage - 1,
+        currentPage,
+        currentPage + 1,
         '...',
         numberOfPages
       );
