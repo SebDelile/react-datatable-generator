@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import { store } from '../../store/store';
 import { TableRow } from '../TableRow/TableRow';
-import styles from './TableBody.module.css';
+import styleSheet from './TableBody.styleSheet';
 
 /**
  * @namespace TableBody
@@ -16,25 +16,30 @@ import styles from './TableBody.module.css';
  * @return {ReactElement} jsx to be injected in the html.
  */
 export const TableBody = () => {
-  const { headings, displayedData } = useContext(store);
+  const { headings, displayedData, style } = useContext(store);
 
   if (!headings) return null;
+
+  /**
+   * An object containing the classnames generated from the stylesheet made with emotion and using the style state of the store
+   * @memberof TableBody
+   */
+  const classNames = styleSheet(style);
+
   return (
-    <tbody className={styles.tbody}>
+    <tbody className={classNames.tableBody}>
       {displayedData && displayedData.length ? (
         displayedData.map((item, index) => (
           <TableRow
             key={JSON.stringify(item)}
             item={item}
-            parity={index % 2 === 0 ? 'even' : 'odd'}
+            isLastRow={index === displayedData.length - 1}
+            isOddRow={index % 2 !== 0}
           />
         ))
       ) : (
-        <tr className={styles.tr}>
-          <td
-            colSpan={headings.length}
-            className={`${styles.noMatch} ${styles.td}`}
-          >
+        <tr>
+          <td colSpan={headings.length} className={classNames.noMatch}>
             No matching records found
           </td>
         </tr>

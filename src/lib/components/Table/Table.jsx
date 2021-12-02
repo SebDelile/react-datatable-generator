@@ -1,6 +1,7 @@
 import { useContext } from 'react';
 import { store } from '../../store/store';
-import styles from './Table.module.css';
+import styleSheet from './Table.styleSheet';
+import { cx } from '../../utils/style/emotion';
 
 /**
  * @namespace Table
@@ -16,13 +17,20 @@ import styles from './Table.module.css';
 export const Table = ({ children }) => {
   const { isScrollable, width, columnsMinWidth } = useContext(store);
 
+  /**
+   * An object containing the classnames generated from the stylesheet made with emotion and using the style state of the store
+   * @memberof Table
+   */
+  const classNames = styleSheet();
+
   return (
     <table
-      className={`${styles.table} ${
-        isScrollable && width <= columnsMinWidth.reduce((a, b) => a + b)
-          ? styles.tableBlock
-          : ''
-      }`}
+      className={cx(
+        classNames.table,
+        isScrollable &&
+          width <= columnsMinWidth.reduce((a, b) => a + b) &&
+          classNames.tableBlock
+      )}
     >
       {children}
     </table>

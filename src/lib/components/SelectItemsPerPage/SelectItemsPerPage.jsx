@@ -1,6 +1,7 @@
 import { useContext } from 'react';
 import { store } from '../../store/store';
-import styles from './SelectItemsPerPage.module.css';
+import styleSheet from './SelectItemsPerPage.styleSheet';
+import { cx } from '../../utils/style/emotion';
 
 /**
  * @namespace SelectItemsPerPage
@@ -14,7 +15,8 @@ import styles from './SelectItemsPerPage.module.css';
  * @return {ReactElement} jsx to be injected in the html.
  */
 export const SelectItemsPerPage = () => {
-  const { itemsPerPage, itemsPerPageOption, dispatch } = useContext(store);
+  const { itemsPerPage, itemsPerPageOption, style, width, dispatch } =
+    useContext(store);
 
   /**
    * Prevent the default behavior on change.
@@ -30,13 +32,21 @@ export const SelectItemsPerPage = () => {
     });
   };
 
+  /**
+   * An object containing the classnames generated from the stylesheet made with emotion and using the style state of the store
+   * @memberof SelectItemsPerPage
+   */
+  const classNames = styleSheet(style);
+
   return (
-    <label className={styles.wrapper}>
+    <label
+      className={cx(classNames.wrapper, width > 480 && classNames.wrapperLarge)}
+    >
       {'Show'}
       <select
         onChange={handleChange}
         value={itemsPerPage}
-        className={styles.select}
+        className={classNames.select}
       >
         {itemsPerPageOption.map((option) => (
           <option key={option} value={option}>
