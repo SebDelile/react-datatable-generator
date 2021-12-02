@@ -1,7 +1,8 @@
 import { useEffect, useRef, useContext } from 'react';
 import { store } from '../../store/store';
-import styles from './Wrapper.module.css';
+import styleSheet from './Wrapper.styleSheet';
 import { columnsMinWidthCalc } from '../../utils/processing/columnsMinWidthCalc/columnsMinWidthCalc';
+import { cx } from '../../utils/style/emotion';
 
 /**
  * @namespace Wrapper
@@ -16,7 +17,7 @@ import { columnsMinWidthCalc } from '../../utils/processing/columnsMinWidthCalc/
  * @return {ReactElement} jsx to be injected in the html.
  */
 export const Wrapper = ({ children, className }) => {
-  const { headings, data, cellInterTextLength, width, dispatch } =
+  const { headings, data, cellInterTextLength, width, style, dispatch } =
     useContext(store);
   const ref = useRef(null);
 
@@ -45,8 +46,22 @@ export const Wrapper = ({ children, className }) => {
     };
   }, [dispatch]);
 
+  /**
+   * An object containing the classnames generated from the stylesheet made with emotion and using the style state of the store
+   * @memberof Wrapper
+   */
+  const classNames = styleSheet(style);
+
   return (
-    <article ref={ref} className={`${styles.wrapper} ${className ?? ''}`}>
+    <article
+      ref={ref}
+      className={cx(
+        classNames.wrapper,
+        width > 480 && classNames.wrapperLarge,
+        width > 800 && classNames.wrapperExtraLarge,
+        className
+      )}
+    >
       {width !== 0 ? children : null}
     </article>
   );

@@ -10,8 +10,11 @@ const App = () => (
       data={extendedDataSample}
       itemsPerPageOption={[5, 10, 25, 100]}
       isScrollable={false}
+      customStyle={customStyle}
     />
   </>
 );
 
 export default App;
+
+const customStyle = {};

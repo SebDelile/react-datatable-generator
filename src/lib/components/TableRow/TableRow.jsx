@@ -1,6 +1,7 @@
 import { formatDisplayedData } from '../../utils/processing/formatDisplayedData/formatDisplayedData';
-import styles from './TableRow.module.css';
-import globalStyles from '../../utils/style/globalStyles.module.css';
+import styleSheet from './TableRow.styleSheet';
+import globalStyleSheet from '../../utils/style/globalStyle.styleSheet';
+import { cx } from '../../utils/style/emotion';
 import { useContext } from 'react';
 import { store } from '../../store/store';
 
@@ -15,17 +16,19 @@ import { store } from '../../store/store';
  * Uses the state moreInfoOpenList to know if the additionnal info row should be displayed or collapsed.
  * Adds classes to manage the background color of cells depending on parity and current sort.
  * @param {object} item - the data item from the displayed data array.
- * @param {string} parity - the row parity, even or odd.
+ * @param {boolean} isOddRow - a bool depending on the row parity.
+ * @param {boolean} isLastRow - a boll depending on the index of data related to data.length, used to correctly display the body border-bottom.
  * @memberof TableRow
  * @function
  * @return {ReactElement} jsx to be injected in the html.
  */
-export const TableRow = ({ item, parity }) => {
+export const TableRow = ({ item, isLastRow, isOddRow }) => {
   const {
     headings,
     currentSort,
     moreInfoOpenList,
     displayedColumns,
+    style,
     dispatch,
   } = useContext(store);
   const hasMoreInfo = displayedColumns !== headings.length;
@@ -39,20 +42,31 @@ export const TableRow = ({ item, parity }) => {
     dispatch({ type: 'setMoreInfoOpenList', payload: JSON.stringify(item) });
   };
 
+  /**
+   * An object containing the classnames generated from the stylesheet made with emotion and using the style state of the store
+   * @memberof TableRow
+   */
+  const classNames = styleSheet(style);
+
   return (
     <>
       <tr
-        className={`${styles.trNormal} ${styles[parity]} ${
-          hasMoreInfo ? styles.clickable : ''
-        }`}
+        className={classNames.tableRow}
+        data-oddrow={isOddRow ? true : undefined}
+        data-clickable={hasMoreInfo ? true : undefined}
+        data-hideborderbottom={!isMoreInfoOpen && isLastRow ? true : undefined}
         onClick={hasMoreInfo ? toggleMoreInfoDisplay : undefined}
       >
         {headings.map((heading, index) => (
           <td
             key={heading.key}
-            className={`${styles.tdNormal} ${
-              heading.key === currentSort.key ? styles.tdSorted : ''
-            } ${index >= displayedColumns ? globalStyles.srOnly : ''}`}
+            className={cx(
+              classNames.cell,
+              index >= displayedColumns && globalStyleSheet.srOnly
+            )}
+            data-sortedcolumn={
+              heading.key === currentSort.key ? true : undefined
+            }
           >
             {item[heading.key]
               ? formatDisplayedData(item[heading.key], heading.format)
@@ -62,19 +76,21 @@ export const TableRow = ({ item, parity }) => {
       </tr>
       {hasMoreInfo ? (
         <tr
-          className={`${!isMoreInfoOpen ? styles.trMoreInfoHidden : ''}`}
+          className={classNames.moreInfo}
+          data-hidden={isMoreInfoOpen ? undefined : true}
           aria-hidden
+          onClick={toggleMoreInfoDisplay}
         >
           <td colSpan={displayedColumns}>
-            <table className={styles.tableMoreInfo}>
+            <table className={classNames.moreInfoTable}>
               <tbody>
                 {headings.map((heading, index) =>
                   index < displayedColumns ? null : (
-                    <tr className={styles.trMoreInfoInner} key={heading.key}>
-                      <th className={styles.thMoreInfoInner}>
+                    <tr className={classNames.moreInfoRow} key={heading.key}>
+                      <th className={classNames.moreInfoHeadCell}>
                         {heading.label}
                       </th>
-                      <td className={styles.tdMoreInfoInner}>
+                      <td className={classNames.moreInfoBodyCell}>
                         {item[heading.key]}
                       </td>
                     </tr>

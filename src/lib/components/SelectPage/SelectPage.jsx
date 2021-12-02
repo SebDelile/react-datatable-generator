@@ -1,6 +1,7 @@
 import { useContext } from 'react';
 import { store } from '../../store/store';
-import styles from './SelectPage.module.css';
+import styleSheet from './SelectPage.styleSheet';
+import { cx } from '@emotion/css';
 
 /**
  * @namespace SelectPage
@@ -15,7 +16,7 @@ import styles from './SelectPage.module.css';
  * @return {ReactElement} jsx to be injected in the html.
  */
 export const SelectPage = () => {
-  const { currentPage, filteredData, itemsPerPage, dispatch } =
+  const { currentPage, filteredData, itemsPerPage, width, style, dispatch } =
     useContext(store);
   const numberOfPages = Math.ceil(filteredData.length / itemsPerPage);
 
@@ -74,34 +75,35 @@ export const SelectPage = () => {
     (page === 'Next' && currentPage === numberOfPages);
 
   /**
-   * Check if the button should have the selected classname.
-   * @memberof SelectPage
-   * @param {number} page - the event object from the click event.
-   */
-  const selected = (page) => (page === currentPage ? styles.selected : '');
-
-  /**
-   * Check if the button should have the hiddenIfNeeded classname.
+   * Check if the button should have the hidden class (previous and next button on small screen if there is lot of page ).
    * @memberof SelectPage
    * @param {object} event - the event object from the click event.
    */
   const hiddenIfNeeded = (page) =>
-    numberOfPages > 5 && (page === 'Previous' || page === 'Next')
-      ? styles.HiddenIfNeeded
-      : '';
+    width < 480 && numberOfPages > 5 && (page === 'Previous' || page === 'Next')
+      ? true
+      : undefined;
+
+  /**
+   * An object containing the classnames generated from the stylesheet made with emotion and using the style state of the store
+   * @memberof SelectPage
+   */
+  const classNames = styleSheet(style);
 
   return (
-    <div className={styles.wrapper}>
+    <div
+      className={cx(classNames.wrapper, width > 800 && classNames.wrapperLarge)}
+    >
       {buttonList.map((page, i) => (
         <button
           key={i}
           type="button"
           disabled={isDisabled(page)}
           onClick={handleClick}
+          data-active={page === currentPage ? true : undefined}
+          data-hidden={hiddenIfNeeded(page)}
           value={page}
-          className={`${styles.button} ${hiddenIfNeeded(page)} ${selected(
-            page
-          )}`}
+          className={classNames.button}
         >
           {page}
         </button>

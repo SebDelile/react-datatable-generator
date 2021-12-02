@@ -29,10 +29,11 @@ export const StoreProvider = ({
   itemsPerPageOption,
   isScrollable,
   cellInterTextLength,
+  style,
 }) => {
   /**
    * the initial state of the store context.
-   * It use the props passed at initialization of the plugin.
+   * It uses the props passed at initialization of the plugin.
    * @memberof store
    */
   const initialState = {
@@ -56,6 +57,7 @@ export const StoreProvider = ({
     width: 0,
     columnsMinWidth: [],
     displayedColumns: headings.length,
+    style: style,
   };
 
   const [state, dispatch] = useReducer(reducer, initialState);

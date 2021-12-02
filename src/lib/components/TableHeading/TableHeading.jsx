@@ -1,10 +1,11 @@
-import styles from './TableHeading.module.css';
-import globalStyles from '../../utils/style/globalStyles.module.css';
+import styleSheet from './TableHeading.styleSheet';
+import globalStyleSheet from '../../utils/style/globalStyle.styleSheet';
 import noSortIcon from '../../assets/icon-no-sort.svg';
 import ascendingSortIcon from '../../assets/icon-ascending-sort.svg';
 import descendingSortIcon from '../../assets/icon-descending-sort.svg';
 import { useContext } from 'react';
 import { store } from '../../store/store';
+import { cx } from '../../utils/style/emotion';
 
 /**
  * @namespace TableHeading
@@ -20,8 +21,14 @@ import { store } from '../../store/store';
  * @return {ReactElement} jsx to be injected in the html.
  */
 export const TableHeading = () => {
-  const { headings, currentSort, displayedColumns, columnsMinWidth, dispatch } =
-    useContext(store);
+  const {
+    headings,
+    currentSort,
+    displayedColumns,
+    columnsMinWidth,
+    style,
+    dispatch,
+  } = useContext(store);
 
   if (!headings) return null;
 
@@ -37,15 +44,22 @@ export const TableHeading = () => {
     });
   };
 
+  /**
+   * An object containing the classnames generated from the stylesheet made with emotion and using the style state of the store
+   * @memberof TableHeading
+   */
+  const classNames = styleSheet(style);
+
   return (
-    <thead className={styles.thead}>
+    <thead className={classNames.tableHead}>
       <tr>
         {headings.map((item, index) => (
           <th
             key={item.key}
-            className={`${styles.th} ${
-              index >= displayedColumns ? globalStyles.srOnly : ''
-            }`}
+            className={cx(
+              classNames.cell,
+              index >= displayedColumns && globalStyleSheet.srOnly
+            )}
             style={
               index >= displayedColumns
                 ? undefined
@@ -53,7 +67,7 @@ export const TableHeading = () => {
             }
           >
             <button
-              className={styles.button}
+              className={classNames.button}
               type="button"
               onClick={() => handleClick(item)}
               aria-label={
@@ -66,7 +80,7 @@ export const TableHeading = () => {
             >
               {item.label}
               <img
-                className={styles.image}
+                className={classNames.sortIcon}
                 src={
                   currentSort.key !== item.key
                     ? noSortIcon
