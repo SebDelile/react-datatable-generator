@@ -4,7 +4,9 @@ import { headingsSample } from '../../mocks/headingsSample';
 import { currentSortNameAscending } from '../../mocks/currentSortSamples';
 import { renderWithStore } from '../../utils/test/renderWithStore';
 import '@testing-library/jest-dom';
+import { matchers } from '@emotion/jest';
 
+expect.extend(matchers);
 const dispatch = jest.fn();
 const columnsMinWidth = Array(headingsSample.length).fill(10);
 
@@ -89,10 +91,10 @@ describe('GIVEN the TableHeading component', () => {
       const otherColumnsHeader = screen
         .getAllByRole('columnheader')
         .slice(0, -1);
-      expect(lastColumnsHeader[0].classList.contains('srOnly')).toBeTruthy();
-      expect(
-        otherColumnsHeader.some((header) => header.classList.contains('srOnly'))
-      ).toBeFalsy();
+      expect(lastColumnsHeader[0]).toHaveStyleRule('clip', 'rect(0 0 0 0)');
+      otherColumnsHeader.every((cell) =>
+        expect(cell).not.toHaveStyleRule('clip', 'rect(0 0 0 0)')
+      );
     });
     test('THEN all of header cells have a min-width inline style property, unless the one not being displayed', () => {
       const lastColumnsHeader = screen.getAllByRole('columnheader').slice(-1);
@@ -100,7 +102,7 @@ describe('GIVEN the TableHeading component', () => {
         .getAllByRole('columnheader')
         .slice(0, -1);
       expect(lastColumnsHeader[0]).not.toHaveStyle(
-        `min-width: ${columnsMinWidth[columnsMinWidth - 1]}`
+        `min-width: ${columnsMinWidth[columnsMinWidth - 1]}px`
       );
       otherColumnsHeader.forEach((header, i) => {
         expect(header).toHaveStyle(`min-width: ${columnsMinWidth[i]}px`);

@@ -7,7 +7,18 @@ import '@testing-library/jest-dom';
 
 jest.mock('../TableRow/TableRow.jsx', () => ({
   __esModule: true,
-  TableRow: (props) => <tr {...props} />,
+  //need to convert some props to be suitable for a html tag attribute
+  TableRow: (props) => {
+    const lowerCaseProps = {};
+    Object.keys(props).forEach((prop) => {
+      const value =
+        typeof props[prop] === 'object'
+          ? JSON.stringify(props[prop])
+          : props[prop].toString();
+      return (lowerCaseProps[prop.toLowerCase()] = value);
+    });
+    return <tr {...lowerCaseProps} />;
+  },
 }));
 
 describe('GIVEN the TableBody component', () => {
@@ -28,7 +39,8 @@ describe('GIVEN the TableBody component', () => {
     });
     test('THEN the rows have parity props being even or odd depending on index in displayedData', () => {
       screen.getAllByRole('row').forEach((row, index) => {
-        expect(row).toHaveAttribute('parity', index % 2 === 0 ? 'even' : 'odd');
+        if (index % 2 !== 0) expect(row).toHaveAttribute('isoddrow', 'true');
+        else expect(row).toHaveAttribute('isoddrow', 'false');
       });
     });
   });

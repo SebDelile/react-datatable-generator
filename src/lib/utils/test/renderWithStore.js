@@ -1,5 +1,6 @@
 import { render } from '@testing-library/react';
 import { store } from '../../store/store';
+import { defaultStyle } from '../style/defaultStyle';
 /**
  * Gives a provider fortesting of each needing the access to the store
  * @param {ReactElement} ui - the component to test
@@ -10,7 +11,9 @@ import { store } from '../../store/store';
  */
 export const renderWithStore = (ui, contextValues, renderOptions) => {
   const StoreProvider = ({ children }) => (
-    <store.Provider value={contextValues}>{children}</store.Provider>
+    <store.Provider value={{ ...contextValues, style: defaultStyle }}>
+      {children}
+    </store.Provider>
   );
   return render(<StoreProvider>{ui}</StoreProvider>, renderOptions);
 };
