@@ -2,6 +2,10 @@ import { css } from '../../utils/style/emotion';
 
 const styleSheet = (style) => ({
   tableHead: css({
+    borderTop: style.tableHeadHorizontalBorder,
+    borderBottom: style.tableHeadHorizontalBorder,
+    borderLeft: style.tableHeadVerticalBorder,
+    borderRight: style.tableHeadVerticalBorder,
     background: style.tableHeadBackground,
     fontFamily: style.tableHeadFontFamily,
     fontSize: style.tableHeadFontSize,
