@@ -3,6 +3,7 @@ import { store } from '../../store/store';
 import styleSheet from './Wrapper.styleSheet';
 import { columnsMinWidthCalc } from '../../utils/processing/columnsMinWidthCalc/columnsMinWidthCalc';
 import { cx } from '../../utils/style/emotion';
+import { getTableBorderWidth } from '../../utils/processing/getTableBorderWidth/getTableBorderWidth';
 
 /**
  * @namespace Wrapper
@@ -17,8 +18,7 @@ import { cx } from '../../utils/style/emotion';
  * @return {ReactElement} jsx to be injected in the html.
  */
 export const Wrapper = ({ children, className }) => {
-  const { headings, data, cellInterTextLength, width, style, dispatch } =
-    useContext(store);
+  const { headings, data, width, style, dispatch } = useContext(store);
   const ref = useRef(null);
 
   useEffect(() => {
@@ -27,24 +27,29 @@ export const Wrapper = ({ children, className }) => {
         headings,
         data,
         ref.current,
-        cellInterTextLength
+        style
       );
       dispatch({ type: 'setColumnsMinWidth', payload: columnsMinWidth });
     }
-  }, [ref, dispatch, headings, data, cellInterTextLength]);
+  }, [ref, dispatch, headings, data, style]);
 
   useEffect(() => {
     const updateWidth = () => {
-      const currentWidth = ref.current.offsetWidth;
-      dispatch({ type: 'setWidth', payload: currentWidth });
-      dispatch({ type: 'setDisplayedColumns', payload: currentWidth });
+      const refStyle = getComputedStyle(ref.current);
+      const currentWidth =
+        parseInt(refStyle.width) -
+        parseInt(refStyle.borderLeftWidth) -
+        parseInt(refStyle.borderRightWidth);
+      const border = getTableBorderWidth(style);
+      dispatch({ type: 'setWidth', payload: currentWidth - border });
+      dispatch({ type: 'setDisplayedColumns', payload: currentWidth - border });
     };
     updateWidth();
     window.addEventListener('resize', updateWidth);
     return () => {
       window.removeEventListener('resize', updateWidth);
     };
-  }, [dispatch]);
+  }, [dispatch, style]);
 
   /**
    * An object containing the classnames generated from the stylesheet made with emotion and using the style state of the store

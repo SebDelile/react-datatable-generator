@@ -28,7 +28,6 @@ export const StoreProvider = ({
   data,
   itemsPerPageOption,
   isScrollable,
-  cellInterTextLength,
   style,
 }) => {
   /**
@@ -41,7 +40,6 @@ export const StoreProvider = ({
     data: data,
     itemsPerPageOption: itemsPerPageOption,
     isScrollable: isScrollable,
-    cellInterTextLength: cellInterTextLength,
     filterKeyword: '',
     currentSort: {
       key: headings[0].key ?? null,

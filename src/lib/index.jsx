@@ -18,7 +18,6 @@ import { defaultStyle } from './utils/style/defaultStyle';
  * @param {string} props.className - an optionnal list of space separated classes to be applied to the datatable wrapper.
  * @param {array} props.itemsPerPageOption - an optionnal list of the available values for the number of items to display per page. Default is [10, 25, 50, 100]
  * @param {boolean} props.isScrollable - an optionnal value to stand if the column not being displayed within the screen should be get by horizontal scroll (true) or by clicking on a row to expand missing value (false). Default value is false.
- * @param {number} props.cellInterTextLength - optionnal styling rule to set the padding (in px) inside the table, the value correspond to padding.left+ padding.right. Default value is 32
  * @param {object} props.style - an optionnal set of style rules to choose between a predefined list to override existing rules. Default is {}
  * @return {ReactElement} jsx to be injected in the html
  */
@@ -29,7 +28,6 @@ const Datatable = ({
   data,
   itemsPerPageOption = [10, 25, 50, 100],
   isScrollable = false,
-  cellInterTextLength = 32,
   customStyle = {},
 }) => {
   const isHeadingsKeysInvalid = () =>
@@ -58,7 +56,6 @@ const Datatable = ({
         data={data}
         itemsPerPageOption={itemsPerPageOption}
         isScrollable={isScrollable}
-        cellInterTextLength={cellInterTextLength}
         style={{ ...defaultStyle, ...customStyle }}
       >
         <Wrapper className={className}>

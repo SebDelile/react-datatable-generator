@@ -12,22 +12,25 @@ jest.mock(
 );
 
 const dispatch = jest.fn();
-const Children = () => <button>test</button>;
+const Children = () => <p>child</p>;
 const setWindowSize = (size) => {
-  Object.defineProperties(window.HTMLElement.prototype, {
-    offsetWidth: {
-      get: () => size,
-    },
+  Object.defineProperty(window, 'getComputedStyle', {
+    value: () => ({
+      width: size + 'px',
+      borderLeftWidth: '0px',
+      borderRightWidth: '0px',
+    }),
   });
 };
 
+//(prop === 'width' ? size + 'px' : '0px')
 describe('GIVEN the Wrapper component', () => {
   describe('WHEN it is called ', () => {
     beforeEach(() => {
+      setWindowSize(0);
       renderWithStore(<Wrapper children={<Children />} className={'class'} />, {
         headings: headingsSample,
         data: dataSample,
-        cellInterTextLength: 32,
         width: 100,
         dispatch: dispatch,
       });
@@ -38,9 +41,10 @@ describe('GIVEN the Wrapper component', () => {
       expect(article.classList.contains('class')).toBeTruthy();
     });
     test('THEN it renders children', () => {
-      expect(screen.getByRole('button', { name: 'test' })).toBeTruthy();
+      expect(screen.getByText('child')).toBeTruthy();
     });
     test('THEN it update width and displayed columns with its current size', () => {
+      console.log(getComputedStyle(document).width);
       expect(dispatch).toHaveBeenCalledWith({ type: 'setWidth', payload: 0 });
       expect(dispatch).toHaveBeenCalledWith({
         type: 'setDisplayedColumns',
@@ -59,7 +63,6 @@ describe('GIVEN the Wrapper component', () => {
       renderWithStore(<Wrapper children={<Children />} />, {
         headings: headingsSample,
         data: dataSample,
-        cellInterTextLength: 32,
         width: 0,
         dispatch: dispatch,
       });
@@ -71,7 +74,6 @@ describe('GIVEN the Wrapper component', () => {
       renderWithStore(<Wrapper children={<Children />} />, {
         headings: headingsSample,
         data: dataSample,
-        cellInterTextLength: 32,
         width: 100,
         dispatch: dispatch,
       });
@@ -90,7 +92,6 @@ describe('GIVEN the Wrapper component', () => {
       const { unmount } = renderWithStore(<Wrapper children={<Children />} />, {
         headings: headingsSample,
         data: dataSample,
-        cellInterTextLength: 32,
         width: 100,
         dispatch: dispatch,
       });

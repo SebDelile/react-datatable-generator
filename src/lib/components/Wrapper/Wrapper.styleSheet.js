@@ -20,13 +20,8 @@ const styleSheet = (style) => ({
     fontSize: style.allPluginFontSize,
     fontWeight: style.allPluginFontWeight,
     color: style.allPluginColor,
-    '& *': {
-      boxSizing: 'border-box',
-    },
-    '& *::before': {
-      boxSizing: 'border-box',
-    },
-    '& *::after': {
+    boxSizing: 'border-box',
+    '& *, & *::before, & *::after': {
       boxSizing: 'border-box',
     },
   }),

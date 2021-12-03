@@ -1,3 +1,6 @@
+import { getCellInterTextLength } from '../getCellInterTextLength/getCellInterTextLength';
+import { resolveCellFontStyle } from '../resolveCellFontStyle/resolveCellFontStyle';
+
 /**
  * Calculate the min-width for each column (heading + data).
  * Uses the Canvas API to measure the length of the text of each cell and return the max for each column
@@ -5,34 +8,34 @@
  * @param {array} headings - the headings array
  * @param {array} data - the data array
  * @param {HTMLElement} ref - the ref to the pluggin html element, to recover font size and font family
- * @param {number} cellInterTextLength - the padding left + right value (in px) to take into account in column width
+ * @param {object} style - the style state from the store
  * @memberof utils
  * @returns {array} - minwidth value for each column (in px) in the same sequence as the headings array.
  */
-export const columnsMinWidthCalc = (
-  headings,
-  data,
-  ref,
-  cellInterTextLength
-) => {
+export const columnsMinWidthCalc = (headings, data, ref, style) => {
   if (!ref) return;
+
+  const { bodyStyle, headStyle } = resolveCellFontStyle(ref, style);
+
+  //create canvas and test each body cell text length with applied style to find the longer
   const canvas = document.createElement('canvas');
   const context = canvas.getContext('2d');
-  const rootStyle = getComputedStyle(ref);
-  context.font = `${rootStyle.fontSize} ${rootStyle.fontFamily}`;
+  context.font = `${bodyStyle.fontWeight} ${bodyStyle.fontSize} ${bodyStyle.fontFamily}`;
   const bodyColumnMinWidth = headings.map((heading) =>
     data
       .map((item) => item[heading.key])
       .reduce((acc, cur) => Math.max(acc, context.measureText(cur).width), 0)
   );
-  context.font = 'bold ' + context.font;
+  //compare with the column header cell text length and keep the longer, then add the intertextLength (padding+border)
+  context.font = `${headStyle.fontWeight} ${headStyle.fontSize} ${headStyle.fontFamily}`;
+  const cellInterTextLength = getCellInterTextLength(style);
   const columnMinWidth = headings.map(
     (heading, index) =>
       Math.ceil(
         Math.max(
           bodyColumnMinWidth[index],
           context.measureText(heading.label).width +
-            parseInt(rootStyle.fontSize) // is the sort icon in column header (1em width)
+            parseInt(headStyle.fontSize) // is the sort icon in column header (1em width)
         )
       ) + cellInterTextLength
   );
