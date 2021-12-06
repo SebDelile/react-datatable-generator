@@ -87,7 +87,7 @@ headings = [
   - if `format` is a function : the data value is passed as parameter to this function and the returned result is diplayed in the table cell (value => foo(value)).
   - if `format` is a string : the data value is converted according to the keyword. Accepted keywords are 'US-date' (2021/08/24 => 08/24/2021) and 'US-currency' (12345.678 => $ 12,345.68).
 
-## data
+### data
 
 `data` contains the information to be displayed in the table body cells. It must be an array of objects. Each element of the `data` array leads to a row in the table.
 
@@ -263,4 +263,8 @@ const customStyle = {
 };
 ```
 
-**Important note :** the lenght passed to border or padding properties can only be in px or rem units. the use of other units will lead to unconsistant behavior. There is not such restriction for font-size properties.
+**Important note :** the length passed to border or padding properties can only be in px or rem units. the use of other units will lead to unconsistant behavior. There is not such restriction for font-size properties.
+
+## Inspiration
+
+- [Datatables](https://github.com/DataTables/DataTables)
