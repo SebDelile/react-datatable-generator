@@ -37,6 +37,7 @@ export const TableRow = ({ item, isLastRow, isOddRow }) => {
   /**
    * Dispatch the action to update the displayed status of the clicked row.
    * @memberof TableRow
+   * @function
    */
   const toggleMoreInfoDisplay = () => {
     dispatch({ type: 'setMoreInfoOpenList', payload: JSON.stringify(item) });

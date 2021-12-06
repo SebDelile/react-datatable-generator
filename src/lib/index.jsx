@@ -23,9 +23,9 @@ import { defaultStyle } from './utils/style/defaultStyle';
  */
 
 const Datatable = ({
-  className,
   headings,
   data,
+  className = '',
   itemsPerPageOption = [10, 25, 50, 100],
   isScrollable = false,
   customStyle = {},

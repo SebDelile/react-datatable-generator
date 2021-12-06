@@ -36,6 +36,7 @@ export const TableHeading = () => {
    * Dispatch the heading being selected by user to set a new sort.
    * @param {object} item - the heading element of the headings array corresponding to the header column being clicked.
    * @memberof TableHeading
+   * @function
    */
   const handleClick = (item) => {
     dispatch({

@@ -7,6 +7,7 @@ import { defaultStyle } from '../style/defaultStyle';
  * @param {object} contextValues - the values of the states used by the component and needed for test
  * @param {object} renderOptions - option oject to pass to the render method
  * @memberof utils
+ * @function
  * @returns {ReactElement} - the result of the render method with the ui being wrapped by the provider
  */
 export const renderWithStore = (ui, contextValues, renderOptions) => {

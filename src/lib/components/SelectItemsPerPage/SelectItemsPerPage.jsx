@@ -23,6 +23,7 @@ export const SelectItemsPerPage = () => {
    * Dispatch the new value for the items per page.
    * @param {object} event - the event object.
    * @memberof SelectItemsPerPage
+   * @function
    */
   const handleChange = (event) => {
     event.preventDefault();

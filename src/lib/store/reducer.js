@@ -3,6 +3,7 @@
  * Returns the spreaded current state and 0 to many properties with new value based on action type.
  * Contain all pure logic for the calculation of the new state. Logic depending on something else than state or action is managed outside of the reducer (often before dispatching).
  * @memberof store
+ * @function
  * @param {object} state - the current state.
  * @param {object} action - the action object with key type and optionnal key payload.
  * @returns {object} - the updated state.

@@ -5,6 +5,7 @@
  * @param {array} data - the  data to paginate.
  * @param {object} currentSort - the sorting parameter with a key, a direction and a type.
  * @memberof handlers
+ * @function
  * @return {array} the sorted data.
  */
 export const sortHandler = (data, currentSort) => {

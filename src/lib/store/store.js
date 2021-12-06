@@ -19,6 +19,7 @@ export const store = createContext();
  * It has 3 useEffect to update the data on filtering, sorting or paginating (in this order).
  * Filtering trigger sorting update, sorting trigger paginating update. so updating paginating do not trigger calculation on filterring and sorting data (because no need).
  * @memberof store
+ * @function
  * @param {object} props - the props passed to the pluggin on initialization are forwarded to store provider to be included in initialState.
  * @returns {ReactElement} the provider component to wrap all component that need access to the state.
  */

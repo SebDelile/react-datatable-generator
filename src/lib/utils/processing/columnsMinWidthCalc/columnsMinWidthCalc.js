@@ -4,12 +4,13 @@ import { resolveCellFontStyle } from '../resolveCellFontStyle/resolveCellFontSty
 /**
  * Calculate the min-width for each column (heading + data).
  * Uses the Canvas API to measure the length of the text of each cell and return the max for each column
- * Takes into account of the cellInterTextLength (padding left+right), the sorting image and boldness of column headers.
- * @param {array} headings - the headings array
- * @param {array} data - the data array
- * @param {HTMLElement} ref - the ref to the pluggin html element, to recover font size and font family
- * @param {object} style - the style state from the store
+ * Takes into account of the font style, cell inter text length and the sorting image of column headers.
+ * @param {array} headings - the headings array.
+ * @param {array} data - the data array.
+ * @param {HTMLElement} ref - the ref to the pluggin html element, to recover font size and font family.
+ * @param {object} style - the style state from the store.
  * @memberof utils
+ * @function
  * @returns {array} - minwidth value for each column (in px) in the same sequence as the headings array.
  */
 export const columnsMinWidthCalc = (headings, data, ref, style) => {

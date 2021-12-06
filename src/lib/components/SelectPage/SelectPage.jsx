@@ -58,6 +58,7 @@ export const SelectPage = () => {
    * Dispatch the selected page to the store.
    * @memberof SelectPage
    * @param {object} event - the event object from the click event.
+   * @function
    */
   const handleClick = (event) => {
     dispatch({ type: 'setCurrentPage', payload: event.target.value });
@@ -67,6 +68,7 @@ export const SelectPage = () => {
    * Check if a button should have disabled attribute.
    * @memberof SelectPage
    * @param {number|string} page - the event object from the click event.
+   * @function
    */
   const isDisabled = (page) =>
     page === currentPage ||
@@ -78,6 +80,7 @@ export const SelectPage = () => {
    * Check if the button should have the hidden class (previous and next button on small screen if there is lot of page ).
    * @memberof SelectPage
    * @param {object} event - the event object from the click event.
+   * @function
    */
   const hiddenIfNeeded = (page) =>
     width < 480 && numberOfPages > 5 && (page === 'Previous' || page === 'Next')

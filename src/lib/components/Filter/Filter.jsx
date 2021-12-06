@@ -23,6 +23,7 @@ export const Filter = () => {
    * Dispatch the new keyword on input change.
    * @param {object} event - the event object.
    * @memberof Filter
+   * @function
    */
   const handleInputChange = (event) => {
     event.preventDefault();
@@ -32,6 +33,7 @@ export const Filter = () => {
   /**
    * Dispatch the action with empty keyword on click on reset button.
    * @memberof Filter
+   * @function
    */
   const handleReset = () => {
     dispatch({ type: 'setFilterKeyword', payload: '' });

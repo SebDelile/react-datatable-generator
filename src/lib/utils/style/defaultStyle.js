@@ -1,3 +1,8 @@
+/**
+ * The default style for the style rules being customizable.
+ * customStyle prop will be merged into it before storing this in the state.
+ * @memberof utils
+ */
 export const defaultStyle = {
   //global
   allPluginFontFamily: 'inherit',

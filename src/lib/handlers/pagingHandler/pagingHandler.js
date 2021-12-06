@@ -5,6 +5,7 @@
  * @param {number} currentPage - the currently selected page to display.
  * @param {number} itemsPerPage - the number of items for each page.
  * @memberof handlers
+ * @function
  * @return {array} the data corresponding to the page to display.
  */
 export const pagingHandler = (data, currentPage, itemsPerPage) => {

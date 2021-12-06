@@ -10,6 +10,7 @@
  * @param {array} data - the  data to filter.
  * @param {string} keyword - the keyword string use to filter.
  * @memberof handlers
+ * @function
  * @return {array} the filtered data according to keyword.
  */
 export const filterHandler = (data, keyword) => {

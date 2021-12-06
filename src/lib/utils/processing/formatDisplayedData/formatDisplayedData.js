@@ -6,6 +6,7 @@
  * @param {string|number} input - the input to format.
  * @param {string|function} format - the format to apply.
  * @memberof utils
+ * @function
  * @returns {string} - the formated input as a string.
  */
 export const formatDisplayedData = (input, format) => {
