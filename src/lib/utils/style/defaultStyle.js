@@ -4,13 +4,13 @@
  * @memberof utils
  */
 export const defaultStyle = {
-  //global
+  // global
   allPluginFontFamily: 'inherit',
   allPluginFontSize: 'inherit',
   allPluginFontWeight: undefined,
   allPluginColor: 'inherit',
   allPluginBackground: 'none',
-  //table borders
+  // table borders
   tableBodyVerticalBorder: undefined,
   tableBodyHorizontalBorder: '1px solid #000',
   tableHeadVerticalBorder: undefined,
@@ -18,7 +18,7 @@ export const defaultStyle = {
   tableCellVerticalBorder: undefined,
   tableCellHorizontalBorder: '1px solid #DDD',
   moreInfoTableHorizontalBorder: '1px solid #EFEFEF',
-  //table background color
+  // table background color
   tableHeadBackground: '#FFF',
   tableBodyBackground: '#FFF',
   tableOddRowBackground: '#F7F7F7',
@@ -27,7 +27,7 @@ export const defaultStyle = {
   tableHoveredRowBackground: '#F1F1F1',
   tableSortedColumnHoveredRowBackground: '#EAEAEA',
   moreInfoTableBackground: '#FFF',
-  //table text
+  // table text
   tableCellPadding: '0.5rem 1rem',
   tableHeadTextAlign: 'center',
   tableBodyTextAlign: 'left',
@@ -39,7 +39,7 @@ export const defaultStyle = {
   tableHeadFontWeight: '700',
   tableBodyColor: 'inherit',
   tableHeadColor: 'inherit',
-  //moreInfoTable text
+  // moreInfoTable text
   moreInfoTableMarginLeft: '0.5rem',
   moreInfoTableCellPadding: '0.5rem',
   moreInfoTableBodyFontFamily: 'inherit',
@@ -50,7 +50,7 @@ export const defaultStyle = {
   moreInfoTableHeadFontWeight: '700',
   moreInfoTableBodyColor: 'inherit',
   moreInfoTableHeadColor: 'inherit',
-  //selectPage buttons
+  // selectPage buttons
   selectPageFontFamily: 'inherit',
   selectPageFontSize: 'inherit',
   selectPageFontWeight: undefined,
@@ -69,7 +69,7 @@ export const defaultStyle = {
   selectPageButtonHoveredBackground:
     'linear-gradient(to bottom, #333 0%, #000 100%)',
   selectPageButtonHoveredColor: '#FFF',
-  //selectItemsPerPage
+  // selectItemsPerPage
   selectItemsPerPageFontFamily: 'inherit',
   selectItemsPerPageFontSize: 'inherit',
   selectItemsPerPageFontWeight: undefined,
@@ -78,7 +78,7 @@ export const defaultStyle = {
   selectItemsPerPageSelectColor: 'inherit',
   selectItemsPerPageSelectBorder: undefined,
   selectItemsPerPageSelectBorderRadius: undefined,
-  //filter
+  // filter
   filterFontFamily: 'inherit',
   filterFontSize: 'inherit',
   filterFontWeight: undefined,
@@ -87,7 +87,7 @@ export const defaultStyle = {
   filterInputColor: 'inherit',
   filterInputBorder: undefined,
   filterInputBorderRadius: undefined,
-  //showDisplayedItems
+  // showDisplayedItems
   showDisplayedItemsFontFamily: 'inherit',
   showDisplayedItemsFontSize: 'inherit',
   showDisplayedItemsFontWeight: undefined,
