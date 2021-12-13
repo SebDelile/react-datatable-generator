@@ -34,7 +34,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "jsdoc": "rm -rf docs && jsdoc src/lib -r -d docs --readme readme.md -c jsdoc.json",
-    "build-ts": "npx tsc -p tsconfig.npm-package.json"
+    "build-ts": "rm -rf ts-lib && npx tsc -p tsconfig.npm-package.json"
   },
   "browserslist": {
     "production": [
