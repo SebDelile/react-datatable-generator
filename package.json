@@ -7,9 +7,10 @@
     "component"
   ],
   "private": false,
-  "version": "0.2.1",
+  "version": "0.3.1",
   "main": "dist/index.js",
   "module": "dist/index.js",
+  "types": "dist/index.d.ts",
   "files": [
     "dist",
     "README.md"
@@ -29,12 +30,12 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build-publish": "SET NODE_ENV=production && rm -rf dist && babel src/lib --out-dir dist --copy-files --ignore \"src/**/*.spec.js\",\"src/**/*.test.js\" --no-copy-ignored",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "jsdoc": "rm -rf docs && jsdoc src/lib -r -d docs --readme readme.md -c jsdoc.json",
-    "build-ts": "rm -rf ts-lib && npx tsc -p tsconfig.npm-package.json"
+    "build-publish": "rm -rf dist && npx tsc -p tsconfig.npm-package.json",
+    "build-babel": "SET NODE_ENV=production && rm -rf dist && babel src/lib --out-dir dist --copy-files --ignore \"src/**/*.spec.js\",\"src/**/*.test.js\" --no-copy-ignored"
   },
   "browserslist": {
     "production": [
