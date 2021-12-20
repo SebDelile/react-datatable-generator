@@ -11,7 +11,7 @@
  */
 export const formatDisplayedData = (
   input: string | number | boolean,
-  format: string | ((input: string | number | boolean) => string)
+  format: string | ((input: string | number | boolean) => string) | undefined
 ) => {
   if (typeof format === 'function') return format(input);
   switch (format) {

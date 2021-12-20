@@ -15,11 +15,8 @@ export const getTableBorderWidth = (style: StyleInterface): number => {
     cell: style.tableCellVerticalBorder,
   };
   const bordersWidth = {} as { [Key: string]: number };
-  Object.keys(bordersRaw).forEach(
-    (element: string): number =>
-      (bordersWidth[element] = bordersRaw[element]
-        ? convertLengthUnit(bordersRaw[element].split(' ')[0])
-        : 0)
-  );
+  Object.entries(bordersRaw).forEach(([key, value]) => {
+    bordersWidth[key] = value ? convertLengthUnit(value.split(' ')[0]) : 0;
+  });
   return 2 * Math.max(bordersWidth.body, bordersWidth.head) + bordersWidth.cell;
 };

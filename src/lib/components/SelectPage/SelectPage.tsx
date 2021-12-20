@@ -20,7 +20,6 @@ export const SelectPage = (): React.ReactElement => {
     useContext(store);
   const numberOfPages: number = Math.ceil(filteredData.length / itemsPerPage);
 
-  if (!currentPage || !numberOfPages) return null;
   const buttonList: (number | string)[] = ['Previous'];
   if (numberOfPages <= 7) {
     let i = 1;

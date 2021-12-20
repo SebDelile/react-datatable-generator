@@ -5,19 +5,23 @@ import { ContextType } from '../../utils/types/types';
 
 /**
  * Gives a provider fortesting of each needing the access to the store
- * @param {React.ReactElement} ui - the component to test
+ * @param {React.ReactElement|array} ui - the component(s) to test
  * @param {object} contextValues - the values of the states used by the component and needed for test
  * @param {object} renderOptions - option oject to pass to the render method
  * @memberof utils
  * @function
- * @returns {ReactElement} - the result of the render method with the ui being wrapped by the provider
+ * @returns {React.ReactElement} - the result of the render method with the ui being wrapped by the provider
  */
 export const renderWithStore = (
-  ui: React.ReactElement,
+  ui: React.ReactElement | React.ReactElement[],
   contextValues: Partial<ContextType>,
   renderOptions?: { [Key: string]: any }
 ) => {
-  const StoreProvider = ({ children }) => (
+  const StoreProvider = ({
+    children,
+  }: {
+    children: React.ReactElement | React.ReactElement[];
+  }): React.ReactElement => (
     <store.Provider value={{ ...defaultContext, ...contextValues }}>
       {children}
     </store.Provider>

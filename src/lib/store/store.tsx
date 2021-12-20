@@ -16,8 +16,8 @@ interface StoreProviderProps {
   headings: HeadingsElementInterface[];
   data: DataElementInterface[];
   children: React.ReactNode;
-  itemsPerPageOption?: number[];
-  isScrollable?: boolean;
+  itemsPerPageOption: number[];
+  isScrollable: boolean;
   style: StyleInterface;
 }
 
@@ -37,7 +37,7 @@ export const store = createContext({} as ContextType);
  * Filtering trigger sorting update, sorting trigger paginating update. so updating paginating do not trigger calculation on filterring and sorting data (because no need).
  * @memberof store
  * @function
- * @param {object} props - the props passed to the pluggin on initialization are forwarded to store provider to be included in initialState.
+ * @param {object} props - the props passed to the plugin on initialization are forwarded to store provider to be included in initialState.
  * @returns {JSX.Element} the provider component to wrap all component that need access to the state.
  */
 export const StoreProvider: React.FC<StoreProviderProps> = ({

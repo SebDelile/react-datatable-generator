@@ -9,13 +9,13 @@ jest.mock('../TableRow/TableRow.tsx', () => ({
   __esModule: true,
   //need to convert some props to be suitable for a html tag attribute
   TableRow: (props: { [Key: string]: any }) => {
-    const lowerCaseProps = {};
+    const lowerCaseProps = {} as { [MockedKey: string]: string };
     Object.keys(props).forEach((prop) => {
       const value =
         typeof props[prop] === 'object'
           ? JSON.stringify(props[prop])
           : props[prop]?.toString();
-      return (lowerCaseProps[prop.toLowerCase()] = value);
+      lowerCaseProps[prop.toLowerCase()] = value;
     });
     return <tr {...lowerCaseProps} />;
   },

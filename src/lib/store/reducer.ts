@@ -1,4 +1,8 @@
-import { StoreStateInterface, ReducerActionType } from '../utils/types/types';
+import {
+  StoreStateInterface,
+  ReducerActionType,
+  SortType,
+} from '../utils/types/types';
 
 /**
  * The reducer fonction of the store.
@@ -18,7 +22,7 @@ export const reducer = (
     case 'setFilterKeyword':
       return { ...state, filterKeyword: action.payload };
     case 'setCurrentSort':
-      let newSort = undefined;
+      let newSort = {} as SortType;
       if (
         state.currentSort.key === action.payload.key &&
         state.currentSort.direction > 0

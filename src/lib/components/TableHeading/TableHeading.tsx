@@ -31,8 +31,6 @@ export const TableHeading = (): React.ReactElement => {
     dispatch,
   } = useContext(store);
 
-  if (!headings) return null;
-
   /**
    * Dispatch the heading being selected by user to set a new sort.
    * @param {object} item - the heading element of the headings array corresponding to the header column being clicked.

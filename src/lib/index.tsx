@@ -43,7 +43,7 @@ const Datatable = ({
   itemsPerPageOption = [10, 25, 50, 100],
   isScrollable = false,
   customStyle = {},
-}: DatatableProps): React.ReactElement => {
+}: DatatableProps): React.ReactElement | null => {
   const isHeadingsKeysInvalid = () =>
     headings.length === 0 ||
     headings.some(

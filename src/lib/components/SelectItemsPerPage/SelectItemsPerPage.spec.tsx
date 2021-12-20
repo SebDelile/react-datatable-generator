@@ -26,9 +26,9 @@ describe('GIVEN the SelectItemsPerPage component', () => {
     });
     test('THEN the selected value is selected the specified value', () => {
       const options = screen.getAllByRole('option') as HTMLOptionElement[];
-      expect(parseInt(options.find((option) => option.selected).value)).toEqual(
-        25
-      );
+      const selectedOption = options.find((option) => option.selected);
+      expect(selectedOption).not.toBeUndefined();
+      if (selectedOption) expect(parseInt(selectedOption.value)).toEqual(25);
       expect(screen.getByText(25)).toBeTruthy();
     });
     describe('AND WHEN the user select a value', () => {

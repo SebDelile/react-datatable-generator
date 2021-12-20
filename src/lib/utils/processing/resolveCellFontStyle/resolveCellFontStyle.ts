@@ -1,5 +1,4 @@
 import { StyleInterface } from '../../types/StyleInterface';
-import { fontStyleType } from '../../types/types';
 
 /**
  * take the style and root html node style to resolve the font style of the cell (converting inherit or undefined into actual style).
@@ -12,28 +11,49 @@ import { fontStyleType } from '../../types/types';
 export const resolveCellFontStyle = (
   ref: HTMLElement,
   style: StyleInterface
-): { bodyStyle: fontStyleType; headStyle: fontStyleType } => {
+) => {
   const rootStyle = getComputedStyle(ref);
-  const bodyStyle: fontStyleType = {
+  const bodyStyle: { [Key: string]: undefined | number | string } = {
     fontFamily: style.tableBodyFontFamily,
     fontSize: style.tableBodyFontSize,
     fontWeight: style.tableBodyFontWeight,
   };
-  const headStyle: fontStyleType = {
+  const headStyle: { [Key: string]: undefined | number | string } = {
     fontFamily: style.tableHeadFontFamily,
     fontSize: style.tableHeadFontSize,
     fontWeight: style.tableHeadFontWeight,
   };
   [bodyStyle, headStyle].forEach((element) => {
-    Object.keys(element).forEach((property) => {
-      if (element[property] === undefined || element[property] === 'inherit') {
-        element[property] =
-          style[property.replace(/(?:tableBody|tableHead)/, 'allPlugin')];
-        if (element[property] === undefined || element[property] === 'inherit')
-          element[property] = rootStyle[property];
+    Object.keys(element).forEach((key) => {
+      if (element[key] === undefined || element[key] === 'inherit') {
+        const styleKey = 'allPluginFont' + key.slice(4);
+        element[key] = style[styleKey as keyof styleInterfaceAllPluginFont];
+        if (element[key] === undefined || element[key] === 'inherit')
+          element[key] = rootStyle[key as keyof fontStyleType];
       }
     });
   });
 
-  return { bodyStyle, headStyle };
+  return { bodyStyle, headStyle } as {
+    bodyStyle: resolvedFontStyleType;
+    headStyle: resolvedFontStyleType;
+  };
+};
+
+type fontStyleType = {
+  fontFamily: undefined | string;
+  fontSize: undefined | string;
+  fontWeight: undefined | number | string;
+};
+
+type resolvedFontStyleType = {
+  fontFamily: string;
+  fontSize: string;
+  fontWeight: number | string;
+};
+
+type styleInterfaceAllPluginFont = {
+  allPluginFontFamily: undefined | string;
+  allPluginFontSize: undefined | string;
+  allPluginFontWeight: undefined | number | string;
 };

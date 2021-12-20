@@ -18,8 +18,6 @@ import styleSheet from './TableBody.styleSheet';
 export const TableBody = (): React.ReactElement => {
   const { headings, displayedData, style } = useContext(store);
 
-  if (!headings) return null;
-
   /**
    * An object containing the classnames generated from the stylesheet made with emotion and using the style state of the store
    * @memberof TableBody

@@ -9,7 +9,6 @@ import {
   user1WithOneMoreKey,
 } from '../../mocks/dataSample';
 import { matchers } from '@emotion/jest';
-import { DataElementInterface } from '../../utils/types/types';
 
 expect.extend(matchers);
 const dispatch = jest.fn();

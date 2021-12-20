@@ -14,7 +14,11 @@ import { cx } from '../../utils/style/emotion';
  * @function
  * @return {React.ReactElement} jsx to be injected in the html.
  */
-export const Table = ({ children }): React.ReactElement => {
+export const Table = ({
+  children,
+}: {
+  children: React.ReactElement | React.ReactElement[];
+}): React.ReactElement => {
   const { isScrollable, width, columnsMinWidth } = useContext(store);
 
   /**

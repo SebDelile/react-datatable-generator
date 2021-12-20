@@ -20,7 +20,6 @@ export const ShowDisplayedItems = (): React.ReactElement => {
   const filteredDataLength: number = filteredData.length;
   const unfiltredDataLength: number = data.length;
 
-  if (!currentPage || !itemsPerPage || !filteredDataLength) return null;
   const firstItem: number = (currentPage - 1) * itemsPerPage + 1;
   const lastItem: number = Math.min(
     currentPage * itemsPerPage,

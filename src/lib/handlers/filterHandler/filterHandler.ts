@@ -47,7 +47,7 @@ export const filterHandler = (
 
   const quoteSplittedKeywords: string[] = keyword.toLowerCase().split('"');
   if (quoteSplittedKeywords.length % 2 !== 1) {
-    const lastElement: string = quoteSplittedKeywords.pop();
+    const lastElement: string = quoteSplittedKeywords.pop() ?? '';
     quoteSplittedKeywords[quoteSplittedKeywords.length - 1] += lastElement;
   }
   const searchingKeywords: string[] = quoteSplittedKeywords

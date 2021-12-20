@@ -27,7 +27,7 @@ export const Wrapper = ({
   className,
 }: WrapperProps): React.ReactElement => {
   const { headings, data, width, style, dispatch } = useContext(store);
-  const ref = useRef(null);
+  const ref = useRef<HTMLElement>(null);
 
   useEffect(() => {
     if (ref.current) {
@@ -43,17 +43,19 @@ export const Wrapper = ({
 
   useEffect(() => {
     const updateWidth = (): void => {
-      const refStyle: CSSStyleDeclaration = getComputedStyle(ref.current);
-      const currentWidth: number =
-        parseInt(refStyle.width) -
-        parseInt(refStyle.borderLeftWidth) -
-        parseInt(refStyle.borderRightWidth);
-      const borderWidth: number = getTableBorderWidth(style);
-      dispatch({ type: 'setWidth', payload: currentWidth - borderWidth });
-      dispatch({
-        type: 'setDisplayedColumns',
-        payload: currentWidth - borderWidth,
-      });
+      if (ref.current) {
+        const refStyle: CSSStyleDeclaration = getComputedStyle(ref.current);
+        const currentWidth: number =
+          parseInt(refStyle.width) -
+          parseInt(refStyle.borderLeftWidth) -
+          parseInt(refStyle.borderRightWidth);
+        const borderWidth: number = getTableBorderWidth(style);
+        dispatch({ type: 'setWidth', payload: currentWidth - borderWidth });
+        dispatch({
+          type: 'setDisplayedColumns',
+          payload: currentWidth - borderWidth,
+        });
+      }
     };
     updateWidth();
     window.addEventListener('resize', updateWidth);

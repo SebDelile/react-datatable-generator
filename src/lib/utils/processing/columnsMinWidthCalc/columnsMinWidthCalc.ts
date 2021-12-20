@@ -23,7 +23,7 @@ export const columnsMinWidthCalc = (
   data: DataElementInterface[],
   ref: HTMLElement,
   style: StyleInterface
-): number[] => {
+): number[] | undefined => {
   if (!ref) return;
 
   const { bodyStyle, headStyle } = resolveCellFontStyle(ref, style);
@@ -31,10 +31,16 @@ export const columnsMinWidthCalc = (
   //create canvas and test each body cell text length with applied style to find the longer
   const canvas = document.createElement('canvas');
   const context = canvas.getContext('2d');
+  if (!context) return;
+  //console.log(bodyStyle); //------------------------------------------------------------------------------------------------------------------
   context.font = `${bodyStyle.fontWeight} ${bodyStyle.fontSize} ${bodyStyle.fontFamily}`;
   const bodyColumnMinWidth: number[] = headings.map((heading) =>
     data
-      .map((item) => item[heading.key])
+      .map((item) => {
+        const value = item[heading.key];
+        if (typeof value === 'string') return value;
+        else return value.toString();
+      })
       .reduce<number>(
         (acc: number, cur: string): number =>
           Math.max(acc, context.measureText(cur).width),

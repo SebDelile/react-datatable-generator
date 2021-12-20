@@ -29,8 +29,7 @@ export const sortHandler = (
     return [...data].sort(
       (a, b) => (toNumber(a[key]) - toNumber(b[key])) * direction
     );
-  }
-  if (type === 'string') {
+  } else if (type === 'string') {
     const toLowerCaseString = (x: string | number | boolean): string =>
       typeof x === 'string' ? x.toLowerCase() : x.toString().toLowerCase();
     return [...data].sort(
@@ -38,8 +37,7 @@ export const sortHandler = (
         (toLowerCaseString(a[key]) >= toLowerCaseString(b[key]) ? 1 : -1) *
         direction
     );
-  }
-  if (type === 'datestring') {
+  } else if (type === 'datestring') {
     const toDate = (x: string | number | boolean): number =>
       typeof x === 'string' ? Date.parse(x) : NaN;
     return [...data].sort((a, b) => {
@@ -51,5 +49,5 @@ export const sortHandler = (
         ? -1
         : (toDate(a[key]) - toDate(b[key])) * direction;
     });
-  }
+  } else return data;
 };

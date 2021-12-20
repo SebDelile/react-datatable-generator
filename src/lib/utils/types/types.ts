@@ -35,15 +35,9 @@ export interface HeadingsElementInterface {
   key: string;
   label: string;
   type: string;
-  format?: string | ((data: string | number) => string);
+  format?: string | ((data: string | number | boolean) => string);
 }
 
 export interface DataElementInterface {
   [Key: string]: boolean | number | string;
 }
-
-export type fontStyleType = {
-  fontFamily: undefined | string;
-  fontSize: undefined | string;
-  fontWeight: undefined | number | string;
-};
