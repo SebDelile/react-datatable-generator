@@ -1,22 +1,12 @@
 {
   "opts": {
-    "template": "node_modules/docdash"
+    "template": "node_modules/better-docs"
   },
-  "docdash": {
-    "static": true,
-    "sort": true,
-    "search": true,
-    "collapse": true,
-    "typedefs": true,
-    "removeQuotes": "none",
-    "scripts": [],
-    "menu": {
-      "Github repo": {
-        "href": "https://github.com/SebDelile/react-datatable-generator",
-        "target": "_blank",
-        "class": "menu-item",
-        "id": "repository"
-      }
-    }
+  "tags": {
+    "allowUnknownTags": ["optional"]
+  },
+  "plugins": ["node_modules/better-docs/typescript"],
+  "source": {
+    "includePattern": "\\.(jsx|js|ts|tsx)$"
   }
 }
