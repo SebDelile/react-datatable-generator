@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title> Home</title>
+
+  <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script src="./build/entry.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+  <link href="https://fonts.googleapis.com/css?family=Roboto:100,400,700|Inconsolata,700" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+  <link type="text/css" rel="stylesheet" href="https://jmblog.github.io/color-themes-for-google-code-prettify/themes/tomorrow-night.min.css">
+  <link type="text/css" rel="stylesheet" href="styles/app.min.css">
+  <link type="text/css" rel="stylesheet" href="styles/iframe.css">
+  <link type="text/css" rel="stylesheet" href="">
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+  
+</head>
+
+
+
+<body class="layout small-header">
+    <div id="stickyNavbarOverlay"></div>
+    
+
+<div class="top-nav">
+    <div class="inner">
+        <a id="hamburger" role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+        </a>
+        <div class="logo">
+            
+            
+        </div>
+        <div class="menu">
+            
+            <div class="navigation">
+                <a
+                    href="index.html"
+                    class="link"
+                >
+                    API Documentation
+                </a>
+                
+                
+                
+            </div>
+        </div>
+    </div>
+</div>
+    <div id="main">
+        <div
+            class="sidebar "
+            id="sidebarNav"
+        >
+            
+            <nav>
+                
+                    <h2><a href="index.html">Documentation</a></h2><div class="category"><h3>Namespaces</h3><ul><li><a href="Datatable.html">Datatable</a></li><li><a href="Filter.html">Filter</a></li><li><a href="handlers.html">handlers</a></li><li><a href="SelectItemsPerPage.html">SelectItemsPerPage</a></li><li><a href="SelectPage.html">SelectPage</a></li><li><a href="ShowDisplayedItems.html">ShowDisplayedItems</a></li><li><a href="store.html">store</a></li><li><a href="Table.html">Table</a></li><li><a href="TableBody.html">TableBody</a></li><li><a href="TableHeading.html">TableHeading</a></li><li><a href="utils.html">utils</a></li></ul><h3>Interfaces</h3><ul><li><a href="TableRowProps.html">TableRowProps</a></li><li><a href="WrapperProps.html">WrapperProps</a></li></ul></div>
+                
+            </nav>
+        </div>
+        <div class="core" id="main-content-wrapper">
+            <div class="content">
+                <header class="page-title">
+                    <p></p>
+                    <h1>Home</h1>
+                </header>
+                
+
+
+
+    
+
+
+    <h3> </h3>
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
+    <section>
+        <article><h1>react-datatable-generator</h1>
+<p>react-datatable-generator is a library providing a datatable component to be used within any React app. It is created with <code>create-react-app</code> and a custom instance of emotion/css for the style, so there is no conflict whatever is the styling method you are using in you app.</p>
+<h2>Features</h2>
+<ul>
+<li><strong>Pagination</strong> : bunch of buttons to navigate between pages and customizable the number of items per page.</li>
+<li><strong>Sorting</strong> the data according to one column header (ascending or descending).</li>
+<li><strong>Filtering</strong> with plain-text keywords (exact match if keywords are between double quotes).</li>
+</ul>
+<h2>References</h2>
+<ul>
+<li><a href="https://github.com/SebDelile/react-datatable-generator">repository</a></li>
+<li><a href="https://www.npmjs.com/package/react-datatable-generator">npm package</a></li>
+<li><a href="https://sebdelile.github.io/react-datatable-generator/">full documentation</a></li>
+</ul>
+<h2>Getting start</h2>
+<h3>Requierements</h3>
+<p>In order to use this plugin, you should have :</p>
+<ul>
+<li>Node v14.15.4 or later</li>
+<li>React v17.0.2 or later</li>
+</ul>
+<h3>Installation</h3>
+<p>Run the following command:
+<code>npm install react-datatable-generator</code>
+or
+<code>yarn add react-datatable-generator</code></p>
+<h3>Usage</h3>
+<p>import the component in your file by naming it whatever you want (it is the default and only one export of the package).
+Then render it in your parent component with the 2 mandatory props <strong><code>headings</code></strong> and <strong><code>data</code></strong>. See the following paragraph for details about the shape of headings and data arrays.</p>
+<pre class="prettyprint source lang-js"><code>import Datatable from 'react-datatable-generator';
+import {headings, data} from './your-files.js
+
+const ParentComponent = ({}) => (
+  &lt;>
+    &lt;Datatable headings={headings} data={data} />
+  &lt;/>
+)
+</code></pre>
+<h2>API</h2>
+<p>The plugin can take 6 different props, only <code>headings</code> and <code>data</code> are mandatory.</p>
+<pre class="prettyprint source lang-js"><code>&lt;Datatable
+  headings={headings}
+  data={data}
+  className=''
+  itemsPerPageOption={[10, 25, 50, 100]}
+  isScrollable={false}
+  customStyle={}
+/>
+</code></pre>
+<h3>headings</h3>
+<p><code>headings</code> contains the information to drive the building of the table. It must be an array of objects with the following shape :</p>
+<pre class="prettyprint source lang-js"><code>// example
+headings = [
+  { key: 'id', label: 'ID', type: 'number' },
+  { key: 'name', label: 'name', type: 'string' },
+  { key: 'job', label: 'job', type: 'string' },
+  {
+    key: 'dateOfBirth',
+    label: 'Date of Birth',
+    type: 'datestring',
+    format: 'US-date',
+  },
+];
+</code></pre>
+<ul>
+<li><strong>key</strong> <em>{string}</em>: the column identifier to match the data with the column header. It must be unique among the <code>headings</code> array elements. it should not contain any whitespace or dash (as it is used as a key in data object)</li>
+<li><strong>label</strong> <em>{string}</em>: the string being displayed in the column header of the table.</li>
+<li><strong>type</strong> <em>{string}</em>: the type of data corresponding to this <code>key</code>. It is used to correctly sort the data with the sort feature. Accepted <code>type</code> are 'number', 'string' and 'datestring'. Any other <code>type</code> is considered as a string for sorting.</li>
+<li><strong>format</strong> <em>{string}</em>: (optional) a function or keyword to transform data before being displayed in the table cell.
+<ul>
+<li>if <code>format</code> is a function : the data value is passed as parameter to this function and the returned result is diplayed in the table cell (value =&gt; foo(value)).</li>
+<li>if <code>format</code> is a string : the data value is converted according to the keyword. Accepted keywords are 'US-date' (2021/08/24 =&gt; 08/24/2021) and 'US-currency' (12345.678 =&gt; $ 12,345.68).</li>
+</ul>
+</li>
+</ul>
+<h3>data</h3>
+<p><code>data</code> contains the information to be displayed in the table body cells. It must be an array of objects. Each element of the <code>data</code> array leads to a row in the table.</p>
+<pre class="prettyprint source lang-js"><code>// example
+data = [
+  {
+    id: 120,
+    name: 'John Doe',
+    job: 'Engineer',
+    dateOfBirth: '1987-04-16',
+  },
+  {
+    id: 34,
+    name: 'Jane Smith',
+    job: 'Doctor',
+    dateOfBirth: '1987-09-23',
+  },
+  {
+    id: 56,
+    name: 'Arsène Lupin',
+    job: 'Gentleman Thief',
+    dateOfBirth: '1874-01-01',
+  },
+  {
+    id: 78,
+    name: 'Snow White',
+    job: 'Princess',
+    dateOfBirth: '1327-06-15',
+  },
+];
+</code></pre>
+<p>For each key of the <code>data</code> array elements matching a key property of the <code>headings</code> array, the corresponding value is displayed in the corresponding column (no matter the sequence in the <code>data array</code>).
+If a <code>data</code> element has missing keys as compared to the keys of <code>headings</code> array, the table cell corresponding to this missing key is empty for this row.
+If a <code>data</code> element has key-value pairs not corresponding to any key in <code>headings</code> array, these key-value pairs are simply ignored.</p>
+<h3>className (optional)</h3>
+<p>A string of class names to be passed as props <code>className</code> of the plugin root component. It could be used to set positionning style rules (like <code>margin</code>, <code>self-align</code>, <code>grid-area</code>, ...). However please do not use it to modify the style of the inner elements of the plugin, prefer to use the customStyle props (see bellow).</p>
+<pre class="prettyprint source lang-js"><code>// example
+const className = 'datatable datatable--right-align'; // default : ''
+</code></pre>
+<h3>itemsPerPageOption (optional)</h3>
+<p>An array of integers to customize the number of displayed items per page.</p>
+<pre class="prettyprint source lang-js"><code>// example
+const itemsPerPageOption = [12, 24, 36, 48, 96]; // default : [10, 25, 50, 100]
+</code></pre>
+<h3>isScrollable (optional)</h3>
+<p>A boolean to chose between the two responsive modes in case the table is too large to be displayed in the container :</p>
+<ul>
+<li>if <code>true</code> : an horizontal scroll bar appears and allows reaching the last elements by scrolling to the right.</li>
+<li>if <code>false</code> : the columns that can not been displayed entierely are hidden so the table fit the container width. The missing column's informations are reachable by clicking on a row to expand an additional row.</li>
+</ul>
+<pre class="prettyprint source lang-js"><code>// example
+const isScrollable = true; // default : false
+</code></pre>
+<h3>customStyle (optional)</h3>
+<p>An object containing style rules to overwrite the default styling of the plugin. the following rules are available for customization, any other rules is ignored. the <code>customStyle</code> object is merged in the <code>defaultStyle</code> object to overwrite properties, so there is no need to put style rules with default value in <code>customStyle</code>.</p>
+<pre class="prettyprint source lang-js"><code>// available styles rules and the corresponding default value
+const defaultStyle = {
+  // global, apply to each part of the plugin
+  allPluginFontFamily: 'inherit',
+  allPluginFontSize: 'inherit',
+  allPluginFontWeight: undefined,
+  allPluginColor: 'inherit',
+  allPluginBackground: 'none',
+  // table borders properties. Vertical = left + right, horizontal = top + bottom
+  tableBodyVerticalBorder: undefined,
+  tableBodyHorizontalBorder: '1px solid #000',
+  tableHeadVerticalBorder: undefined,
+  tableHeadHorizontalBorder: undefined,
+  tableCellVerticalBorder: undefined,
+  tableCellHorizontalBorder: '1px solid #DDD',
+  moreInfoTableHorizontalBorder: '1px solid #EFEFEF',
+  // table background color properties
+  tableHeadBackground: '#FFF',
+  tableBodyBackground: '#FFF',
+  tableOddRowBackground: '#F7F7F7',
+  tableSortedColumnBackground: '#FAFAFA',
+  tableSortedColumnOddRowBackground: '#F1F1F1',
+  tableHoveredRowBackground: '#F1F1F1',
+  tableSortedColumnHoveredRowBackground: '#EAEAEA',
+  moreInfoTableBackground: '#FFF',
+  // table text properties
+  tableCellPadding: '0.5rem 1rem',
+  tableHeadTextAlign: 'center',
+  tableBodyTextAlign: 'left',
+  tableBodyFontFamily: 'inherit',
+  tableHeadFontFamily: 'inherit',
+  tableBodyFontSize: 'inherit',
+  tableHeadFontSize: 'inherit',
+  tableBodyFontWeight: undefined,
+  tableHeadFontWeight: '700',
+  tableBodyColor: 'inherit',
+  tableHeadColor: 'inherit',
+  // moreInfoTable text properties. More info is the additional expanded row in !isScrollable responsive mode
+  moreInfoTableMarginLeft: '0.5rem',
+  moreInfoTableCellPadding: '0.5rem',
+  moreInfoTableBodyFontFamily: 'inherit',
+  moreInfoTableHeadFontFamily: 'inherit',
+  moreInfoTableBodyFontSize: 'inherit',
+  moreInfoTableHeadFontSize: 'inherit',
+  moreInfoTableBodyFontWeight: undefined,
+  moreInfoTableHeadFontWeight: '700',
+  moreInfoTableBodyColor: 'inherit',
+  moreInfoTableHeadColor: 'inherit',
+  // selectPage buttons properties
+  selectPageFontFamily: 'inherit',
+  selectPageFontSize: 'inherit',
+  selectPageFontWeight: undefined,
+  selectPageButtonColor: 'inherit',
+  selectPageButtonBorder: '1px solid transparent',
+  selectPageButtonBorderRadius: '0.25rem',
+  selectPageButtonBackground: 'none',
+  selectPageButtonDisabledBorder: '1px solid transparent',
+  selectPageButtonDisabledBackground: 'none',
+  selectPageButtonDisabledColor: '#666',
+  selectPageButtonActiveBorder: '1px solid #333',
+  selectPageButtonActiveBackground:
+    'linear-gradient(to bottom, #FFF 0%, #CCC 100%)',
+  selectPageButtonActiveColor: '#000',
+  selectPageButtonHoveredBorder: '1px solid #000',
+  selectPageButtonHoveredBackground:
+    'linear-gradient(to bottom, #333 0%, #000 100%)',
+  selectPageButtonHoveredColor: '#FFF',
+  // selectItemsPerPage properties
+  selectItemsPerPageFontFamily: 'inherit',
+  selectItemsPerPageFontSize: 'inherit',
+  selectItemsPerPageFontWeight: undefined,
+  selectItemsPerPageColor: 'inherit',
+  selectItemsPerPageSelectBackground: undefined,
+  selectItemsPerPageSelectColor: 'inherit',
+  selectItemsPerPageSelectBorder: undefined,
+  selectItemsPerPageSelectBorderRadius: undefined,
+  // filter properties
+  filterFontFamily: 'inherit',
+  filterFontSize: 'inherit',
+  filterFontWeight: undefined,
+  filterColor: 'inherit',
+  filterInputBackground: undefined,
+  filterInputColor: 'inherit',
+  filterInputBorder: undefined,
+  filterInputBorderRadius: undefined,
+  // showDisplayedItems properties
+  showDisplayedItemsFontFamily: 'inherit',
+  showDisplayedItemsFontSize: 'inherit',
+  showDisplayedItemsFontWeight: undefined,
+  showDisplayedItemsColor: 'inherit',
+};
+</code></pre>
+<pre class="prettyprint source lang-js"><code>// example
+const customStyle = {
+  allPluginColor: 'red',
+  tableHeadHorizontalBorder: '1px solid #000',
+  tableHeadBackground: undefined,
+  tableBodyBackground: undefined,
+};
+</code></pre>
+<p><strong>Important note :</strong> the length passed to border or padding properties can only be in px or rem units. the use of other units will lead to unconsistant behavior. There is not such restriction for font-size properties.</p>
+<h2>Inspiration</h2>
+<ul>
+<li><a href="https://github.com/DataTables/DataTables">Datatables</a></li>
+</ul></article>
+    </section>
+
+
+
+
+
+
+            </div>
+            
+            <footer class="footer">
+                <div class="content has-text-centered">
+                    <p>Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.7</a></p>
+                    <p class="sidebar-created-by">
+                        <a href="https://github.com/SoftwareBrothers/better-docs" target="_blank">BetterDocs theme</a> provided with <i class="fas fa-heart"></i> by 
+                        <a href="http://softwarebrothers.co" target="_blank">SoftwareBrothers - JavaScript Development Agency</a>
+                    </p>
+                </div>
+            </footer>
+            
+        </div>
+        <div id="side-nav" class="side-nav">
+        </div>
+    </div>
+<script src="scripts/app.min.js"></script>
+<script>PR.prettyPrint();</script>
+<script src="scripts/linenumber.js"> </script>
+
+</body>
+</html>

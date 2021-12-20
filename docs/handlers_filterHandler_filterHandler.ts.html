@@ -1,0 +1,180 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title> handlers/filterHandler/filterHandler.ts</title>
+
+  <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script src="./build/entry.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+  <link href="https://fonts.googleapis.com/css?family=Roboto:100,400,700|Inconsolata,700" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+  <link type="text/css" rel="stylesheet" href="https://jmblog.github.io/color-themes-for-google-code-prettify/themes/tomorrow-night.min.css">
+  <link type="text/css" rel="stylesheet" href="styles/app.min.css">
+  <link type="text/css" rel="stylesheet" href="styles/iframe.css">
+  <link type="text/css" rel="stylesheet" href="">
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+  
+</head>
+
+
+
+<body class="layout small-header">
+    <div id="stickyNavbarOverlay"></div>
+    
+
+<div class="top-nav">
+    <div class="inner">
+        <a id="hamburger" role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+        </a>
+        <div class="logo">
+            
+            
+        </div>
+        <div class="menu">
+            
+            <div class="navigation">
+                <a
+                    href="index.html"
+                    class="link"
+                >
+                    API Documentation
+                </a>
+                
+                
+                
+            </div>
+        </div>
+    </div>
+</div>
+    <div id="main">
+        <div
+            class="sidebar "
+            id="sidebarNav"
+        >
+            
+            <nav>
+                
+                    <h2><a href="index.html">Documentation</a></h2><div class="category"><h3>Namespaces</h3><ul><li><a href="Datatable.html">Datatable</a></li><li><a href="Filter.html">Filter</a></li><li><a href="handlers.html">handlers</a></li><li><a href="SelectItemsPerPage.html">SelectItemsPerPage</a></li><li><a href="SelectPage.html">SelectPage</a></li><li><a href="ShowDisplayedItems.html">ShowDisplayedItems</a></li><li><a href="store.html">store</a></li><li><a href="Table.html">Table</a></li><li><a href="TableBody.html">TableBody</a></li><li><a href="TableHeading.html">TableHeading</a></li><li><a href="utils.html">utils</a></li></ul><h3>Interfaces</h3><ul><li><a href="TableRowProps.html">TableRowProps</a></li><li><a href="WrapperProps.html">WrapperProps</a></li></ul></div>
+                
+            </nav>
+        </div>
+        <div class="core" id="main-content-wrapper">
+            <div class="content">
+                <header class="page-title">
+                    <p>Source</p>
+                    <h1>handlers/filterHandler/filterHandler.ts</h1>
+                </header>
+                
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import { DataElementInterface } from '../../utils/types/types';
+
+/**
+ * Filter the data according to the filter keyword.
+ * Filtering is not sensitive to case but do not use a normalizer function for accent or hyphens.
+ * Return unmodified data if keyword is empty.
+ * Has an exact search behavior for parts of the string being between double quotes.
+ * Builds the searchingKeywords array by spliting the string :
+ *  1) according to double quote to isolate fragment inside and outside of double quotes.
+ *  2) splitting the fragment outside of double quote according to spaces.
+ * Then make the fitlering research according to all elements of the searchingKeyword array.
+ * @param {array} data - the  data to filter.
+ * @param {string} keyword - the keyword string use to filter.
+ * @memberof handlers
+ * @function
+ * @return {array} the filtered data according to keyword.
+ */
+export const filterHandler = (
+  data: DataElementInterface[],
+  keyword: string
+): DataElementInterface[] => {
+  // check for input validity
+  // data must be a non-empty array, containing only non-empty arrays or object, with no more nesting in it
+  // keyword must be a string
+  if (
+    !Array.isArray(data) ||
+    !data.length ||
+    data.some(
+      (element) => typeof element !== 'object' || !Object.keys(element).length
+    ) ||
+    data.some((element) =>
+      Object.values(element).some(
+        (subElement) => typeof subElement === 'object'
+      )
+    )
+  )
+    throw new Error(
+      'Type error : please provide data parameter as an array of object'
+    );
+  if (typeof keyword !== 'string')
+    throw new Error(
+      'Type error : please provide keyword parameter as a string'
+    );
+
+  // if inputs are ok
+  if (keyword === '') return data;
+
+  const quoteSplittedKeywords: string[] = keyword.toLowerCase().split('"');
+  if (quoteSplittedKeywords.length % 2 !== 1) {
+    const lastElement: string = quoteSplittedKeywords.pop() ?? '';
+    quoteSplittedKeywords[quoteSplittedKeywords.length - 1] += lastElement;
+  }
+  const searchingKeywords: string[] = quoteSplittedKeywords
+    .flatMap((word, index) => (index % 2 === 0 ? word.split(' ') : word))
+    .filter((word) => word !== '');
+
+  return data.filter((element) =>
+    searchingKeywords.every((word) =>
+      Object.values(element).some((value) =>
+        value.toString().toLowerCase().includes(word)
+      )
+    )
+  );
+};
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+            </div>
+            
+            <footer class="footer">
+                <div class="content has-text-centered">
+                    <p>Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.7</a></p>
+                    <p class="sidebar-created-by">
+                        <a href="https://github.com/SoftwareBrothers/better-docs" target="_blank">BetterDocs theme</a> provided with <i class="fas fa-heart"></i> by 
+                        <a href="http://softwarebrothers.co" target="_blank">SoftwareBrothers - JavaScript Development Agency</a>
+                    </p>
+                </div>
+            </footer>
+            
+        </div>
+        <div id="side-nav" class="side-nav">
+        </div>
+    </div>
+<script src="scripts/app.min.js"></script>
+<script>PR.prettyPrint();</script>
+<script src="scripts/linenumber.js"> </script>
+
+</body>
+</html>
