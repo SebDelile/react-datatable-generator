@@ -1,0 +1,220 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title> index.tsx</title>
+
+  <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script src="./build/entry.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+  <link href="https://fonts.googleapis.com/css?family=Roboto:100,400,700|Inconsolata,700" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+  <link type="text/css" rel="stylesheet" href="https://jmblog.github.io/color-themes-for-google-code-prettify/themes/tomorrow-night.min.css">
+  <link type="text/css" rel="stylesheet" href="styles/app.min.css">
+  <link type="text/css" rel="stylesheet" href="styles/iframe.css">
+  <link type="text/css" rel="stylesheet" href="">
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+  
+</head>
+
+
+
+<body class="layout small-header">
+    <div id="stickyNavbarOverlay"></div>
+    
+
+<div class="top-nav">
+    <div class="inner">
+        <a id="hamburger" role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+        </a>
+        <div class="logo">
+            
+            
+        </div>
+        <div class="menu">
+            
+            <div class="navigation">
+                <a
+                    href="index.html"
+                    class="link"
+                >
+                    API Documentation
+                </a>
+                
+                
+                
+            </div>
+        </div>
+    </div>
+</div>
+    <div id="main">
+        <div
+            class="sidebar "
+            id="sidebarNav"
+        >
+            
+            <nav>
+                
+                    <h2><a href="index.html">Documentation</a></h2><div class="category"><h3>Namespaces</h3><ul><li><a href="Datatable.html">Datatable</a></li><li><a href="Filter.html">Filter</a></li><li><a href="handlers.html">handlers</a></li><li><a href="SelectItemsPerPage.html">SelectItemsPerPage</a></li><li><a href="SelectPage.html">SelectPage</a></li><li><a href="ShowDisplayedItems.html">ShowDisplayedItems</a></li><li><a href="store.html">store</a></li><li><a href="Table.html">Table</a></li><li><a href="TableBody.html">TableBody</a></li><li><a href="TableHeading.html">TableHeading</a></li><li><a href="utils.html">utils</a></li></ul><h3>Interfaces</h3><ul><li><a href="TableRowProps.html">TableRowProps</a></li><li><a href="WrapperProps.html">WrapperProps</a></li></ul></div>
+                
+            </nav>
+        </div>
+        <div class="core" id="main-content-wrapper">
+            <div class="content">
+                <header class="page-title">
+                    <p>Source</p>
+                    <h1>index.tsx</h1>
+                </header>
+                
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import { StoreProvider } from './store/store';
+import { SelectItemsPerPage } from './components/SelectItemsPerPage/SelectItemsPerPage';
+import { Filter } from './components/Filter/Filter';
+import { Table } from './components/Table/Table';
+import { TableHeading } from './components/TableHeading/TableHeading';
+import { TableBody } from './components/TableBody/TableBody';
+import { ShowDisplayedItems } from './components/ShowDisplayedItems/ShowDisplayedItems';
+import { SelectPage } from './components/SelectPage/SelectPage';
+import { Wrapper } from './components/Wrapper/Wrapper';
+import { defaultStyle } from './utils/style/defaultStyle';
+import {
+  HeadingsElementInterface,
+  DataElementInterface,
+} from './utils/types/types';
+import { StyleInterface } from './utils/types/StyleInterface';
+
+interface DatatableProps {
+  headings: HeadingsElementInterface[];
+  data: DataElementInterface[];
+  className?: string;
+  itemsPerPageOption?: number[];
+  isScrollable?: boolean;
+  customStyle?: StyleInterface | {};
+}
+
+/**
+ * The main component to generate a datatable. Contains a check for the validity of the headings and data props (do not return anything in case of invalidity).
+ * @memberof Datatable
+ * @function
+ * @param {array} props.headings - mandatory, used to build the column headers, have to be in the form of an array of objects with the shape being {key:string, label:string, type: string, format: function||string} (format is optionnal, key must be unique in array)
+ * @param {array} props.data - mandatory, used to build the data ro of the table, have to be an array of object with the shape being {key1:value, key2:value, ...} only the keys matching a key in headings will be displayed.
+ * @param {string} props.className - an optionnal list of space separated classes to be applied to the datatable wrapper.
+ * @param {array} props.itemsPerPageOption - an optionnal list of the available values for the number of items to display per page. Default is [10, 25, 50, 100]
+ * @param {boolean} props.isScrollable - an optionnal value to stand if the column not being displayed within the screen should be get by horizontal scroll (true) or by clicking on a row to expand missing value (false). Default value is false.
+ * @param {object} props.style - an optionnal set of style rules to choose between a predefined list to override existing rules. Default is {}
+ * @return {React.ReactElement} jsx to be injected in the html
+ */
+
+const Datatable = ({
+  headings,
+  data,
+  className = '',
+  itemsPerPageOption = [10, 25, 50, 100],
+  isScrollable = false,
+  customStyle = {},
+}: DatatableProps): React.ReactElement | null => {
+  const isHeadingsKeysInvalid = () =>
+    headings.length === 0 ||
+    headings.some(
+      (heading) =>
+        !heading.key ||
+        typeof heading.key !== 'string' ||
+        typeof heading.label !== 'string'
+    ) ||
+    new Set(headings.map((heading) => heading.key)).size !== headings.length;
+
+  if (
+    !headings ||
+    !Array.isArray(headings) ||
+    isHeadingsKeysInvalid() ||
+    !data ||
+    !Array.isArray(data) ||
+    data.some((item) => typeof item !== 'object')
+  )
+    return null;
+  else
+    return (
+      &lt;StoreProvider
+        headings={headings}
+        data={data}
+        itemsPerPageOption={itemsPerPageOption}
+        isScrollable={isScrollable}
+        style={{ ...defaultStyle, ...customStyle }}
+      >
+        &lt;Wrapper className={className}>
+          &lt;SelectItemsPerPage />
+          &lt;Filter />
+          &lt;Table>
+            &lt;TableHeading />
+            &lt;TableBody />
+          &lt;/Table>
+          &lt;ShowDisplayedItems />
+          &lt;SelectPage />
+        &lt;/Wrapper>
+      &lt;/StoreProvider>
+    );
+};
+export default Datatable;
+
+//-----namespace initializers for jsdoc generated documentation
+/**
+ * @namespace Datatable
+ */
+/**
+ * @namespace store
+ */
+/**
+ * all handlers (handling calculation on data).
+ * @namespace handlers
+ */
+/**
+ * all utils functions.
+ * @namespace utils
+ */
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+            </div>
+            
+            <footer class="footer">
+                <div class="content has-text-centered">
+                    <p>Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.7</a></p>
+                    <p class="sidebar-created-by">
+                        <a href="https://github.com/SoftwareBrothers/better-docs" target="_blank">BetterDocs theme</a> provided with <i class="fas fa-heart"></i> by 
+                        <a href="http://softwarebrothers.co" target="_blank">SoftwareBrothers - JavaScript Development Agency</a>
+                    </p>
+                </div>
+            </footer>
+            
+        </div>
+        <div id="side-nav" class="side-nav">
+        </div>
+    </div>
+<script src="scripts/app.min.js"></script>
+<script>PR.prettyPrint();</script>
+<script src="scripts/linenumber.js"> </script>
+
+</body>
+</html>

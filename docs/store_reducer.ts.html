@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,7 +7,7 @@
   
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title> TableBody</title>
+  <title> store/reducer.ts</title>
 
   <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -73,314 +75,114 @@
         <div class="core" id="main-content-wrapper">
             <div class="content">
                 <header class="page-title">
-                    <p>Namespace</p>
-                    <h1>TableBody</h1>
+                    <p>Source</p>
+                    <h1>store/reducer.ts</h1>
                 </header>
                 
 
 
 
-
-<section>
-
-<header>
-    
-        <h2>TableBody</h2>
-        
-    
-</header>
-
-<article>
-    <div class="container-overview">
-    
-        
-
-        
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    
-
-    
-
-    
-
-    
-        <p class="tag-source">
-            <a href="components_TableBody_TableBody.tsx.html" class="button">View Source</a>
-            <span>
-                <a href="components_TableBody_TableBody.tsx.html">components/TableBody/TableBody.tsx</a>, <a href="components_TableBody_TableBody.tsx.html#line6">line 6</a>
-            </span>
-        </p>
-    
-</dl>
-
-
-        
-    
-    </div>
-    
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-        <div class='vertical-section'>
-            <h1>Members</h1>
-            <div class="members">
-            
-                <div class="member">
-
-<h4 class="name" id=".classNames">
-    <a class="href-link" href="#.classNames">#</a>
-    
-        
-            <span class='tag'>static</span>
-        
-            <span class='tag'>constant</span>
-        
-    
-    <span class="code-name">
-        classNames
-    </span>
-    
-</h4>
-
-
-
-
-<div class="description">
-    An object containing the classnames generated from the stylesheet made with emotion and using the style state of the store
-</div>
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    
-
-    
-
     
-
-    
-        <p class="tag-source">
-            <a href="components_TableBody_TableBody.tsx.html" class="button">View Source</a>
-            <span>
-                <a href="components_TableBody_TableBody.tsx.html">components/TableBody/TableBody.tsx</a>, <a href="components_TableBody_TableBody.tsx.html#line23">line 23</a>
-            </span>
-        </p>
-    
-</dl>
-
-
-
-
-
-</div>
-            
-            </div>
-        </div>
-    
-
-    
-        <div class='vertical-section'>
-            <h1>Methods</h1>
-            <div class="members">
-            
-                <div class="member">
-
-
-    
-    <h4 class="name" id=".exports.TableBody">
-        <a class="href-link" href="#.exports.TableBody">#</a>
-        
-            
-                <span class='tag'>static</span>
-            
-        
-        <span class="code-name">
-            
-                exports.TableBody<span class="signature">()</span><span class="type-signature"> &rarr; {React.ReactElement}</span>
-            
-        </span>
-    </h4>
-    
-
-    
-    
-    <div class="description">
-        The TableBody component, display a TableRow component for each data.Gives the row a parity attribute (even or odd).If there is no data to display, it displays a unique row with a no match message.
-    </div>
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    
-
-    
-
-    
-
-    
-        <p class="tag-source">
-            <a href="components_TableBody_TableBody.tsx.html" class="button">View Source</a>
-            <span>
-                <a href="components_TableBody_TableBody.tsx.html">components/TableBody/TableBody.tsx</a>, <a href="components_TableBody_TableBody.tsx.html#line17">line 17</a>
-            </span>
-        </p>
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <div class='columns method-parameter'>
-        <div class="column is-2"><label>Returns:</label></div>
-        <div class="column is-10">
-            
-                    
-
-<div class="columns">
-    
-    <div class='param-desc column is-7'>jsx to be injected in the html.</div>
-    
-    
-    <div class='column is-5 has-text-left'>
-        <label>Type: </label>
-        
-<span class="param-type">React.ReactElement</span>
-
-
-    </div>
-    
-</div>
-
-                
-        </div>
-    </div>
-
-
-
-
-</div>
-            
-            </div>
-        </div>
-    
-
-    
-
-    
-</article>
-
-</section>
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import {
+  StoreStateInterface,
+  ReducerActionType,
+  SortType,
+} from '../utils/types/types';
+
+/**
+ * The reducer fonction of the store.
+ * Returns the spreaded current state and 0 to many properties with new value based on action type.
+ * Contain all pure logic for the calculation of the new state. Logic depending on something else than state or action is managed outside of the reducer (often before dispatching).
+ * @memberof store
+ * @function
+ * @param {object} state - the current state.
+ * @param {object} action - the action object with key type and optionnal key payload.
+ * @returns {object} - the updated state.
+ */
+export const reducer = (
+  state: StoreStateInterface,
+  action: ReducerActionType
+): StoreStateInterface => {
+  switch (action.type) {
+    case 'setFilterKeyword':
+      return { ...state, filterKeyword: action.payload };
+    case 'setCurrentSort':
+      let newSort = {} as SortType;
+      if (
+        state.currentSort.key === action.payload.key &amp;&amp;
+        state.currentSort.direction > 0
+      )
+        newSort = {
+          key: action.payload.key,
+          direction: -1,
+          type: action.payload.type,
+        };
+      else
+        newSort = {
+          key: action.payload.key,
+          direction: 1,
+          type: action.payload.type,
+        };
+      return { ...state, currentSort: newSort };
+    case 'setItemsPerPage':
+      const currentFirstItemOnPageIndex =
+        (state.currentPage - 1) * state.itemsPerPage;
+      const newCurrentPage =
+        Math.floor(currentFirstItemOnPageIndex / action.payload) + 1;
+      return {
+        ...state,
+        itemsPerPage: action.payload,
+        currentPage: newCurrentPage,
+        headings: state.headings,
+      };
+    case 'setCurrentPage':
+      let newPage = null;
+      if (action.payload === 'Previous') newPage = state.currentPage - 1;
+      else if (action.payload === 'Next') newPage = state.currentPage + 1;
+      else newPage = parseInt(action.payload);
+      return { ...state, currentPage: newPage };
+    case 'setMoreInfoOpenList':
+      const index = state.moreInfoOpenList.indexOf(action.payload);
+      const newList = [...state.moreInfoOpenList];
+      if (index === -1) newList.push(action.payload);
+      else newList.splice(index, 1);
+      return { ...state, moreInfoOpenList: newList };
+    case 'setFilteredData':
+      return { ...state, filteredData: action.payload };
+    case 'setSortedData':
+      return { ...state, sortedData: action.payload, currentPage: 1 };
+    case 'setDisplayedData':
+      return { ...state, displayedData: action.payload };
+    case 'setWidth':
+      return { ...state, width: action.payload };
+    case 'setDisplayedColumns':
+      if (state.isScrollable) return state;
+      else {
+        let i = 1;
+        let widthSum = state.columnsMinWidth[0];
+        while (i &lt; state.headings.length) {
+          widthSum += state.columnsMinWidth[i];
+          if (widthSum >= action.payload) break;
+          else i++;
+        }
+        return { ...state, displayedColumns: i };
+      }
+    case 'setColumnsMinWidth':
+      if (!action.payload) return state;
+      return {
+        ...state,
+        columnsMinWidth: action.payload,
+      };
+    default:
+      console.log(action.type + ' is not recognized');
+      return state;
+  }
+};
+</code></pre>
+        </article>
+    </section>
 
 
 

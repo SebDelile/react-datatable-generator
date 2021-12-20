@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,7 +7,7 @@
   
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title> TableBody</title>
+  <title> components/Wrapper/Wrapper.tsx</title>
 
   <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -73,314 +75,105 @@
         <div class="core" id="main-content-wrapper">
             <div class="content">
                 <header class="page-title">
-                    <p>Namespace</p>
-                    <h1>TableBody</h1>
+                    <p>Source</p>
+                    <h1>components/Wrapper/Wrapper.tsx</h1>
                 </header>
                 
 
 
 
-
-<section>
-
-<header>
-    
-        <h2>TableBody</h2>
-        
-    
-</header>
-
-<article>
-    <div class="container-overview">
-    
-        
-
-        
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    
-
-    
-
-    
-
-    
-        <p class="tag-source">
-            <a href="components_TableBody_TableBody.tsx.html" class="button">View Source</a>
-            <span>
-                <a href="components_TableBody_TableBody.tsx.html">components/TableBody/TableBody.tsx</a>, <a href="components_TableBody_TableBody.tsx.html#line6">line 6</a>
-            </span>
-        </p>
-    
-</dl>
-
-
-        
-    
-    </div>
-    
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-        <div class='vertical-section'>
-            <h1>Members</h1>
-            <div class="members">
-            
-                <div class="member">
-
-<h4 class="name" id=".classNames">
-    <a class="href-link" href="#.classNames">#</a>
-    
-        
-            <span class='tag'>static</span>
-        
-            <span class='tag'>constant</span>
-        
-    
-    <span class="code-name">
-        classNames
-    </span>
-    
-</h4>
-
-
-
-
-<div class="description">
-    An object containing the classnames generated from the stylesheet made with emotion and using the style state of the store
-</div>
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    
-
-    
-
     
-
-    
-        <p class="tag-source">
-            <a href="components_TableBody_TableBody.tsx.html" class="button">View Source</a>
-            <span>
-                <a href="components_TableBody_TableBody.tsx.html">components/TableBody/TableBody.tsx</a>, <a href="components_TableBody_TableBody.tsx.html#line23">line 23</a>
-            </span>
-        </p>
-    
-</dl>
-
-
-
-
-
-</div>
-            
-            </div>
-        </div>
-    
-
-    
-        <div class='vertical-section'>
-            <h1>Methods</h1>
-            <div class="members">
-            
-                <div class="member">
-
-
-    
-    <h4 class="name" id=".exports.TableBody">
-        <a class="href-link" href="#.exports.TableBody">#</a>
-        
-            
-                <span class='tag'>static</span>
-            
-        
-        <span class="code-name">
-            
-                exports.TableBody<span class="signature">()</span><span class="type-signature"> &rarr; {React.ReactElement}</span>
-            
-        </span>
-    </h4>
-    
-
-    
-    
-    <div class="description">
-        The TableBody component, display a TableRow component for each data.Gives the row a parity attribute (even or odd).If there is no data to display, it displays a unique row with a no match message.
-    </div>
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    
-
-    
-
-    
-
-    
-        <p class="tag-source">
-            <a href="components_TableBody_TableBody.tsx.html" class="button">View Source</a>
-            <span>
-                <a href="components_TableBody_TableBody.tsx.html">components/TableBody/TableBody.tsx</a>, <a href="components_TableBody_TableBody.tsx.html#line17">line 17</a>
-            </span>
-        </p>
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <div class='columns method-parameter'>
-        <div class="column is-2"><label>Returns:</label></div>
-        <div class="column is-10">
-            
-                    
-
-<div class="columns">
-    
-    <div class='param-desc column is-7'>jsx to be injected in the html.</div>
-    
-    
-    <div class='column is-5 has-text-left'>
-        <label>Type: </label>
-        
-<span class="param-type">React.ReactElement</span>
-
-
-    </div>
-    
-</div>
-
-                
-        </div>
-    </div>
-
-
-
-
-</div>
-            
-            </div>
-        </div>
-    
-
-    
-
-    
-</article>
-
-</section>
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import { useEffect, useRef, useContext } from 'react';
+import { store } from '../../store/store';
+import styleSheet from './Wrapper.styleSheet';
+import { columnsMinWidthCalc } from '../../utils/processing/columnsMinWidthCalc/columnsMinWidthCalc';
+import { cx } from '../../utils/style/emotion';
+import { getTableBorderWidth } from '../../utils/processing/getTableBorderWidth/getTableBorderWidth';
+
+/**
+ * @namespace Wrapper
+ */
+
+interface WrapperProps {
+  className?: string;
+  children: React.ReactElement | React.ReactElement[];
+}
+
+/**
+ * The Wrapper component to wrap any component of the pluggin.
+ * Has a useEffect to calculate the width of the pluggin container on mount + on each window resize event.
+ * Has a useEffect to calculate the minimum width of each column on mount (no reason to have later change).
+ * @memberof Wrapper
+ * @function
+ * @return {React.ReactElement} jsx to be injected in the html.
+ */
+export const Wrapper = ({
+  children,
+  className,
+}: WrapperProps): React.ReactElement => {
+  const { headings, data, width, style, dispatch } = useContext(store);
+  const ref = useRef&lt;HTMLElement>(null);
+
+  useEffect(() => {
+    if (ref.current) {
+      const columnsMinWidth = columnsMinWidthCalc(
+        headings,
+        data,
+        ref.current,
+        style
+      );
+      dispatch({ type: 'setColumnsMinWidth', payload: columnsMinWidth });
+    }
+  }, [ref, dispatch, headings, data, style]);
+
+  useEffect(() => {
+    const updateWidth = (): void => {
+      if (ref.current) {
+        const refStyle: CSSStyleDeclaration = getComputedStyle(ref.current);
+        const currentWidth: number =
+          parseInt(refStyle.width) -
+          parseInt(refStyle.borderLeftWidth) -
+          parseInt(refStyle.borderRightWidth);
+        const borderWidth: number = getTableBorderWidth(style);
+        dispatch({ type: 'setWidth', payload: currentWidth - borderWidth });
+        dispatch({
+          type: 'setDisplayedColumns',
+          payload: currentWidth - borderWidth,
+        });
+      }
+    };
+    updateWidth();
+    window.addEventListener('resize', updateWidth);
+    return () => {
+      window.removeEventListener('resize', updateWidth);
+    };
+  }, [dispatch, style]);
+
+  /**
+   * An object containing the classnames generated from the stylesheet made with emotion and using the style state of the store
+   * @memberof Wrapper
+   */
+  const classNames: { [Class: string]: string } = styleSheet(style);
+
+  return (
+    &lt;article
+      ref={ref}
+      className={cx(
+        classNames.wrapper,
+        width > 480 &amp;&amp; classNames.wrapperLarge,
+        width > 800 &amp;&amp; classNames.wrapperExtraLarge,
+        className
+      )}
+    >
+      {width !== 0 ? children : null}
+    &lt;/article>
+  );
+};
+</code></pre>
+        </article>
+    </section>
 
 
 

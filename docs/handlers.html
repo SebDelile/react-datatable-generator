@@ -1,43 +1,82 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    
-    <meta charset="utf-8">
-    <title>handlers - Documentation</title>
-    
-    
-    <script src="scripts/prettify/prettify.js"></script>
-    <script src="scripts/prettify/lang-css.js"></script>
-    <!--[if lt IE 9]>
-      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
-    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
-    <script src="scripts/nav.js" defer></script>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title> handlers</title>
+
+  <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script src="./build/entry.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+  <link href="https://fonts.googleapis.com/css?family=Roboto:100,400,700|Inconsolata,700" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+  <link type="text/css" rel="stylesheet" href="https://jmblog.github.io/color-themes-for-google-code-prettify/themes/tomorrow-night.min.css">
+  <link type="text/css" rel="stylesheet" href="styles/app.min.css">
+  <link type="text/css" rel="stylesheet" href="styles/iframe.css">
+  <link type="text/css" rel="stylesheet" href="">
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+  
 </head>
-<body>
 
-<input type="checkbox" id="nav-trigger" class="nav-trigger" />
-<label for="nav-trigger" class="navicon-button x">
-  <div class="navicon"></div>
-</label>
 
-<label for="nav-trigger" class="overlay"></label>
 
-<nav >
-    
-    <input type="text" id="nav-search" placeholder="Search" />
-    
-    <h2><a href="index.html">Home</a></h2><h2><a href="https://github.com/SebDelile/react-datatable-generator" target="_blank" class="menu-item" id="repository" >Github repo</a></h2><h3>Namespaces</h3><ul><li><a href="Datatable.html">Datatable</a><ul class='methods'><li data-type='method' style='display: none;'><a href="Datatable.html#.Datatable">Datatable</a></li></ul></li><li><a href="Filter.html">Filter</a><ul class='members'><li data-type='member' style='display: none;'><a href="Filter.html#.classNames">classNames</a></li></ul><ul class='methods'><li data-type='method' style='display: none;'><a href="Filter.html#.exports.Filter">exports.Filter</a></li><li data-type='method' style='display: none;'><a href="Filter.html#.handleInputChange">handleInputChange</a></li><li data-type='method' style='display: none;'><a href="Filter.html#.handleReset">handleReset</a></li></ul></li><li><a href="handlers.html">handlers</a><ul class='methods'><li data-type='method' style='display: none;'><a href="handlers.html#.exports.filterHandler">exports.filterHandler</a></li><li data-type='method' style='display: none;'><a href="handlers.html#.exports.pagingHandler">exports.pagingHandler</a></li><li data-type='method' style='display: none;'><a href="handlers.html#.exports.sortHandler">exports.sortHandler</a></li></ul></li><li><a href="SelectItemsPerPage.html">SelectItemsPerPage</a><ul class='members'><li data-type='member' style='display: none;'><a href="SelectItemsPerPage.html#.classNames">classNames</a></li></ul><ul class='methods'><li data-type='method' style='display: none;'><a href="SelectItemsPerPage.html#.exports.SelectItemsPerPage">exports.SelectItemsPerPage</a></li><li data-type='method' style='display: none;'><a href="SelectItemsPerPage.html#.handleChange">handleChange</a></li></ul></li><li><a href="SelectPage.html">SelectPage</a><ul class='members'><li data-type='member' style='display: none;'><a href="SelectPage.html#.classNames">classNames</a></li></ul><ul class='methods'><li data-type='method' style='display: none;'><a href="SelectPage.html#.exports.SelectPage">exports.SelectPage</a></li><li data-type='method' style='display: none;'><a href="SelectPage.html#.handleClick">handleClick</a></li><li data-type='method' style='display: none;'><a href="SelectPage.html#.hiddenIfNeeded">hiddenIfNeeded</a></li><li data-type='method' style='display: none;'><a href="SelectPage.html#.isDisabled">isDisabled</a></li></ul></li><li><a href="ShowDisplayedItems.html">ShowDisplayedItems</a><ul class='members'><li data-type='member' style='display: none;'><a href="ShowDisplayedItems.html#.classNames">classNames</a></li></ul><ul class='methods'><li data-type='method' style='display: none;'><a href="ShowDisplayedItems.html#.exports.ShowDisplayedItems">exports.ShowDisplayedItems</a></li></ul></li><li><a href="store.html">store</a><ul class='members'><li data-type='member' style='display: none;'><a href="store.html#.exports.store">exports.store</a></li><li data-type='member' style='display: none;'><a href="store.html#.initialState">initialState</a></li></ul><ul class='methods'><li data-type='method' style='display: none;'><a href="store.html#.exports.reducer">exports.reducer</a></li><li data-type='method' style='display: none;'><a href="store.html#.exports.StoreProvider">exports.StoreProvider</a></li></ul></li><li><a href="Table.html">Table</a><ul class='members'><li data-type='member' style='display: none;'><a href="Table.html#.classNames">classNames</a></li></ul><ul class='methods'><li data-type='method' style='display: none;'><a href="Table.html#.exports.Table">exports.Table</a></li></ul></li><li><a href="TableBody.html">TableBody</a><ul class='members'><li data-type='member' style='display: none;'><a href="TableBody.html#.classNames">classNames</a></li></ul><ul class='methods'><li data-type='method' style='display: none;'><a href="TableBody.html#.exports.TableBody">exports.TableBody</a></li></ul></li><li><a href="TableHeading.html">TableHeading</a><ul class='members'><li data-type='member' style='display: none;'><a href="TableHeading.html#.classNames">classNames</a></li></ul><ul class='methods'><li data-type='method' style='display: none;'><a href="TableHeading.html#.exports.TableHeading">exports.TableHeading</a></li><li data-type='method' style='display: none;'><a href="TableHeading.html#.handleClick">handleClick</a></li></ul></li><li><a href="TableRow.html">TableRow</a><ul class='members'><li data-type='member' style='display: none;'><a href="TableRow.html#.classNames">classNames</a></li></ul><ul class='methods'><li data-type='method' style='display: none;'><a href="TableRow.html#.exports.TableRow">exports.TableRow</a></li><li data-type='method' style='display: none;'><a href="TableRow.html#.toggleMoreInfoDisplay">toggleMoreInfoDisplay</a></li></ul></li><li><a href="utils.html">utils</a><ul class='members'><li data-type='member' style='display: none;'><a href="utils.html#.emotion">emotion</a></li><li data-type='member' style='display: none;'><a href="utils.html#.exports.defaultStyle">exports.defaultStyle</a></li></ul><ul class='methods'><li data-type='method' style='display: none;'><a href="utils.html#.exports.columnsMinWidthCalc">exports.columnsMinWidthCalc</a></li><li data-type='method' style='display: none;'><a href="utils.html#.exports.convertLengthUnit">exports.convertLengthUnit</a></li><li data-type='method' style='display: none;'><a href="utils.html#.exports.formatDisplayedData">exports.formatDisplayedData</a></li><li data-type='method' style='display: none;'><a href="utils.html#.exports.getCellInterTextLength">exports.getCellInterTextLength</a></li><li data-type='method' style='display: none;'><a href="utils.html#.exports.getTableBorderWidth">exports.getTableBorderWidth</a></li><li data-type='method' style='display: none;'><a href="utils.html#.exports.renderWithStore">exports.renderWithStore</a></li><li data-type='method' style='display: none;'><a href="utils.html#.exports.resolveCellFontStyle">exports.resolveCellFontStyle</a></li></ul></li><li><a href="Wrapper.html">Wrapper</a><ul class='members'><li data-type='member' style='display: none;'><a href="Wrapper.html#.classNames">classNames</a></li></ul><ul class='methods'><li data-type='method' style='display: none;'><a href="Wrapper.html#.exports.Wrapper">exports.Wrapper</a></li></ul></li></ul>
-</nav>
-
-<div id="main">
-    
-    <h1 class="page-title">handlers</h1>
+<body class="layout small-header">
+    <div id="stickyNavbarOverlay"></div>
     
 
-    
+<div class="top-nav">
+    <div class="inner">
+        <a id="hamburger" role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+        </a>
+        <div class="logo">
+            
+            
+        </div>
+        <div class="menu">
+            
+            <div class="navigation">
+                <a
+                    href="index.html"
+                    class="link"
+                >
+                    API Documentation
+                </a>
+                
+                
+                
+            </div>
+        </div>
+    </div>
+</div>
+    <div id="main">
+        <div
+            class="sidebar "
+            id="sidebarNav"
+        >
+            
+            <nav>
+                
+                    <h2><a href="index.html">Documentation</a></h2><div class="category"><h3>Namespaces</h3><ul><li><a href="Datatable.html">Datatable</a></li><li><a href="Filter.html">Filter</a></li><li><a href="handlers.html">handlers</a></li><li><a href="SelectItemsPerPage.html">SelectItemsPerPage</a></li><li><a href="SelectPage.html">SelectPage</a></li><li><a href="ShowDisplayedItems.html">ShowDisplayedItems</a></li><li><a href="store.html">store</a></li><li><a href="Table.html">Table</a></li><li><a href="TableBody.html">TableBody</a></li><li><a href="TableHeading.html">TableHeading</a></li><li><a href="utils.html">utils</a></li></ul><h3>Interfaces</h3><ul><li><a href="TableRowProps.html">TableRowProps</a></li><li><a href="WrapperProps.html">WrapperProps</a></li></ul></div>
+                
+            </nav>
+        </div>
+        <div class="core" id="main-content-wrapper">
+            <div class="content">
+                <header class="page-title">
+                    <p>Namespace</p>
+                    <h1>handlers</h1>
+                </header>
+                
 
 
 
@@ -46,108 +85,24 @@
 
 <header>
     
-        <h2>
-        handlers
-        </h2>
+        <h2>handlers</h2>
         
     
 </header>
 
 <article>
+    <div class="container-overview">
     
-        <div class="container-overview">
         
-            
-
-<dl class="details">
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="index.jsx.html">index.jsx</a>, <a href="index.jsx.html#line83">line 83</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-            
-                <div class="description usertext">all handlers (handling calculation on data).</div>
-            
-
-            
+            <div class="description">all handlers (handling calculation on data).</div>
         
-        </div>
-    
-
-    
-
-    
-
-    
-    
-    
-
-     
-
-    
-
-    
-
-    
-        <h3 class="subsection-title">Methods</h3>
 
         
-            
-
-    
-
-    <h4 class="name" id=".exports.filterHandler"><span class="type-signature">(static) </span>exports.filterHandler<span class="signature">(data, keyword)</span><span class="type-signature"> &rarr; {array}</span></h4>
-
-    
-
-
 
 
 <dl class="details">
 
     
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="handlers_filterHandler_filterHandler.js.html">handlers/filterHandler/filterHandler.js</a>, <a href="handlers_filterHandler_filterHandler.js.html#line16">line 16</a>
-    </li></ul></dd>
-    
 
     
 
@@ -170,25 +125,71 @@
     
 
     
-
     
 
     
 
     
 
+    
+        <p class="tag-source">
+            <a href="index.tsx.html" class="button">View Source</a>
+            <span>
+                <a href="index.tsx.html">index.tsx</a>, <a href="index.tsx.html#line56">line 56</a>
+            </span>
+        </p>
     
 </dl>
 
 
+        
+    
+    </div>
+    
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <div class='vertical-section'>
+            <h1>Methods</h1>
+            <div class="members">
+            
+                <div class="member">
 
 
+    
+    <h4 class="name" id=".exports.filterHandler">
+        <a class="href-link" href="#.exports.filterHandler">#</a>
+        
+            
+                <span class='tag'>static</span>
+            
+        
+        <span class="code-name">
+            
+                exports.filterHandler<span class="signature">(data, keyword)</span><span class="type-signature"> &rarr; {array}</span>
+            
+        </span>
+    </h4>
+    
 
-<div class="description usertext">
-    Filter the data according to the filter keyword.Filtering is not sensitive to case but do not use a normalizer function for accent or hyphens.Return unmodified data if keyword is empty.Has an exact search behavior for parts of the string being between double quotes.Builds the searchingKeywords array by spliting the string : 1) according to double quote to isolate fragment inside and outside of double quotes. 2) splitting the fragment outside of double quote according to spaces.Then make the fitlering research according to all elements of the searchingKeyword array.
-</div>
-
-
+    
+    
+    <div class="description">
+        Filter the data according to the filter keyword.Filtering is not sensitive to case but do not use a normalizer function for accent or hyphens.Return unmodified data if keyword is empty.Has an exact search behavior for parts of the string being between double quotes.Builds the searchingKeywords array by spliting the string : 1) according to double quote to isolate fragment inside and outside of double quotes. 2) splitting the fragment outside of double quote according to spaces.Then make the fitlering research according to all elements of the searchingKeyword array.
+    </div>
+    
 
 
 
@@ -200,123 +201,80 @@
 
     <h5>Parameters:</h5>
     
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
+<div class="table-container">
+    <table class="params table">
+        <thead>
         <tr>
             
-                <td class="name"><code>data</code></td>
+            <th>Name</th>
             
 
-            <td class="type">
+            <th>Type</th>
+
             
-                
+
+            
+
+            <th class="last">Description</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        
+
+            
+<tr class="deep-level-0">
+  
+      <td class="name"><code>data</code></td>
+  
+
+  <td class="type">
+  
+      
 <span class="param-type">array</span>
 
 
-            
-            </td>
+  
+  </td>
+
+  
+
+  
+
+  <td class="description last">the  data to filter.</td>
+</tr>
+
+
+        
 
             
+<tr class="deep-level-0">
+  
+      <td class="name"><code>keyword</code></td>
+  
 
-            
-
-            <td class="description last">the  data to filter.</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>keyword</code></td>
-            
-
-            <td class="type">
-            
-                
+  <td class="type">
+  
+      
 <span class="param-type">string</span>
 
 
-            
-            </td>
+  
+  </td>
 
-            
+  
 
-            
+  
 
-            <td class="description last">the keyword string use to filter.</td>
-        </tr>
+  <td class="description last">the keyword string use to filter.</td>
+</tr>
 
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
 
         
-<div class="param-desc">
-    the filtered data according to keyword.
+        </tbody>
+    </table>
 </div>
 
-
-
-<dl class="param-type">
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">array</span>
-
-
-    </dd>
-</dl>
-
-    
-
-
-
-        
-            
-
-    
-
-    <h4 class="name" id=".exports.pagingHandler"><span class="type-signature">(static) </span>exports.pagingHandler<span class="signature">(data, currentPage, itemsPerPage)</span><span class="type-signature"> &rarr; {array}</span></h4>
-
-    
 
 
 
@@ -324,11 +282,6 @@
 <dl class="details">
 
     
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="handlers_pagingHandler_pagingHandler.js.html">handlers/pagingHandler/pagingHandler.js</a>, <a href="handlers_pagingHandler_pagingHandler.js.html#line11">line 11</a>
-    </li></ul></dd>
-    
 
     
 
@@ -351,13 +304,19 @@
     
 
     
-
     
 
     
 
     
 
+    
+        <p class="tag-source">
+            <a href="handlers_filterHandler_filterHandler.ts.html" class="button">View Source</a>
+            <span>
+                <a href="handlers_filterHandler_filterHandler.ts.html">handlers/filterHandler/filterHandler.ts</a>, <a href="handlers_filterHandler_filterHandler.ts.html#line17">line 17</a>
+            </span>
+        </p>
     
 </dl>
 
@@ -365,11 +324,74 @@
 
 
 
-<div class="description usertext">
-    Filter the data to return the items corresponding to the current page.Returns unmodified data if there is less items than itemsPerPage value.
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class='columns method-parameter'>
+        <div class="column is-2"><label>Returns:</label></div>
+        <div class="column is-10">
+            
+                    
+
+<div class="columns">
+    
+    <div class='param-desc column is-7'>the filtered data according to keyword.</div>
+    
+    
+    <div class='column is-5 has-text-left'>
+        <label>Type: </label>
+        
+<span class="param-type">array</span>
+
+
+    </div>
+    
 </div>
 
+                
+        </div>
+    </div>
 
+
+
+
+</div>
+            
+                <div class="member">
+
+
+    
+    <h4 class="name" id=".exports.pagingHandler">
+        <a class="href-link" href="#.exports.pagingHandler">#</a>
+        
+            
+                <span class='tag'>static</span>
+            
+        
+        <span class="code-name">
+            
+                exports.pagingHandler<span class="signature">(data, currentPage, itemsPerPage)</span><span class="type-signature"> &rarr; {array}</span>
+            
+        </span>
+    </h4>
+    
+
+    
+    
+    <div class="description">
+        Filter the data to return the items corresponding to the current page.Returns unmodified data if there is less items than itemsPerPage value.
+    </div>
+    
 
 
 
@@ -381,146 +403,105 @@
 
     <h5>Parameters:</h5>
     
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
+<div class="table-container">
+    <table class="params table">
+        <thead>
         <tr>
             
-                <td class="name"><code>data</code></td>
+            <th>Name</th>
             
 
-            <td class="type">
+            <th>Type</th>
+
             
-                
+
+            
+
+            <th class="last">Description</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        
+
+            
+<tr class="deep-level-0">
+  
+      <td class="name"><code>data</code></td>
+  
+
+  <td class="type">
+  
+      
 <span class="param-type">array</span>
 
 
-            
-            </td>
+  
+  </td>
 
-            
+  
 
-            
+  
 
-            <td class="description last">the  data to paginate</td>
-        </tr>
+  <td class="description last">the  data to paginate</td>
+</tr>
 
-    
-
-        <tr>
-            
-                <td class="name"><code>currentPage</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">number</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">the currently selected page to display.</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>itemsPerPage</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">number</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">the number of items for each page.</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
 
         
-<div class="param-desc">
-    the data corresponding to the page to display.
+
+            
+<tr class="deep-level-0">
+  
+      <td class="name"><code>currentPage</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type">number</span>
+
+
+  
+  </td>
+
+  
+
+  
+
+  <td class="description last">the currently selected page to display.</td>
+</tr>
+
+
+        
+
+            
+<tr class="deep-level-0">
+  
+      <td class="name"><code>itemsPerPage</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type">number</span>
+
+
+  
+  </td>
+
+  
+
+  
+
+  <td class="description last">the number of items for each page.</td>
+</tr>
+
+
+        
+        </tbody>
+    </table>
 </div>
 
-
-
-<dl class="param-type">
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">array</span>
-
-
-    </dd>
-</dl>
-
-    
-
-
-
-        
-            
-
-    
-
-    <h4 class="name" id=".exports.sortHandler"><span class="type-signature">(static) </span>exports.sortHandler<span class="signature">(data, currentSort)</span><span class="type-signature"> &rarr; {array}</span></h4>
-
-    
 
 
 
@@ -528,11 +509,6 @@
 <dl class="details">
 
     
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="handlers_sortHandler_sortHandler.js.html">handlers/sortHandler/sortHandler.js</a>, <a href="handlers_sortHandler_sortHandler.js.html#line11">line 11</a>
-    </li></ul></dd>
-    
 
     
 
@@ -555,13 +531,19 @@
     
 
     
-
     
 
     
 
     
 
+    
+        <p class="tag-source">
+            <a href="handlers_pagingHandler_pagingHandler.ts.html" class="button">View Source</a>
+            <span>
+                <a href="handlers_pagingHandler_pagingHandler.ts.html">handlers/pagingHandler/pagingHandler.ts</a>, <a href="handlers_pagingHandler_pagingHandler.ts.html#line12">line 12</a>
+            </span>
+        </p>
     
 </dl>
 
@@ -569,11 +551,74 @@
 
 
 
-<div class="description usertext">
-    Sort the data according to currentSort parameter.Returns unmodified data if there is no key selected (null).Sorts the data according to the key parameter, and use the type parameter to define which sort to apply (number, string or date).
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class='columns method-parameter'>
+        <div class="column is-2"><label>Returns:</label></div>
+        <div class="column is-10">
+            
+                    
+
+<div class="columns">
+    
+    <div class='param-desc column is-7'>the data corresponding to the page to display.</div>
+    
+    
+    <div class='column is-5 has-text-left'>
+        <label>Type: </label>
+        
+<span class="param-type">array</span>
+
+
+    </div>
+    
 </div>
 
+                
+        </div>
+    </div>
 
+
+
+
+</div>
+            
+                <div class="member">
+
+
+    
+    <h4 class="name" id=".exports.sortHandler">
+        <a class="href-link" href="#.exports.sortHandler">#</a>
+        
+            
+                <span class='tag'>static</span>
+            
+        
+        <span class="code-name">
+            
+                exports.sortHandler<span class="signature">(data, currentSort)</span><span class="type-signature"> &rarr; {array}</span>
+            
+        </span>
+    </h4>
+    
+
+    
+    
+    <div class="description">
+        Sort the data according to currentSort parameter.Returns unmodified data if there is no key selected (null).Sorts the data according to the key parameter, and use the type parameter to define which sort to apply (number, string or date).Have some checks to assert if the value suits required format, if not it is pushed to end of sort.
+    </div>
+    
 
 
 
@@ -585,116 +630,174 @@
 
     <h5>Parameters:</h5>
     
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
+<div class="table-container">
+    <table class="params table">
+        <thead>
         <tr>
             
-                <td class="name"><code>data</code></td>
+            <th>Name</th>
             
 
-            <td class="type">
+            <th>Type</th>
+
             
-                
+
+            
+
+            <th class="last">Description</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        
+
+            
+<tr class="deep-level-0">
+  
+      <td class="name"><code>data</code></td>
+  
+
+  <td class="type">
+  
+      
 <span class="param-type">array</span>
 
 
-            
-            </td>
+  
+  </td>
+
+  
+
+  
+
+  <td class="description last">the  data to paginate.</td>
+</tr>
+
+
+        
 
             
+<tr class="deep-level-0">
+  
+      <td class="name"><code>currentSort</code></td>
+  
 
-            
-
-            <td class="description last">the  data to paginate.</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>currentSort</code></td>
-            
-
-            <td class="type">
-            
-                
+  <td class="type">
+  
+      
 <span class="param-type">object</span>
 
 
-            
-            </td>
+  
+  </td>
 
-            
+  
 
-            
+  
 
-            <td class="description last">the sorting parameter with a key, a direction and a type.</td>
-        </tr>
+  <td class="description last">the sorting parameter with a key, a direction and a type.</td>
+</tr>
 
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
 
         
-<div class="param-desc">
-    the sorted data.
+        </tbody>
+    </table>
 </div>
 
 
 
-<dl class="param-type">
-    <dt>
-        Type
-    </dt>
-    <dd>
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="handlers_sortHandler_sortHandler.ts.html" class="button">View Source</a>
+            <span>
+                <a href="handlers_sortHandler_sortHandler.ts.html">handlers/sortHandler/sortHandler.ts</a>, <a href="handlers_sortHandler_sortHandler.ts.html#line13">line 13</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class='columns method-parameter'>
+        <div class="column is-2"><label>Returns:</label></div>
+        <div class="column is-10">
+            
+                    
+
+<div class="columns">
+    
+    <div class='param-desc column is-7'>the sorted data.</div>
+    
+    
+    <div class='column is-5 has-text-left'>
+        <label>Type: </label>
         
 <span class="param-type">array</span>
 
 
-    </dd>
-</dl>
-
+    </div>
     
+</div>
+
+                
+        </div>
+    </div>
 
 
 
-        
+
+</div>
+            
+            </div>
+        </div>
     
 
     
@@ -707,25 +810,25 @@
 
 
 
-    
-    
-</div>
-
-<br class="clear">
-
-<footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.7</a> on Mon Dec 06 2021 15:13:45 GMT+0100 (heure normale d’Europe centrale) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
-</footer>
-
-<script>prettyPrint();</script>
-<script src="scripts/polyfill.js"></script>
-<script src="scripts/linenumber.js"></script>
-
-<script src="scripts/search.js" defer></script>
-
-
-<script src="scripts/collapse.js" defer></script>
-
+            </div>
+            
+            <footer class="footer">
+                <div class="content has-text-centered">
+                    <p>Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.7</a></p>
+                    <p class="sidebar-created-by">
+                        <a href="https://github.com/SoftwareBrothers/better-docs" target="_blank">BetterDocs theme</a> provided with <i class="fas fa-heart"></i> by 
+                        <a href="http://softwarebrothers.co" target="_blank">SoftwareBrothers - JavaScript Development Agency</a>
+                    </p>
+                </div>
+            </footer>
+            
+        </div>
+        <div id="side-nav" class="side-nav">
+        </div>
+    </div>
+<script src="scripts/app.min.js"></script>
+<script>PR.prettyPrint();</script>
+<script src="scripts/linenumber.js"> </script>
 
 </body>
 </html>

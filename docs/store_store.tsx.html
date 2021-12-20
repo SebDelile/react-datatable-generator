@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,7 +7,7 @@
   
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title> TableBody</title>
+  <title> store/store.tsx</title>
 
   <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -73,314 +75,138 @@
         <div class="core" id="main-content-wrapper">
             <div class="content">
                 <header class="page-title">
-                    <p>Namespace</p>
-                    <h1>TableBody</h1>
+                    <p>Source</p>
+                    <h1>store/store.tsx</h1>
                 </header>
                 
 
 
 
-
-<section>
-
-<header>
-    
-        <h2>TableBody</h2>
-        
-    
-</header>
-
-<article>
-    <div class="container-overview">
-    
-        
-
-        
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    
-
-    
-
-    
-
-    
-        <p class="tag-source">
-            <a href="components_TableBody_TableBody.tsx.html" class="button">View Source</a>
-            <span>
-                <a href="components_TableBody_TableBody.tsx.html">components/TableBody/TableBody.tsx</a>, <a href="components_TableBody_TableBody.tsx.html#line6">line 6</a>
-            </span>
-        </p>
-    
-</dl>
-
-
-        
-    
-    </div>
-    
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-        <div class='vertical-section'>
-            <h1>Members</h1>
-            <div class="members">
-            
-                <div class="member">
-
-<h4 class="name" id=".classNames">
-    <a class="href-link" href="#.classNames">#</a>
-    
-        
-            <span class='tag'>static</span>
-        
-            <span class='tag'>constant</span>
-        
-    
-    <span class="code-name">
-        classNames
-    </span>
-    
-</h4>
-
-
-
-
-<div class="description">
-    An object containing the classnames generated from the stylesheet made with emotion and using the style state of the store
-</div>
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    
-
-    
-
     
-
-    
-        <p class="tag-source">
-            <a href="components_TableBody_TableBody.tsx.html" class="button">View Source</a>
-            <span>
-                <a href="components_TableBody_TableBody.tsx.html">components/TableBody/TableBody.tsx</a>, <a href="components_TableBody_TableBody.tsx.html#line23">line 23</a>
-            </span>
-        </p>
-    
-</dl>
-
-
-
-
-
-</div>
-            
-            </div>
-        </div>
-    
-
-    
-        <div class='vertical-section'>
-            <h1>Methods</h1>
-            <div class="members">
-            
-                <div class="member">
-
-
-    
-    <h4 class="name" id=".exports.TableBody">
-        <a class="href-link" href="#.exports.TableBody">#</a>
-        
-            
-                <span class='tag'>static</span>
-            
-        
-        <span class="code-name">
-            
-                exports.TableBody<span class="signature">()</span><span class="type-signature"> &rarr; {React.ReactElement}</span>
-            
-        </span>
-    </h4>
-    
-
-    
-    
-    <div class="description">
-        The TableBody component, display a TableRow component for each data.Gives the row a parity attribute (even or odd).If there is no data to display, it displays a unique row with a no match message.
-    </div>
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    
-
-    
-
-    
-
-    
-        <p class="tag-source">
-            <a href="components_TableBody_TableBody.tsx.html" class="button">View Source</a>
-            <span>
-                <a href="components_TableBody_TableBody.tsx.html">components/TableBody/TableBody.tsx</a>, <a href="components_TableBody_TableBody.tsx.html#line17">line 17</a>
-            </span>
-        </p>
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <div class='columns method-parameter'>
-        <div class="column is-2"><label>Returns:</label></div>
-        <div class="column is-10">
-            
-                    
-
-<div class="columns">
-    
-    <div class='param-desc column is-7'>jsx to be injected in the html.</div>
-    
-    
-    <div class='column is-5 has-text-left'>
-        <label>Type: </label>
-        
-<span class="param-type">React.ReactElement</span>
-
-
-    </div>
-    
-</div>
-
-                
-        </div>
-    </div>
-
-
-
-
-</div>
-            
-            </div>
-        </div>
-    
-
-    
-
-    
-</article>
-
-</section>
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import { createContext, useEffect, useReducer } from 'react';
+import { reducer } from './reducer';
+import { filterHandler } from '../handlers/filterHandler/filterHandler';
+import { sortHandler } from '../handlers/sortHandler/sortHandler';
+import { pagingHandler } from '../handlers/pagingHandler/pagingHandler';
+import {
+  HeadingsElementInterface,
+  DataElementInterface,
+  ReducerActionType,
+  StoreStateInterface,
+  ContextType,
+} from '../utils/types/types';
+import { StyleInterface } from '../utils/types/StyleInterface';
+
+interface StoreProviderProps {
+  headings: HeadingsElementInterface[];
+  data: DataElementInterface[];
+  children: React.ReactNode;
+  itemsPerPageOption: number[];
+  isScrollable: boolean;
+  style: StyleInterface;
+}
+
+/**
+ * The store containing all state of the pluggin.
+ * It uses the react context API to spread the state on all component needing it.
+ * it uses the reducer API to manage state update, by taking old state + action object to return new state.
+ * Returns unmodified data if there is less items than itemsPerPage value.
+ * @memberof store
+ */
+export const store = createContext({} as ContextType);
+
+/**
+ * the context provider of the store context.
+ * Provides the spreaded state and the dispatch function form the store.
+ * It has 3 useEffect to update the data on filtering, sorting or paginating (in this order).
+ * Filtering trigger sorting update, sorting trigger paginating update. so updating paginating do not trigger calculation on filterring and sorting data (because no need).
+ * @memberof store
+ * @function
+ * @param {object} props - the props passed to the plugin on initialization are forwarded to store provider to be included in initialState.
+ * @returns {JSX.Element} the provider component to wrap all component that need access to the state.
+ */
+export const StoreProvider: React.FC&lt;StoreProviderProps> = ({
+  children,
+  headings,
+  data,
+  itemsPerPageOption,
+  isScrollable,
+  style,
+}) => {
+  /**
+   * the initial state of the store context.
+   * It uses the props passed at initialization of the plugin.
+   * @memberof store
+   */
+  const initialState: StoreStateInterface = {
+    headings: headings,
+    data: data,
+    itemsPerPageOption: itemsPerPageOption,
+    isScrollable: isScrollable,
+    filterKeyword: '',
+    currentSort: {
+      key: headings[0].key ?? null,
+      direction: 1,
+      type: headings[0].type ?? undefined,
+    },
+    itemsPerPage: itemsPerPageOption[0],
+    currentPage: 1,
+    moreInfoOpenList: [],
+    filteredData: data,
+    sortedData: data,
+    displayedData: data,
+    width: 0,
+    columnsMinWidth: [],
+    displayedColumns: headings.length,
+    style: style,
+  };
+
+  const [state, dispatch]: [
+    StoreStateInterface,
+    React.Dispatch&lt;ReducerActionType>
+  ] = useReducer(reducer, initialState);
+
+  useEffect(() => {
+    dispatch({
+      type: 'setFilteredData',
+      payload: filterHandler(state.data, state.filterKeyword),
+    });
+  }, [state.data, state.filterKeyword]);
+
+  useEffect(() => {
+    dispatch({
+      type: 'setSortedData',
+      payload: sortHandler(state.filteredData, state.currentSort),
+    });
+  }, [state.filteredData, state.currentSort]);
+
+  useEffect(() => {
+    dispatch({
+      type: 'setDisplayedData',
+      payload: pagingHandler(
+        state.sortedData,
+        state.currentPage,
+        state.itemsPerPage
+      ),
+    });
+  }, [state.sortedData, state.currentPage, state.itemsPerPage]);
+
+  return (
+    &lt;store.Provider
+      value={{
+        ...state,
+        dispatch,
+      }}
+    >
+      {children}
+    &lt;/store.Provider>
+  );
+};
+</code></pre>
+        </article>
+    </section>
 
 
 

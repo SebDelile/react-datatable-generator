@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,7 +7,7 @@
   
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title> TableBody</title>
+  <title> utils/processing/columnsMinWidthCalc/columnsMinWidthCalc.ts</title>
 
   <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -73,314 +75,84 @@
         <div class="core" id="main-content-wrapper">
             <div class="content">
                 <header class="page-title">
-                    <p>Namespace</p>
-                    <h1>TableBody</h1>
+                    <p>Source</p>
+                    <h1>utils/processing/columnsMinWidthCalc/columnsMinWidthCalc.ts</h1>
                 </header>
                 
 
 
 
-
-<section>
-
-<header>
-    
-        <h2>TableBody</h2>
-        
-    
-</header>
-
-<article>
-    <div class="container-overview">
-    
-        
-
-        
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    
-
-    
-
-    
-
-    
-        <p class="tag-source">
-            <a href="components_TableBody_TableBody.tsx.html" class="button">View Source</a>
-            <span>
-                <a href="components_TableBody_TableBody.tsx.html">components/TableBody/TableBody.tsx</a>, <a href="components_TableBody_TableBody.tsx.html#line6">line 6</a>
-            </span>
-        </p>
-    
-</dl>
-
-
-        
-    
-    </div>
-    
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-        <div class='vertical-section'>
-            <h1>Members</h1>
-            <div class="members">
-            
-                <div class="member">
-
-<h4 class="name" id=".classNames">
-    <a class="href-link" href="#.classNames">#</a>
-    
-        
-            <span class='tag'>static</span>
-        
-            <span class='tag'>constant</span>
-        
-    
-    <span class="code-name">
-        classNames
-    </span>
-    
-</h4>
-
-
-
-
-<div class="description">
-    An object containing the classnames generated from the stylesheet made with emotion and using the style state of the store
-</div>
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    
-
-    
-
     
-
-    
-        <p class="tag-source">
-            <a href="components_TableBody_TableBody.tsx.html" class="button">View Source</a>
-            <span>
-                <a href="components_TableBody_TableBody.tsx.html">components/TableBody/TableBody.tsx</a>, <a href="components_TableBody_TableBody.tsx.html#line23">line 23</a>
-            </span>
-        </p>
-    
-</dl>
-
-
-
-
-
-</div>
-            
-            </div>
-        </div>
-    
-
-    
-        <div class='vertical-section'>
-            <h1>Methods</h1>
-            <div class="members">
-            
-                <div class="member">
-
-
-    
-    <h4 class="name" id=".exports.TableBody">
-        <a class="href-link" href="#.exports.TableBody">#</a>
-        
-            
-                <span class='tag'>static</span>
-            
-        
-        <span class="code-name">
-            
-                exports.TableBody<span class="signature">()</span><span class="type-signature"> &rarr; {React.ReactElement}</span>
-            
-        </span>
-    </h4>
-    
-
-    
-    
-    <div class="description">
-        The TableBody component, display a TableRow component for each data.Gives the row a parity attribute (even or odd).If there is no data to display, it displays a unique row with a no match message.
-    </div>
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    
-
-    
-
-    
-
-    
-        <p class="tag-source">
-            <a href="components_TableBody_TableBody.tsx.html" class="button">View Source</a>
-            <span>
-                <a href="components_TableBody_TableBody.tsx.html">components/TableBody/TableBody.tsx</a>, <a href="components_TableBody_TableBody.tsx.html#line17">line 17</a>
-            </span>
-        </p>
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <div class='columns method-parameter'>
-        <div class="column is-2"><label>Returns:</label></div>
-        <div class="column is-10">
-            
-                    
-
-<div class="columns">
-    
-    <div class='param-desc column is-7'>jsx to be injected in the html.</div>
-    
-    
-    <div class='column is-5 has-text-left'>
-        <label>Type: </label>
-        
-<span class="param-type">React.ReactElement</span>
-
-
-    </div>
-    
-</div>
-
-                
-        </div>
-    </div>
-
-
-
-
-</div>
-            
-            </div>
-        </div>
-    
-
-    
-
-    
-</article>
-
-</section>
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import {
+  HeadingsElementInterface,
+  DataElementInterface,
+} from '../../types/types';
+import { StyleInterface } from '../../types/StyleInterface';
+import { getCellInterTextLength } from '../getCellInterTextLength/getCellInterTextLength';
+import { resolveCellFontStyle } from '../resolveCellFontStyle/resolveCellFontStyle';
+
+/**
+ * Calculate the min-width for each column (heading + data).
+ * Uses the Canvas API to measure the length of the text of each cell and return the max for each column
+ * Takes into account of the font style, cell inter text length and the sorting image of column headers.
+ * @param {array} headings - the headings array.
+ * @param {array} data - the data array.
+ * @param {HTMLElement} ref - the ref to the pluggin html element, to recover font size and font family.
+ * @param {object} style - the style state from the store.
+ * @memberof utils
+ * @function
+ * @returns {array} - minwidth value for each column (in px) in the same sequence as the headings array.
+ */
+export const columnsMinWidthCalc = (
+  headings: HeadingsElementInterface[],
+  data: DataElementInterface[],
+  ref: HTMLElement,
+  style: StyleInterface
+): number[] | undefined => {
+  if (!ref) return;
+
+  const { bodyStyle, headStyle } = resolveCellFontStyle(ref, style);
+
+  //create canvas and test each body cell text length with applied style to find the longer
+  const canvas = document.createElement('canvas');
+  const context = canvas.getContext('2d');
+  if (!context) return;
+  //console.log(bodyStyle); //------------------------------------------------------------------------------------------------------------------
+  context.font = `${bodyStyle.fontWeight} ${bodyStyle.fontSize} ${bodyStyle.fontFamily}`;
+  const bodyColumnMinWidth: number[] = headings.map((heading) =>
+    data
+      .map((item) => {
+        const value = item[heading.key];
+        if (typeof value === 'string') return value;
+        else return value.toString();
+      })
+      .reduce&lt;number>(
+        (acc: number, cur: string): number =>
+          Math.max(acc, context.measureText(cur).width),
+        0
+      )
+  );
+  //compare with the column header cell text length and keep the longer, then add the intertextLength (padding+border)
+  context.font = `${headStyle.fontWeight} ${headStyle.fontSize} ${headStyle.fontFamily}`;
+  const cellInterTextLength = getCellInterTextLength(style);
+  const columnMinWidth: number[] = headings.map(
+    (heading, index): number =>
+      Math.ceil(
+        Math.max(
+          bodyColumnMinWidth[index],
+          context.measureText(heading.label).width +
+            parseInt(headStyle.fontSize) // is the sort icon in column header (1em width)
+        )
+      ) + cellInterTextLength
+  );
+  canvas.remove();
+  return columnMinWidth;
+};
+</code></pre>
+        </article>
+    </section>
 
 
 
