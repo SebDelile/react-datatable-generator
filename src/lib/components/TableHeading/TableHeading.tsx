@@ -1,8 +1,6 @@
 import styleSheet from './TableHeading.styleSheet';
 import globalStyleSheet from '../../utils/style/globalStyle.styleSheet';
-import noSortIcon from '../../assets/icon-no-sort.svg';
-import ascendingSortIcon from '../../assets/icon-ascending-sort.svg';
-import descendingSortIcon from '../../assets/icon-descending-sort.svg';
+import { inlineSvgIcons } from '../../utils/style/inlineSvgIcons';
 import { useContext } from 'react';
 import { store } from '../../store/store';
 import { cx } from '../../utils/style/emotion';
@@ -83,10 +81,10 @@ export const TableHeading = (): React.ReactElement => {
                 className={classNames.sortIcon}
                 src={
                   currentSort.key !== item.key
-                    ? noSortIcon
+                    ? inlineSvgIcons.noSort
                     : currentSort.direction > 0
-                    ? ascendingSortIcon
-                    : descendingSortIcon
+                    ? inlineSvgIcons.ascendingSort
+                    : inlineSvgIcons.descendingSort
                 }
                 aria-hidden
                 alt={

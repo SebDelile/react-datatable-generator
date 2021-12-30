@@ -1,8 +1,8 @@
 import styleSheet from './Filter.styleSheet';
-import iconClose from '../../assets/icon-close.svg';
 import { useContext } from 'react';
 import { store } from '../../store/store';
 import { cx } from '../../utils/style/emotion';
+import { inlineSvgIcons } from '../../utils/style/inlineSvgIcons';
 
 /**
  * @namespace Filter
@@ -67,7 +67,7 @@ export const Filter = (): React.ReactElement => {
         >
           <img
             className={classNames.resetButtonImage}
-            src={iconClose}
+            src={inlineSvgIcons.resetFilter}
             alt="reset keyword field"
           />
         </button>
