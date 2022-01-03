@@ -18,15 +18,9 @@ const styleSheet = (style: StyleInterface) => ({
   wrapperLarge: css({
     justifySelf: 'end',
   }),
-  label: css({
-    padding: '0 0.5rem',
-    fontFamily: 'inherit',
-    fontSize: 'inherit',
-    fontWeight: 'inherit',
-    color: 'inherit',
-  }),
   input: css({
     padding: '0.125rem 0.5rem',
+    marginLeft: '0.5rem',
     font: 'inherit',
     fontSize: 'inherit',
     fontWeight: 'inherit',
