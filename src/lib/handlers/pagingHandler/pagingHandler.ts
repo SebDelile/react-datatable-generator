@@ -16,9 +16,8 @@ export const pagingHandler = (
   itemsPerPage: number
 ): DataElementInterface[] => {
   if (itemsPerPage >= data.length) return data;
-  return data.filter(
-    (_, index) =>
-      index >= (currentPage - 1) * itemsPerPage &&
-      index <= Math.min(currentPage * itemsPerPage - 1, data.length - 1)
+  return data.slice(
+    (currentPage - 1) * itemsPerPage,
+    Math.min(currentPage * itemsPerPage, data.length)
   );
 };
