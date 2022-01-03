@@ -43,9 +43,9 @@ describe('GIVEN the Wrapper component', () => {
       );
     });
     test('THEN it renders an article with classname passed as props', () => {
-      const article = screen.getByRole('article');
-      expect(article).toBeTruthy();
-      expect(article.classList.contains('class')).toBeTruthy();
+      const figure = screen.getByRole('figure');
+      expect(figure).toBeTruthy();
+      expect(figure.classList.contains('class')).toBeTruthy();
     });
     test('THEN it renders children', () => {
       expect(screen.getByText('child')).toBeTruthy();

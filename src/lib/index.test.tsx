@@ -25,8 +25,8 @@ describe('GIVEN the Datatable pluggin', () => {
         />
       );
     });
-    test('THEN it renders a article wrapper', () => {
-      expect(screen.getByRole('article')).toBeTruthy();
+    test('THEN it renders a figure tag wrapper', () => {
+      expect(screen.getByRole('figure')).toBeTruthy();
     });
     test('THEN it renders a combobox', () => {
       expect(screen.getByRole('combobox')).toBeTruthy();
