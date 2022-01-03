@@ -2,13 +2,6 @@ import { filterHandler } from './filterHandler';
 import { user1, user2, user3, user4, dataSample } from '../../mocks/dataSample';
 
 describe('GIVEN the filterHandler feature', () => {
-  describe('WHEN it is called with an array containing only objects', () => {
-    test('THEN it does not return an error', () => {
-      expect(() =>
-        filterHandler([{ key: 1, otherkey: true }, { key: 2 }], 'keyword')
-      ).not.toThrow();
-    });
-  });
   describe('WHEN it is called with an empty string as keyword', () => {
     test('THEN it returns the data without modification', () => {
       const filteredData = filterHandler(dataSample, '');

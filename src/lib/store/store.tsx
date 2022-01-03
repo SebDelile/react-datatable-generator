@@ -14,7 +14,7 @@ import { StyleInterface } from '../utils/types/StyleInterface';
 
 interface StoreProviderProps {
   headings: HeadingsElementInterface[];
-  data: DataElementInterface[];
+  data: DataElementInterface[] | [];
   children: React.ReactNode;
   itemsPerPageOption: number[];
   isScrollable: boolean;

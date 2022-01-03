@@ -16,7 +16,7 @@ import styleSheet from './TableBody.styleSheet';
  * @return {React.ReactElement} jsx to be injected in the html.
  */
 export const TableBody = (): React.ReactElement => {
-  const { headings, displayedData, style } = useContext(store);
+  const { headings, data, displayedData, style } = useContext(store);
 
   /**
    * An object containing the classnames generated from the stylesheet made with emotion and using the style state of the store
@@ -38,7 +38,9 @@ export const TableBody = (): React.ReactElement => {
       ) : (
         <tr>
           <td colSpan={headings.length} className={classNames.noMatch}>
-            No matching records found
+            {data && data.length
+              ? 'No matching records found'
+              : 'There are no data to display'}
           </td>
         </tr>
       )}

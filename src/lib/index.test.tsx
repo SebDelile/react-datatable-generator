@@ -47,6 +47,19 @@ describe('GIVEN the Datatable pluggin', () => {
       expect(screen.getByRole('button', { name: 'Next' })).toBeTruthy();
     });
   });
+  describe('WHEN it is called with valid headings and empty array data props', () => {
+    beforeEach(() => {
+      Object.defineProperties(window.HTMLElement.prototype, {
+        offsetWidth: {
+          get: () => 500,
+        },
+      });
+      render(<Datatable headings={extendedHeadingsSample} data={[]} />);
+    });
+    test('THEN it renders with a message on absence of data', () => {
+      expect(screen.getByText(/no data to display/i)).toBeTruthy();
+    });
+  });
   // describe('WHEN it is called with invalid headings or data props', () => {
   //   test('THEN it renders nothing', () => {
   //     render(<Datatable data={extendedDataSample} width={100} />);
