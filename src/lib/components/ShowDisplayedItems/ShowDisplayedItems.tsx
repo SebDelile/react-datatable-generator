@@ -35,10 +35,13 @@ export const ShowDisplayedItems = (): React.ReactElement => {
   return (
     <p
       className={cx(classNames.wrapper, width > 800 && classNames.wrapperLarge)}
-    >{`Showing ${firstItem} to ${lastItem} of ${filteredDataLength} entries${
-      unfiltredDataLength > filteredDataLength
+    >
+      {filteredDataLength === 0
+        ? 'Showing no entry'
+        : `Showing ${firstItem} to ${lastItem} of ${filteredDataLength} entries`}
+      {unfiltredDataLength > filteredDataLength
         ? ` (filtered from ${unfiltredDataLength} total entries)`
-        : ''
-    }`}</p>
+        : ''}
+    </p>
   );
 };

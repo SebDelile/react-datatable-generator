@@ -26,6 +26,17 @@ describe('GIVEN the ShowDisplayedItems component', () => {
       expect(screen.getByText(/11 to 12 of 12/i)).toBeTruthy();
     });
   });
+  describe('WHEN it is called and there is no displayed items', () => {
+    test('THEN it renders a sentence to state there is no item to display', () => {
+      renderWithStore(<ShowDisplayedItems />, {
+        currentPage: 1,
+        itemsPerPage: 5,
+        filteredData: [],
+        data: extendedDataSample,
+      });
+      expect(screen.getByText(/no entry/i)).toBeTruthy();
+    });
+  });
   describe('WHEN it is called and data have been filtrated', () => {
     test('THEN it additionnaly displays the number of unflitred data', () => {
       renderWithStore(<ShowDisplayedItems />, {
