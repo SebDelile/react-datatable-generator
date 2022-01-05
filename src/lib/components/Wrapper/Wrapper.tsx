@@ -71,7 +71,7 @@ export const Wrapper = ({
   const classNames: { [Class: string]: string } = styleSheet(style);
 
   return (
-    <article
+    <figure
       ref={ref}
       className={cx(
         classNames.wrapper,
@@ -81,6 +81,6 @@ export const Wrapper = ({
       )}
     >
       {width !== 0 ? children : null}
-    </article>
+    </figure>
   );
 };

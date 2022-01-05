@@ -136,4 +136,22 @@ describe('GIVEN the SelectPage component', () => {
       });
     });
   });
+  describe('WHEN it is called with displayedData being an empty array', () => {
+    test('THEN both previous and next buttons are disabled', () => {
+      renderWithStore(<SelectPage />, {
+        currentPage: 1,
+        dispatch: dispatch,
+        filteredData: [],
+        itemsPerPage: 3,
+      });
+      const buttonPrevious = screen.getByRole('button', {
+        name: 'Previous',
+      }) as HTMLButtonElement;
+      const buttonNext = screen.getByRole('button', {
+        name: 'Next',
+      }) as HTMLButtonElement;
+      expect(buttonPrevious.disabled).toBeTruthy();
+      expect(buttonNext.disabled).toBeTruthy();
+    });
+  });
 });

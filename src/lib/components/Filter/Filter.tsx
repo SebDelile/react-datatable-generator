@@ -1,8 +1,8 @@
 import styleSheet from './Filter.styleSheet';
-import iconClose from '../../assets/icon-close.svg';
 import { useContext } from 'react';
 import { store } from '../../store/store';
 import { cx } from '../../utils/style/emotion';
+import { inlineSvgIcons } from '../../utils/style/inlineSvgIcons';
 
 /**
  * @namespace Filter
@@ -49,10 +49,10 @@ export const Filter = (): React.ReactElement => {
   const classNames: { [Class: string]: string } = styleSheet(style);
 
   return (
-    <div
+    <label
       className={cx(classNames.wrapper, width > 480 && classNames.wrapperLarge)}
     >
-      <label className={classNames.label}>Search:</label>
+      Search:
       <input
         className={classNames.input}
         type="text"
@@ -67,11 +67,11 @@ export const Filter = (): React.ReactElement => {
         >
           <img
             className={classNames.resetButtonImage}
-            src={iconClose}
+            src={inlineSvgIcons.resetFilter}
             alt="reset keyword field"
           />
         </button>
       ) : null}
-    </div>
+    </label>
   );
 };

@@ -12,7 +12,7 @@ export type SortType = {
 
 export interface StoreStateInterface {
   headings: HeadingsElementInterface[];
-  data: DataElementInterface[];
+  data: DataElementInterface[] | [];
   itemsPerPageOption: number[];
   isScrollable: boolean;
   filterKeyword: string;

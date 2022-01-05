@@ -25,8 +25,8 @@ describe('GIVEN the Datatable pluggin', () => {
         />
       );
     });
-    test('THEN it renders a article wrapper', () => {
-      expect(screen.getByRole('article')).toBeTruthy();
+    test('THEN it renders a figure tag wrapper', () => {
+      expect(screen.getByRole('figure')).toBeTruthy();
     });
     test('THEN it renders a combobox', () => {
       expect(screen.getByRole('combobox')).toBeTruthy();
@@ -45,6 +45,19 @@ describe('GIVEN the Datatable pluggin', () => {
       expect(screen.getByRole('button', { name: 'Previous' })).toBeTruthy();
       expect(screen.getByRole('button', { name: '1' })).toBeTruthy();
       expect(screen.getByRole('button', { name: 'Next' })).toBeTruthy();
+    });
+  });
+  describe('WHEN it is called with valid headings and empty array data props', () => {
+    beforeEach(() => {
+      Object.defineProperties(window.HTMLElement.prototype, {
+        offsetWidth: {
+          get: () => 500,
+        },
+      });
+      render(<Datatable headings={extendedHeadingsSample} data={[]} />);
+    });
+    test('THEN it renders with a message on absence of data', () => {
+      expect(screen.getByText(/no data to display/i)).toBeTruthy();
     });
   });
   // describe('WHEN it is called with invalid headings or data props', () => {

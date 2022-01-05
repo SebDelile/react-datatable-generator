@@ -16,7 +16,7 @@ import { StyleInterface } from './utils/types/StyleInterface';
 
 interface DatatableProps {
   headings: HeadingsElementInterface[];
-  data: DataElementInterface[];
+  data: DataElementInterface[] | [];
   className?: string;
   itemsPerPageOption?: number[];
   isScrollable?: boolean;
@@ -28,7 +28,7 @@ interface DatatableProps {
  * @memberof Datatable
  * @function
  * @param {array} props.headings - mandatory, used to build the column headers, have to be in the form of an array of objects with the shape being {key:string, label:string, type: string, format: function||string} (format is optionnal, key must be unique in array)
- * @param {array} props.data - mandatory, used to build the data ro of the table, have to be an array of object with the shape being {key1:value, key2:value, ...} only the keys matching a key in headings will be displayed.
+ * @param {array} props.data - mandatory, used to build the data ro of the table, have to be an array of object with the shape being {key1:value, key2:value, ...} only the keys matching a key in headings will be displayed. Can be an empty array if there is no data to display
  * @param {string} props.className - an optionnal list of space separated classes to be applied to the datatable wrapper.
  * @param {array} props.itemsPerPageOption - an optionnal list of the available values for the number of items to display per page. Default is [10, 25, 50, 100]
  * @param {boolean} props.isScrollable - an optionnal value to stand if the column not being displayed within the screen should be get by horizontal scroll (true) or by clicking on a row to expand missing value (false). Default value is false.
@@ -59,8 +59,7 @@ const Datatable = ({
     !Array.isArray(headings) ||
     isHeadingsKeysInvalid() ||
     !data ||
-    !Array.isArray(data) ||
-    data.some((item) => typeof item !== 'object')
+    !Array.isArray(data)
   )
     return null;
   else

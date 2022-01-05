@@ -16,33 +16,9 @@ import { DataElementInterface } from '../../utils/types/types';
  * @return {array} the filtered data according to keyword.
  */
 export const filterHandler = (
-  data: DataElementInterface[],
+  data: DataElementInterface[] | [],
   keyword: string
-): DataElementInterface[] => {
-  // check for input validity
-  // data must be a non-empty array, containing only non-empty arrays or object, with no more nesting in it
-  // keyword must be a string
-  if (
-    !Array.isArray(data) ||
-    !data.length ||
-    data.some(
-      (element) => typeof element !== 'object' || !Object.keys(element).length
-    ) ||
-    data.some((element) =>
-      Object.values(element).some(
-        (subElement) => typeof subElement === 'object'
-      )
-    )
-  )
-    throw new Error(
-      'Type error : please provide data parameter as an array of object'
-    );
-  if (typeof keyword !== 'string')
-    throw new Error(
-      'Type error : please provide keyword parameter as a string'
-    );
-
-  // if inputs are ok
+): DataElementInterface[] | [] => {
   if (keyword === '') return data;
 
   const quoteSplittedKeywords: string[] = keyword.toLowerCase().split('"');

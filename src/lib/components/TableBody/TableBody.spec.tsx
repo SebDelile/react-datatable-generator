@@ -31,6 +31,7 @@ describe('GIVEN the TableBody component', () => {
         {
           headings: headingsSample,
           displayedData: dataSample,
+          data: dataSample,
         }
       );
     });
@@ -44,7 +45,7 @@ describe('GIVEN the TableBody component', () => {
       });
     });
   });
-  describe('WHEN it is called with displayedData being empty', () => {
+  describe('WHEN it is called with displayedData being empty but data not being empty', () => {
     test('THEN it renders an unique cell with message on no match found', () => {
       renderWithStore(
         <table>
@@ -53,9 +54,25 @@ describe('GIVEN the TableBody component', () => {
         {
           headings: headingsSample,
           displayedData: [],
+          data: dataSample,
         }
       );
       expect(screen.getByRole('cell', { name: /no match/i })).toBeTruthy();
+    });
+  });
+  describe('WHEN it is called with both data and displayedData being empty', () => {
+    test('THEN it renders an unique cell with message on no match found', () => {
+      renderWithStore(
+        <table>
+          <TableBody />
+        </table>,
+        {
+          headings: headingsSample,
+          displayedData: [],
+          data: [],
+        }
+      );
+      expect(screen.getByRole('cell', { name: /no data/i })).toBeTruthy();
     });
   });
 });

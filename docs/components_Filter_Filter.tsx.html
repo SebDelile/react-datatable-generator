@@ -86,10 +86,10 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>import styleSheet from './Filter.styleSheet';
-import iconClose from '../../assets/icon-close.svg';
 import { useContext } from 'react';
 import { store } from '../../store/store';
 import { cx } from '../../utils/style/emotion';
+import { inlineSvgIcons } from '../../utils/style/inlineSvgIcons';
 
 /**
  * @namespace Filter
@@ -136,10 +136,10 @@ export const Filter = (): React.ReactElement => {
   const classNames: { [Class: string]: string } = styleSheet(style);
 
   return (
-    &lt;div
+    &lt;label
       className={cx(classNames.wrapper, width > 480 &amp;&amp; classNames.wrapperLarge)}
     >
-      &lt;label className={classNames.label}>Search:&lt;/label>
+      Search:
       &lt;input
         className={classNames.input}
         type="text"
@@ -154,12 +154,12 @@ export const Filter = (): React.ReactElement => {
         >
           &lt;img
             className={classNames.resetButtonImage}
-            src={iconClose}
+            src={inlineSvgIcons.resetFilter}
             alt="reset keyword field"
           />
         &lt;/button>
       ) : null}
-    &lt;/div>
+    &lt;/label>
   );
 };
 </code></pre>

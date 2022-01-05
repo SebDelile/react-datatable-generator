@@ -105,7 +105,10 @@ import { cx } from '../../utils/style/emotion';
 export const SelectPage = (): React.ReactElement => {
   const { currentPage, filteredData, itemsPerPage, width, style, dispatch } =
     useContext(store);
-  const numberOfPages: number = Math.ceil(filteredData.length / itemsPerPage);
+  const numberOfPages: number =
+    filteredData.length === 0
+      ? 1
+      : Math.ceil(filteredData.length / itemsPerPage);
 
   const buttonList: (number | string)[] = ['Previous'];
   if (numberOfPages &lt;= 7) {

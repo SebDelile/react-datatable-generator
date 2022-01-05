@@ -25,6 +25,7 @@ const styleSheet = (style: StyleInterface) => ({
     '& *, & *::before, & *::after': {
       boxSizing: 'border-box',
     },
+    margin: 0,
   }),
   wrapperLarge: css({
     gridTemplateAreas: `
