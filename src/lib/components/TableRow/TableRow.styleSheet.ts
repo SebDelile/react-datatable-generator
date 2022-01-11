@@ -44,6 +44,7 @@ const styleSheet = (style: StyleInterface) => ({
   }),
   moreInfo: css({
     cursor: 'pointer',
+    background: style.moreInfoTableBackground,
     '&[data-hidden]': {
       display: 'none',
     },
@@ -53,7 +54,6 @@ const styleSheet = (style: StyleInterface) => ({
     borderCollapse: 'collapse',
   }),
   moreInfoRow: css({
-    background: style.moreInfoTableBackground,
     '&:not(:first-of-type)': {
       borderTop: style.moreInfoTableHorizontalBorder,
     },
