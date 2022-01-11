@@ -21,7 +21,7 @@ const styleSheet = (style: StyleInterface) => ({
   input: css({
     padding: '0.125rem 0.5rem',
     marginLeft: '0.5rem',
-    font: 'inherit',
+    fontFamily: 'inherit',
     fontSize: 'inherit',
     fontWeight: 'inherit',
     background: style.filterInputBackground,
