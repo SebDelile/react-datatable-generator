@@ -6,8 +6,9 @@
     "table",
     "component"
   ],
+  "description": "React plugin to provide enhanced datatable component",
   "private": false,
-  "version": "1.1.0",
+  "version": "1.1.1",
   "main": "dist/index.js",
   "module": "dist/index.js",
   "types": "dist/index.d.ts",
