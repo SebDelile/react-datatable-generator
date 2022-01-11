@@ -19,7 +19,7 @@ const styleSheet = (style: StyleInterface) => ({
     justifySelf: 'end',
   }),
   input: css({
-    padding: '0.125rem 0.5rem',
+    padding: '0.25rem 0.5rem',
     marginLeft: '0.5rem',
     fontFamily: 'inherit',
     fontSize: 'inherit',

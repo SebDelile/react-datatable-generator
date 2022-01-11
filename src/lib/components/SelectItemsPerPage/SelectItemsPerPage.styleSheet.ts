@@ -18,7 +18,7 @@ const styleSheet = (style: StyleInterface) => ({
   }),
   select: css({
     margin: '0 0.5rem',
-    padding: '0.125rem',
+    padding: '0.25rem',
     fontFamily: 'inherit',
     fontSize: 'inherit',
     fontWeight: 'inherit',
